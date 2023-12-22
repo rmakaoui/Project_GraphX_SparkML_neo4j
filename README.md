@@ -52,7 +52,7 @@ cd Project_GraphX_SparkML_neo4j
 ### Démarrer le Projet avec Docker Compose
 ```bash
 # Assurez-vous d'être dans le répertoire du projet
-cd chemin-du-projet
+cd Project_GraphX_SparkML_neo4j
 
 # Démarrer les services en arrière-plan avec Docker Compose
 docker-compose up -d
