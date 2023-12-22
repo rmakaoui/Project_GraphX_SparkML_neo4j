@@ -1,0 +1,17 @@
+Source,Target,weight,prediction
+helman-tallhart,randyll-tarly,3.0,0
+helman-tallhart,robett-glover,4.0,0
+kindly-man,waif,7.0,0
+kindly-man,waif,6.0,0
+rhaegar-targaryen,rhaella-targaryen,3.0,0
+rhaegar-targaryen,robert-baratheon,22.0,2
+rhaegar-targaryen,robert-baratheon,5.0,0
+rhaegar-targaryen,robert-baratheon,8.0,0
+rhaegar-targaryen,robert-baratheon,6.0,0
+rhaegar-targaryen,robert-baratheon,7.0,0
+rhaegar-targaryen,sansa-stark,3.0,0
+rhaegar-targaryen,tywin-lannister,4.0,0
+rhaegar-targaryen,viserys-targaryen,5.0,0
+rhaegar-targaryen,viserys-targaryen,3.0,0
+rhaegar-targaryen,viserys-targaryen,7.0,0
+victarion-greyjoy,wulfe,3.0,0

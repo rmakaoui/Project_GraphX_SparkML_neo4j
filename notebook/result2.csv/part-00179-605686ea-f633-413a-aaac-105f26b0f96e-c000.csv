@@ -1,0 +1,14 @@
+Source,Target,weight,prediction
+donal-noye,jeor-mormont,4.0,0
+donal-noye,jon-snow,7.0,0
+donal-noye,jon-snow,33.0,2
+donal-noye,jon-snow,7.0,0
+donal-noye,mag-mar-tun-doh-weg,6.0,0
+donal-noye,mance-rayder,3.0,0
+donal-noye,qhorin-halfhand,3.0,0
+donal-noye,qhorin-halfhand,3.0,0
+donal-noye,stannis-baratheon,4.0,0
+haggon,varamyr,8.0,0
+lorent-caswell,renly-baratheon,3.0,0
+ottyn-wythers,samwell-tarly,3.0,0
+ottyn-wythers,thoren-smallwood,6.0,0

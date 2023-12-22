@@ -1,0 +1,16 @@
+Source,Target,weight,prediction
+aegon-i-targaryen,daenerys-targaryen,5.0,0
+aegon-i-targaryen,daenerys-targaryen,4.0,0
+aegon-i-targaryen,daenerys-targaryen,4.0,0
+aegon-i-targaryen,eddard-stark,4.0,0
+aegon-i-targaryen,harren-hoare,4.0,0
+aegon-i-targaryen,nan,3.0,0
+aegon-i-targaryen,rhaenys-targaryen,4.0,0
+aegon-i-targaryen,stannis-baratheon,4.0,0
+aegon-i-targaryen,torrhen-stark,3.0,0
+aegon-i-targaryen,tyrion-lannister,3.0,0
+aegon-i-targaryen,visenya-targaryen,3.0,0
+jalabhar-xho,lambert-turnberry,3.0,0
+jalabhar-xho,tallad,3.0,0
+rowan,squirrel,5.0,0
+rowan,theon-greyjoy,12.0,0

@@ -1,0 +1,16 @@
+Source,Target,weight,prediction
+cortnay-penrose,davos-seaworth,5.0,0
+cortnay-penrose,renly-baratheon,3.0,0
+cortnay-penrose,stannis-baratheon,18.0,0
+cortnay-penrose,tyrion-lannister,3.0,0
+cortnay-penrose,varys,3.0,0
+franklyn-flowers,jon-connington,4.0,0
+lancel-lannister,moon-boy,11.0,0
+lancel-lannister,osmund-kettleblack,13.0,0
+lancel-lannister,robert-baratheon,3.0,0
+lancel-lannister,robert-baratheon,4.0,0
+lancel-lannister,sansa-stark,3.0,0
+lancel-lannister,tyrion-lannister,18.0,0
+lancel-lannister,varys,3.0,0
+pyat-pree,xaro-xhoan-daxos,10.0,0
+rhaenys-targaryen,visenya-targaryen,3.0,0

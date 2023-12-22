@@ -1,0 +1,11 @@
+Source,Target,weight,prediction
+aegon-v-targaryen,aemon-targaryen-(maester-aemon),3.0,0
+aegon-v-targaryen,aemon-targaryen-(maester-aemon),3.0,0
+tywin-lannister,vargo-hoat,4.0,0
+tywin-lannister,varys,4.0,0
+tywin-lannister,varys,5.0,0
+tywin-lannister,walder-frey,8.0,0
+tywin-lannister,walder-frey,4.0,0
+tywin-lannister,weese,7.0,0
+tywin-lannister,wylis-manderly,3.0,0
+vargo-hoat,zollo,3.0,0

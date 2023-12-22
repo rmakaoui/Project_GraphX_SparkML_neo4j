@@ -1,0 +1,16 @@
+Source,Target,weight,prediction
+clydas,hobb,6.0,0
+clydas,jon-snow,10.0,0
+clydas,jon-snow,20.0,2
+clydas,mully,4.0,0
+clydas,samwell-tarly,6.0,0
+clydas,samwell-tarly,3.0,0
+clydas,stannis-baratheon,3.0,0
+galbart-glover,jaime-lannister,3.0,0
+galbart-glover,jon-umber-(greatjon),4.0,0
+galbart-glover,rickard-karstark,4.0,0
+galbart-glover,robb-stark,5.0,0
+galbart-glover,robett-glover,3.0,0
+galbart-glover,roose-bolton,3.0,0
+paxter-redwyne,samwell-tarly,4.0,0
+paxter-redwyne,tyrion-lannister,4.0,0

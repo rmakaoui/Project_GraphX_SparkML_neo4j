@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  zeppelin:
+    image: apache/zeppelin:0.10.0
+    ports:
+      - "8080:8080"
+    environment:
+      - ZEPPELIN_SPARK_MASTER=spark://spark-master:7077
+      - ZEPPELIN_NOTEBOOK_DIR=/zeppelin/notebook
+      - ZEPPELIN_INTP_BASIC_AUTH=false
+    volumes:
+      - ./notebook:/zeppelin/notebook
+      - ./jar/neo4j-spark-connector-2.4.5-M2.jar:/zippelin/notebook/neo4j-spark-connector-2.4.5-M2.jar
+    depends_on:
+      - spark-master
+    extra_hosts:
+      - "spark-master:0.0.0.0"
+    networks:
+      - my-network
+
+  spark-master:
+    image: bitnami/spark:3.1.2
+    ports:
+      - "7077:7077"
+    networks:
+      - my-network
+
+  neo4j:
+    image: docker.io/bitnami/neo4j:5
+    ports:
+      - '7474:7474'
+      - '7473:7473'
+      - '7687:7687'
+    volumes:
+      - 'neo4j_data:/bitnami'
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
+volumes:
+  neo4j_data:
+    driver: local
+  hadoop_namenode:
+  hadoop_datanode:
+  hadoop_historyserver:

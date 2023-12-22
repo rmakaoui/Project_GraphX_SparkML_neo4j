@@ -1,0 +1,697 @@
+{
+  "paragraphs": [
+    {
+      "text": "import org.apache.spark.graphx._\r\nimport org.apache.spark.graphx.lib._\r\nval neo \u003d Neo4j(sc)",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-11 19:39:12.947",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "java.lang.NoSuchMethodError: scala.Product.$init$(Lscala/Product;)V\n  at org.neo4j.spark.Neo4j$Query.\u003cinit\u003e(Neo4j.scala:29)\n  at org.neo4j.spark.Neo4j.\u003cinit\u003e(Neo4j.scala:44)\n  at org.neo4j.spark.Neo4j$.apply(Neo4j.scala:22)\n  ... 69 elided\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702318721137_267135676",
+      "id": "paragraph_1702318721137_267135676",
+      "dateCreated": "2023-12-11 18:18:41.137",
+      "dateStarted": "2023-12-11 19:39:12.976",
+      "dateFinished": "2023-12-11 19:39:14.107",
+      "status": "ERROR"
+    },
+    {
+      "text": "%dep\r\nz.load(\"org.neo4j.spark:neo4j-spark-connector_2.12:version\")\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-11 19:42:15.356",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/text",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Interpreter dep not found"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702318726394_1457271184",
+      "id": "paragraph_1702318726394_1457271184",
+      "dateCreated": "2023-12-11 18:18:46.394",
+      "dateStarted": "2023-12-11 19:40:24.712",
+      "dateFinished": "2023-12-11 19:40:29.999",
+      "status": "ERROR"
+    },
+    {
+      "text": "%spark\r\nimport org.apache.spark.graphx._\r\nimport org.apache.spark.rdd.RDD\r\nimport org.neo4j.spark._\r\n\r\n// Assuming you have a graph query to fetch nodes and relationships\r\nval graphQuery \u003d \"MATCH (n)-[r]-\u003e(m) RETURN id(n) as src, id(m) as dst, type(r) as rel\"\r\n\r\n// Load data from Neo4j into a DataFrame\r\nval neo4jDF \u003d Neo4jDataFrame.withSparkSession(spark).loadGraphFrame(graphQuery)\r\n\r\n// Convert DataFrame to GraphX graph\r\nval vertices: RDD[(VertexId, String)] \u003d neo4jDF.select(\"src\").rdd.map(row \u003d\u003e (row.getAs[Long](\"src\"), \"\"))\r\nval edges: RDD[Edge[String]] \u003d neo4jDF.select(\"src\", \"dst\", \"rel\").rdd.map(row \u003d\u003e Edge(row.getAs[Long](\"src\"), row.getAs[Long](\"dst\"), row.getAs[String](\"rel\")))\r\nval graph: Graph[String, String] \u003d Graph(vertices, edges)\r\n\r\n// Now you can perform GraphX operations on the graph\r\nval degrees \u003d graph.degrees.collect()\r\n\r\n// Print the degrees\r\ndegrees.foreach(println)\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-11 19:41:53.480",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:70: \u001b[31merror: \u001b[0mnot found: value Neo4jDataFrame\n       val neo4jDF \u003d Neo4jDataFrame.withSparkSession(spark).loadGraphFrame(graphQuery)\n                     ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702323624708_679538794",
+      "id": "paragraph_1702323624708_679538794",
+      "dateCreated": "2023-12-11 19:40:24.708",
+      "dateStarted": "2023-12-11 19:41:53.528",
+      "dateFinished": "2023-12-11 19:41:53.915",
+      "status": "ERROR"
+    },
+    {
+      "text": "%spark\r\nimport org.apache.spark.graphx._\r\nimport org.apache.spark.rdd.RDD\r\nimport org.apache.spark.sql.{DataFrame, SparkSession}\r\nimport org.neo4j.spark._\r\n\r\n// Assuming you have a graph query to fetch nodes and relationships\r\nval graphQuery \u003d \"MATCH (n)-[r]-\u003e(m) RETURN id(n) as src, id(m) as dst, type(r) as rel\"\r\n\r\n// Load data from Neo4j into a DataFrame\r\nval neo4jDF: DataFrame \u003d Neo4j(spark.sparkContext).loadTable(graphQuery, Map(\"idType\" -\u003e \"LONG\"))\r\n\r\n// Convert DataFrame to GraphX graph\r\nval vertices: RDD[(VertexId, String)] \u003d neo4jDF.select(\"src\").rdd.map(row \u003d\u003e (row.getAs[Long](\"src\"), \"\"))\r\nval edges: RDD[Edge[String]] \u003d neo4jDF.select(\"src\", \"dst\", \"rel\").rdd.map(row \u003d\u003e Edge(row.getAs[Long](\"src\"), row.getAs[Long](\"dst\"), row.getAs[String](\"rel\")))\r\nval graph: Graph[String, String] \u003d Graph(vertices, edges)\r\n\r\n// Now you can perform GraphX operations on the graph\r\nval degrees: VertexRDD[Int] \u003d graph.degrees\r\n\r\n// Print the degrees\r\ndegrees.collect().foreach(println)\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-11 19:49:34.545",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:71: \u001b[31merror: \u001b[0mvalue loadTable is not a member of org.neo4j.spark.Neo4j\n       val neo4jDF: DataFrame \u003d Neo4j(spark.sparkContext).loadTable(graphQuery, Map(\"idType\" -\u003e \"LONG\"))\n                                                          ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702323713500_1663656746",
+      "id": "paragraph_1702323713500_1663656746",
+      "dateCreated": "2023-12-11 19:41:53.500",
+      "dateStarted": "2023-12-11 19:49:34.567",
+      "dateFinished": "2023-12-11 19:49:34.969",
+      "status": "ERROR"
+    },
+    {
+      "text": "import org.neo4j.spark._\r\nimport org.apache.spark.{SparkConf,SparkContext}\r\nimport org.apache.spark.rdd._\r\nobject neo4jRead\r\n{\r\n  def main(args: Array[String]): Unit \u003d {\r\n    val conf \u003d new SparkConf().setAppName(\"NeoRead\")\r\n      .set(\"spark.ui.enabled\",\"false\")\r\n      .set(\"spark.neo4j.bolt.url\",\"bolt://127.0.0.1:7687\")\r\n      .set(\"spark.neo4j.bolt.user\",\"neo4j\")\r\n      .set(\"spark.neo4j.bolt.password\",\"neo4j\")\r\n\r\n    val sc \u003d new SparkContext(conf)\r\n    val query: String \u003d \"MATCH (n:Person) RETURN n LIMIT 100\"\r\n    val neo \u003d Neo4j(sc)\r\n    val resultSet \u003d neo.cypher(query).loadRowRdd\r\n    println(resultSet.take(10))\r\n  }\r\n}",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-11 19:51:31.810",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.neo4j.spark._\nimport org.apache.spark.{SparkConf, SparkContext}\nimport org.apache.spark.rdd._\ndefined object neo4jRead\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702323773035_229953398",
+      "id": "paragraph_1702323773035_229953398",
+      "dateCreated": "2023-12-11 19:42:53.035",
+      "dateStarted": "2023-12-11 19:51:31.829",
+      "dateFinished": "2023-12-11 19:51:33.014",
+      "status": "FINISHED"
+    },
+    {
+      "text": "import org.neo4j.spark._\r\nval neo \u003d Neo4j(sc)\r\nval data \u003d neo.cypher(\"MACH (n:Person) RETURN n LIMIT 100\").loadRowRdd\r\ndata.collect()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-11 19:51:42.243",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "java.lang.NoSuchMethodError: scala.Product.$init$(Lscala/Product;)V\n  at org.neo4j.spark.Neo4j$Query.\u003cinit\u003e(Neo4j.scala:29)\n  at org.neo4j.spark.Neo4j.\u003cinit\u003e(Neo4j.scala:44)\n  at org.neo4j.spark.Neo4j$.apply(Neo4j.scala:22)\n  ... 73 elided\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702324291828_1217660293",
+      "id": "paragraph_1702324291828_1217660293",
+      "dateCreated": "2023-12-11 19:51:31.828",
+      "dateStarted": "2023-12-11 19:51:42.290",
+      "dateFinished": "2023-12-11 19:51:43.723",
+      "status": "ERROR"
+    },
+    {
+      "text": "///////////////////////////////////////////////////////////////////////////////////////////////////////",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-12 18:19:26.787",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702405158602_1459144700",
+      "id": "paragraph_1702405158602_1459144700",
+      "dateCreated": "2023-12-12 18:19:18.602",
+      "status": "READY"
+    },
+    {
+      "text": "import org.apache.spark.graphx._\r\nimport org.apache.spark.rdd.RDD",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-12 18:18:58.317",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.graphx._\nimport org.apache.spark.rdd.RDD\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702324302289_1533512381",
+      "id": "paragraph_1702324302289_1533512381",
+      "dateCreated": "2023-12-11 19:51:42.289",
+      "dateStarted": "2023-12-12 18:18:58.396",
+      "dateFinished": "2023-12-12 18:19:24.462",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Import necessary libraries\r\nimport org.apache.spark.graphx._\r\nimport org.apache.spark.rdd.RDD\r\n\r\n// Define the vertex and edge arrays\r\nval vertexArray \u003d Array(\r\n  (1L, (\"Alice\", 28)),\r\n  (2L, (\"Bob\", 27)),\r\n  (3L, (\"Charlie\", 65)),\r\n  (4L, (\"David\", 42)),\r\n  (5L, (\"Ed\", 55)),\r\n  (6L, (\"Fran\", 50))\r\n)\r\n\r\nval edgeArray \u003d Array(\r\n  Edge(2L, 1L, 7),\r\n  Edge(2L, 4L, 2),\r\n  Edge(3L, 2L, 4),\r\n  Edge(3L, 6L, 3),\r\n  Edge(4L, 1L, 1),\r\n  Edge(5L, 2L, 2),\r\n  Edge(5L, 3L, 8),\r\n  Edge(5L, 6L, 3)\r\n)\r\n\r\n// Create RDDs\r\nval vertexRDD: RDD[(Long, (String, Int))] \u003d sc.parallelize(vertexArray)\r\nval edgeRDD: RDD[Edge[Int]] \u003d sc.parallelize(edgeArray)\r\n\r\n// Create the graph\r\nval graph: Graph[(String, Int), Int] \u003d Graph(vertexRDD, edgeRDD)\r\n\r\n// Loop through vertices and print information\r\ngraph.vertices.foreach { case (vertexId, (name, age)) \u003d\u003e\r\n  println(s\"Vertex $vertexId: Name\u003d$name, Age\u003d$age\")\r\n}\r\n\r\n// Loop through edges and print information\r\ngraph.edges.foreach { edge \u003d\u003e\r\n  println(s\"Edge ${edge.srcId} -\u003e ${edge.dstId}: Weight\u003d${edge.attr}\")\r\n}\r\n\r\n// Perform some graph manipulations\r\n// Example: Calculate the in-degrees of each vertex\r\nval inDegrees: VertexRDD[Int] \u003d graph.inDegrees\r\ninDegrees.foreach { case (vertexId, inDegree) \u003d\u003e\r\n  println(s\"Vertex $vertexId has in-degree $inDegree\")\r\n}\r\n\r\n// Example: Calculate the connected components\r\nval connectedComponents: Graph[VertexId, Int] \u003d graph.connectedComponents()\r\nconnectedComponents.vertices.foreach { case (vertexId, componentId) \u003d\u003e\r\n  println(s\"Vertex $vertexId is in connected component $componentId\")\r\n}\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-12 18:19:36.924",
+      "progress": 26,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.graphx._\nimport org.apache.spark.rdd.RDD\n\u001b[1m\u001b[34mvertexArray\u001b[0m: \u001b[1m\u001b[32mArray[(Long, (String, Int))]\u001b[0m \u003d Array((1,(Alice,28)), (2,(Bob,27)), (3,(Charlie,65)), (4,(David,42)), (5,(Ed,55)), (6,(Fran,50)))\n\u001b[1m\u001b[34medgeArray\u001b[0m: \u001b[1m\u001b[32mArray[org.apache.spark.graphx.Edge[Int]]\u001b[0m \u003d Array(Edge(2,1,7), Edge(2,4,2), Edge(3,2,4), Edge(3,6,3), Edge(4,1,1), Edge(5,2,2), Edge(5,3,8), Edge(5,6,3))\n\u001b[1m\u001b[34mvertexRDD\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.rdd.RDD[(Long, (String, Int))]\u001b[0m \u003d ParallelCollectionRDD[0] at parallelize at \u003cconsole\u003e:55\n\u001b[1m\u001b[34medgeRDD\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.rdd.RDD[org.apache.spark.graphx.Edge[Int]]\u001b[0m \u003d ParallelCollectionRDD[1] at parallelize at \u003cconsole\u003e:56\n\u001b[1m\u001b[34mgraph\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.graphx.Graph[(String, Int),Int]\u001b..."
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://a8bf4776f355:4040/jobs/job?id\u003d0"
+            },
+            {
+              "jobUrl": "http://a8bf4776f355:4040/jobs/job?id\u003d1"
+            },
+            {
+              "jobUrl": "http://a8bf4776f355:4040/jobs/job?id\u003d2"
+            },
+            {
+              "jobUrl": "http://a8bf4776f355:4040/jobs/job?id\u003d3"
+            },
+            {
+              "jobUrl": "http://a8bf4776f355:4040/jobs/job?id\u003d4"
+            },
+            {
+              "jobUrl": "http://a8bf4776f355:4040/jobs/job?id\u003d5"
+            },
+            {
+              "jobUrl": "http://a8bf4776f355:4040/jobs/job?id\u003d6"
+            },
+            {
+              "jobUrl": "http://a8bf4776f355:4040/jobs/job?id\u003d7"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702405138392_2100965698",
+      "id": "paragraph_1702405138392_2100965698",
+      "dateCreated": "2023-12-12 18:18:58.392",
+      "dateStarted": "2023-12-12 18:19:36.947",
+      "dateFinished": "2023-12-12 18:19:45.194",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\nimport org.apache.spark.sql.SparkSession\n\nval spark \u003d SparkSession.builder\n  .appName(\"Neo4jGraphXExample\")\n  .config(\"spark.neo4j.bolt.url\", \"bolt://neo4j:7687\")\n  .config(\"spark.neo4j.bolt.user\", \"neo4j\")\n  .config(\"spark.neo4j.bolt.password\", \"bitnami1\")\n  .getOrCreate()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-12 18:19:58.851",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.SparkSession\n\u001b[1m\u001b[34mspark\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.SparkSession\u001b[0m \u003d org.apache.spark.sql.SparkSession@2b61537f\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702405176947_1334999513",
+      "id": "paragraph_1702405176947_1334999513",
+      "dateCreated": "2023-12-12 18:19:36.947",
+      "dateStarted": "2023-12-12 18:19:58.878",
+      "dateFinished": "2023-12-12 18:20:00.662",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\nval neo4jDF \u003d spark.read.format(\"org.neo4j.spark.DataSource\")\n  .option(\"url\", \"bolt://neo4j:7687\")\n  .option(\"query\", \"MATCH (n)-[r]-\u003e(m) RETURN n, r, m\")\n  .option(\"authentication.basic.username\", \"neo4j\")\n  .option(\"authentication.basic.password\", \"bitnami1\")\n  .load()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-12 18:20:23.083",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702405198873_437330567",
+      "id": "paragraph_1702405198873_437330567",
+      "dateCreated": "2023-12-12 18:19:58.873",
+      "status": "READY"
+    },
+    {
+      "text": "%spark\nval neo4jDF \u003d spark.read.format(\"org.neo4j.spark.DataSource\")\n  .option(\"url\", \"bolt://neo4j:7687\")\n  .option(\"query\", \"MATCH (n:Entity) RETURN n\")\n  .option(\"authentication.basic.username\", \"neo4j\")\n  .option(\"authentication.basic.password\", \"bitnami1\")\n  .load()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-12 18:29:55.401",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "java.lang.ClassNotFoundException: Failed to find data source: org.neo4j.spark.DataSource. Please find packages at http://spark.apache.org/third-party-projects.html\n  at org.apache.spark.sql.execution.datasources.DataSource$.lookupDataSource(DataSource.scala:657)\n  at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:194)\n  at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:167)\n  ... 49 elided\nCaused by: java.lang.ClassNotFoundException: org.neo4j.spark.DataSource.DefaultSource\n  at scala.reflect.internal.util.AbstractFileClassLoader.findClass(AbstractFileClassLoader.scala:62)\n  at java.lang.ClassLoader.loadClass(ClassLoader.java:418)\n  at java.lang.ClassLoader.loadClass(ClassLoader.java:351)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$20$$anonfun$apply$12.apply(DataSource.scala:634)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$20$$anonfun$apply$12.apply(DataSource.scala:634)\n  at scala.util.Try$.apply(Try.scala:192)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$20.apply(DataSource.scala:634)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$20.apply(DataSource.scala:634)\n  at scala.util.Try.orElse(Try.scala:84)\n  at org.apache.spark.sql.execution.datasources.DataSource$.lookupDataSource(DataSource.scala:634)\n  ... 51 more\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702405604528_98707733",
+      "id": "paragraph_1702405604528_98707733",
+      "dateCreated": "2023-12-12 18:26:44.528",
+      "dateStarted": "2023-12-12 18:29:55.431",
+      "dateFinished": "2023-12-12 18:29:56.424",
+      "status": "ERROR"
+    },
+    {
+      "text": "%spark.dep\r\nz.load(\"org.neo4j.driver:neo4j-java-driver:4.3.2\")\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-12 18:38:03.239",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/text",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Interpreter spark.dep not found"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702405642117_451410562",
+      "id": "paragraph_1702405642117_451410562",
+      "dateCreated": "2023-12-12 18:27:22.117",
+      "status": "ERROR"
+    },
+    {
+      "text": "import org.neo4j.spark.v1._\r\nval driver \u003d GraphDatabase.driver(\"bolt://neo4j:7687\", AuthTokens.basic(\"neo4j\", \"bitnami1\"))\r\nval session \u003d driver.session()\r\nval result \u003d session.run(\"MATCH (n) RETURN n LIMIT 5\")\r\nwhile (result.hasNext()) {\r\n  val record \u003d result.next()\r\n  println(record.get(\"n\").asMap())\r\n}\r\nsession.close()\r\ndriver.close()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-12 19:10:36.542",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:23: \u001b[31merror: \u001b[0mobject v1 is not a member of package org.neo4j.driver\n       import org.neo4j.driver.v1._\n                               ^\n\u003cconsole\u003e:24: \u001b[31merror: \u001b[0mnot found: value GraphDatabase\n       val driver \u003d GraphDatabase.driver(\"bolt://neo4j:7687\", AuthTokens.basic(\"neo4j\", \"bitnami1\"))\n                    ^\n\u003cconsole\u003e:24: \u001b[31merror: \u001b[0mnot found: value AuthTokens\n       val driver \u003d GraphDatabase.driver(\"bolt://neo4j:7687\", AuthTokens.basic(\"neo4j\", \"bitnami1\"))\n                                                              ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702406220428_1159653409",
+      "id": "paragraph_1702406220428_1159653409",
+      "dateCreated": "2023-12-12 18:37:00.428",
+      "dateStarted": "2023-12-12 19:09:55.783",
+      "dateFinished": "2023-12-12 19:10:14.682",
+      "status": "ERROR"
+    },
+    {
+      "text": "import org.neo4j",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-12 19:14:21.271",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.neo4j\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702408195781_1550201760",
+      "id": "paragraph_1702408195781_1550201760",
+      "dateCreated": "2023-12-12 19:09:55.781",
+      "dateStarted": "2023-12-12 19:14:21.313",
+      "dateFinished": "2023-12-12 19:14:21.896",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\nimport org.neo4j.spark",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-12 19:15:08.060",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:25: \u001b[31merror: \u001b[0mobject spark is not a member of package org.neo4j\n       import org.neo4j.spark\n              ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702408461311_1769165692",
+      "id": "paragraph_1702408461311_1769165692",
+      "dateCreated": "2023-12-12 19:14:21.311",
+      "dateStarted": "2023-12-12 19:15:08.085",
+      "dateFinished": "2023-12-12 19:15:08.157",
+      "status": "ERROR"
+    },
+    {
+      "user": "anonymous",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702408477625_1091269604",
+      "id": "paragraph_1702408477625_1091269604",
+      "dateCreated": "2023-12-12 19:14:37.625",
+      "status": "READY"
+    }
+  ],
+  "name": "GraphX",
+  "id": "2JM62HT6B",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

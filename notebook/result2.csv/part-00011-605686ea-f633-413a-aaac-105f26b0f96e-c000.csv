@@ -1,0 +1,5 @@
+Source,Target,weight,prediction
+allard-seaworth,davos-seaworth,5.0,0
+allard-seaworth,marya-seaworth,5.0,0
+allard-seaworth,stannis-baratheon,3.0,0
+denyo-terys,ternesio-terys,3.0,0

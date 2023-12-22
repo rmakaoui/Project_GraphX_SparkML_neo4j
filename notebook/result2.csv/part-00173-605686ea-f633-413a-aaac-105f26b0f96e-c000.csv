@@ -1,0 +1,15 @@
+Source,Target,weight,prediction
+jarl,jon-snow,21.0,2
+jarl,mance-rayder,8.0,0
+jarl,rattleshirt,6.0,0
+jarl,styr,16.0,0
+jarl,val,5.0,0
+jarl,ygritte,6.0,0
+leaf,meera-reed,6.0,0
+leo-tyrell,pate-(novice),8.0,0
+leo-tyrell,roone,3.0,0
+leo-tyrell,samwell-tarly,3.0,0
+podrick-payne,sansa-stark,7.0,0
+podrick-payne,tyrion-lannister,13.0,0
+podrick-payne,tyrion-lannister,27.0,2
+podrick-payne,tywin-lannister,4.0,0

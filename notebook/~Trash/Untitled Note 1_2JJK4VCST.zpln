@@ -1,0 +1,2272 @@
+{
+  "paragraphs": [
+    {
+      "text": "val x \u003d 10\r\nval y \u003d 20\r\nval sum \u003d x + y\r\nsum",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-11 14:11:28.957",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mx\u001b[0m: \u001b[1m\u001b[32mInt\u001b[0m \u003d 10\n\u001b[1m\u001b[34my\u001b[0m: \u001b[1m\u001b[32mInt\u001b[0m \u003d 20\n\u001b[1m\u001b[34msum\u001b[0m: \u001b[1m\u001b[32mInt\u001b[0m \u003d 30\n\u001b[1m\u001b[34mres7\u001b[0m: \u001b[1m\u001b[32mInt\u001b[0m \u003d 30\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702056062180_1636405021",
+      "id": "paragraph_1702056062180_1636405021",
+      "dateCreated": "2023-12-08 17:21:02.180",
+      "dateStarted": "2023-12-11 14:11:28.994",
+      "dateFinished": "2023-12-11 14:11:29.437",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Load CSV data from HDFS into a DataFrame\r\nval csvPath \u003d \"hdfs://namenode:9000/data/book1.csv\"\r\nval df \u003d spark.read.option(\"header\", \"true\").csv(csvPath)\r\n\r\n// Show the DataFrame schema and data\r\ndf.printSchema()\r\ndf.show()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-11 14:11:31.769",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "java.lang.NoClassDefFoundError: Could not initialize class org.apache.spark.rdd.RDDOperationScope$\n  at org.apache.spark.sql.execution.SparkPlan.executeQuery(SparkPlan.scala:152)\n  at org.apache.spark.sql.execution.SparkPlan.execute(SparkPlan.scala:127)\n  at org.apache.spark.sql.execution.SparkPlan.getByteArrayRdd(SparkPlan.scala:247)\n  at org.apache.spark.sql.execution.SparkPlan.executeTake(SparkPlan.scala:339)\n  at org.apache.spark.sql.execution.CollectLimitExec.executeCollect(limit.scala:38)\n  at org.apache.spark.sql.Dataset.org$apache$spark$sql$Dataset$$collectFromPlan(Dataset.scala:3389)\n  at org.apache.spark.sql.Dataset$$anonfun$head$1.apply(Dataset.scala:2550)\n  at org.apache.spark.sql.Dataset$$anonfun$head$1.apply(Dataset.scala:2550)\n  at org.apache.spark.sql.Dataset$$anonfun$52.apply(Dataset.scala:3370)\n  at org.apache.spark.sql.execution.SQLExecution$$anonfun$withNewExecutionId$1.apply(SQLExecution.scala:80)\n  at org.apache.spark.sql.execution.SQLExecution$.withSQLConfPropagated(SQLExecution.scala:127)\n  at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:75)\n  at org.apache.spark.sql.Dataset.withAction(Dataset.scala:3369)\n  at org.apache.spark.sql.Dataset.head(Dataset.scala:2550)\n  at org.apache.spark.sql.Dataset.take(Dataset.scala:2764)\n  at org.apache.spark.sql.execution.datasources.csv.TextInputCSVDataSource$.infer(CSVDataSource.scala:236)\n  at org.apache.spark.sql.execution.datasources.csv.CSVDataSource.inferSchema(CSVDataSource.scala:68)\n  at org.apache.spark.sql.execution.datasources.csv.CSVFileFormat.inferSchema(CSVFileFormat.scala:63)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$6.apply(DataSource.scala:180)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$6.apply(DataSource.scala:180)\n  at scala.Option.orElse(Option.scala:289)\n  at org.apache.spark.sql.execution.datasources.DataSource.getOrInferFileFormatSchema(DataSource.scala:179)\n  at org.apache.spark.sql.execution.datasources.DataSource.resolveRelation(DataSource.scala:373)\n  at org.apache.spark.sql.DataFrameReader.loadV1Source(DataFrameReader.scala:223)\n  at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:211)\n  at org.apache.spark.sql.DataFrameReader.csv(DataFrameReader.scala:619)\n  at org.apache.spark.sql.DataFrameReader.csv(DataFrameReader.scala:468)\n  ... 49 elided\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702056087242_1189770006",
+      "id": "paragraph_1702056087242_1189770006",
+      "dateCreated": "2023-12-08 17:21:27.242",
+      "dateStarted": "2023-12-11 14:11:31.791",
+      "dateFinished": "2023-12-11 14:11:32.736",
+      "status": "ERROR"
+    },
+    {
+      "text": "// Display lines with null values\r\ndf.filter(df.columns.map(c \u003d\u003e col(c).isNull).reduce(_ || _)).show()\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:04.971",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------+------+----+------+----+\n|Source|Target|Type|weight|book|\n+------+------+----+------+----+\n+------+------+----+------+----+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d2"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702059879391_1036585193",
+      "id": "paragraph_1702059879391_1036585193",
+      "dateCreated": "2023-12-08 18:24:39.391",
+      "dateStarted": "2023-12-10 19:21:04.994",
+      "dateFinished": "2023-12-10 19:21:06.627",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Display distinct values of the \"Type\" column\r\ndf.select(\"Type\").distinct().show()\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:06.704",
+      "progress": 10,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+----------+\n|      Type|\n+----------+\n|Undirected|\n+----------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d3"
+            },
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d4"
+            },
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d5"
+            },
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d6"
+            },
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d7"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702060585660_491138895",
+      "id": "paragraph_1702060585660_491138895",
+      "dateCreated": "2023-12-08 18:36:25.660",
+      "dateStarted": "2023-12-10 19:21:06.734",
+      "dateFinished": "2023-12-10 19:21:09.570",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Load CSV data from HDFS into a DataFrame\r\nval csvPath \u003d \"hdfs://namenode:9000/data/book2.csv\"\r\nval df2 \u003d spark.read.option(\"header\", \"true\").csv(csvPath)\r\n\r\n// Show the DataFrame schema and data\r\ndf2.printSchema()\r\ndf2.show()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:09.640",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- Source: string (nullable \u003d true)\n |-- Target: string (nullable \u003d true)\n |-- Type: string (nullable \u003d true)\n |-- weight: string (nullable \u003d true)\n |-- book: string (nullable \u003d true)\n\n+--------------------+--------------------+----------+------+----+\n|              Source|              Target|      Type|weight|book|\n+--------------------+--------------------+----------+------+----+\n|   Aegon-I-Targaryen|        Harren-Hoare|Undirected|     4|   2|\n|   Aegon-I-Targaryen|                 Nan|Undirected|     3|   2|\n|   Aegon-I-Targaryen|   Rhaenys-Targaryen|Undirected|     4|   2|\n|   Aegon-I-Targaryen|    Tyrion-Lannister|Undirected|     3|   2|\n|   Aegon-I-Targaryen|   Visenya-Targaryen|Undirected|     3|   2|\n|   Aegon-V-Targaryen|Aemon-Targaryen-(...|Undirected|     3|   2|\n|Aemon-Targaryen-(...| Daeron-II-Targaryen|Undirected|     3|   2|\n|Aemon-Targaryen-(...|        Jeor-Mormont|Undirected|     9|   2|\n|Aemon-Targaryen-(...|            Jon-Snow|Undirected|    11|   2|\n|Aemon-Targaryen-(...|  Maekar-I-Targaryen|Undirected|     3|   2|\n|Aemon-Targaryen-(...|       Samwell-Tarly|Undirected|     5|   2|\n|          Aenys-Frey|          Arya-Stark|Undirected|     6|   2|\n|       Aeron-Greyjoy|              Dagmer|Undirected|     5|   2|\n|       Aeron-Greyjoy|       Theon-Greyjoy|Undirected|    17|   2|\n|   Aerys-I-Targaryen|    Robert-Baratheon|Undirected|     3|   2|\n|  Aerys-II-Targaryen|        Eddard-Stark|Undirected|     5|   2|\n|  Aerys-II-Targaryen|     Jaime-Lannister|Undirected|     4|   2|\n|  Aerys-II-Targaryen|   Rhaegar-Targaryen|Undirected|     4|   2|\n|  Aerys-II-Targaryen|    Robert-Baratheon|Undirected|     6|   2|\n|  Aerys-II-Targaryen|    Tyrion-Lannister|Undirected|     3|   2|\n+--------------------+--------------------+----------+------+----+\nonly showing top 20 rows\n\n\u001b[1m\u001b[34mcsvPath\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d hdfs://namenode:9000/data/book2.csv\n\u001b[1m\u001b[34mdf2\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [Source: string, Target: string ... 3 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d8"
+            },
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d9"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702061124595_756042907",
+      "id": "paragraph_1702061124595_756042907",
+      "dateCreated": "2023-12-08 18:45:24.595",
+      "dateStarted": "2023-12-10 19:21:09.677",
+      "dateFinished": "2023-12-10 19:21:10.730",
+      "status": "FINISHED"
+    },
+    {
+      "text": "val null2 \u003d df2.filter(df2.columns.map(c \u003d\u003e col(c).isNull).reduce(_ || _)).show()\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:10.781",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------+-----------+----------+------+----+\n|Source|     Target|      Type|weight|book|\n+------+-----------+----------+------+----+\n| Palla|Ramsay-Snow|Undirected|     3|null|\n+------+-----------+----------+------+----+\n\n\u001b[1m\u001b[34mnull2\u001b[0m: \u001b[1m\u001b[32mUnit\u001b[0m \u003d ()\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d10"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702061160574_1019882778",
+      "id": "paragraph_1702061160574_1019882778",
+      "dateCreated": "2023-12-08 18:46:00.574",
+      "dateStarted": "2023-12-10 19:21:10.832",
+      "dateFinished": "2023-12-10 19:21:12.031",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Fill null values in the \"book\" column with 2\r\nval dfFilled \u003d df2.na.fill(2, Seq(\"book\"))\r\n\r\n// Show the DataFrame after filling null values\r\ndfFilled.show()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:12.039",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+--------------------+----------+------+----+\n|              Source|              Target|      Type|weight|book|\n+--------------------+--------------------+----------+------+----+\n|   Aegon-I-Targaryen|        Harren-Hoare|Undirected|     4|   2|\n|   Aegon-I-Targaryen|                 Nan|Undirected|     3|   2|\n|   Aegon-I-Targaryen|   Rhaenys-Targaryen|Undirected|     4|   2|\n|   Aegon-I-Targaryen|    Tyrion-Lannister|Undirected|     3|   2|\n|   Aegon-I-Targaryen|   Visenya-Targaryen|Undirected|     3|   2|\n|   Aegon-V-Targaryen|Aemon-Targaryen-(...|Undirected|     3|   2|\n|Aemon-Targaryen-(...| Daeron-II-Targaryen|Undirected|     3|   2|\n|Aemon-Targaryen-(...|        Jeor-Mormont|Undirected|     9|   2|\n|Aemon-Targaryen-(...|            Jon-Snow|Undirected|    11|   2|\n|Aemon-Targaryen-(...|  Maekar-I-Targaryen|Undirected|     3|   2|\n|Aemon-Targaryen-(...|       Samwell-Tarly|Undirected|     5|   2|\n|          Aenys-Frey|          Arya-Stark|Undirected|     6|   2|\n|       Aeron-Greyjoy|              Dagmer|Undirected|     5|   2|\n|       Aeron-Greyjoy|       Theon-Greyjoy|Undirected|    17|   2|\n|   Aerys-I-Targaryen|    Robert-Baratheon|Undirected|     3|   2|\n|  Aerys-II-Targaryen|        Eddard-Stark|Undirected|     5|   2|\n|  Aerys-II-Targaryen|     Jaime-Lannister|Undirected|     4|   2|\n|  Aerys-II-Targaryen|   Rhaegar-Targaryen|Undirected|     4|   2|\n|  Aerys-II-Targaryen|    Robert-Baratheon|Undirected|     6|   2|\n|  Aerys-II-Targaryen|    Tyrion-Lannister|Undirected|     3|   2|\n+--------------------+--------------------+----------+------+----+\nonly showing top 20 rows\n\n\u001b[1m\u001b[34mdfFilled\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [Source: string, Target: string ... 3 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d11"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702061178045_1483432967",
+      "id": "paragraph_1702061178045_1483432967",
+      "dateCreated": "2023-12-08 18:46:18.045",
+      "dateStarted": "2023-12-10 19:21:12.115",
+      "dateFinished": "2023-12-10 19:21:13.112",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Display distinct values of the \"book\" column in the DataFrame after filling null values\r\ndfFilled.select(\"book\").distinct().show()\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:13.116",
+      "progress": 34,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+----+\n|book|\n+----+\n|null|\n|   2|\n+----+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d12"
+            },
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d13"
+            },
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d14"
+            },
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d15"
+            },
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d16"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702061378736_922908366",
+      "id": "paragraph_1702061378736_922908366",
+      "dateCreated": "2023-12-08 18:49:38.736",
+      "dateStarted": "2023-12-10 19:21:13.240",
+      "dateFinished": "2023-12-10 19:21:15.633",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Show null values before filling\r\ndf.filter(col(\"book\").isNull).show()\r\n\r\n// Fill null values\r\nval dfFilled \u003d df.na.fill(2, Seq(\"book\"))\r\n\r\n// Show null values after filling\r\ndfFilled.filter(col(\"book\").isNull).show()\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:15.674",
+      "progress": 100,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------+------+----+------+----+\n|Source|Target|Type|weight|book|\n+------+------+----+------+----+\n+------+------+----+------+----+\n\n+------+------+----+------+----+\n|Source|Target|Type|weight|book|\n+------+------+----+------+----+\n+------+------+----+------+----+\n\n\u001b[1m\u001b[34mdfFilled\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [Source: string, Target: string ... 3 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d17"
+            },
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d18"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702061536609_119492485",
+      "id": "paragraph_1702061536609_119492485",
+      "dateCreated": "2023-12-08 18:52:16.609",
+      "dateStarted": "2023-12-10 19:21:15.724",
+      "dateFinished": "2023-12-10 19:21:16.989",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Load CSV data from HDFS into a DataFrame\r\nval csvPath \u003d \"hdfs://namenode:9000/data/book3.csv\"\r\nval df3 \u003d spark.read.option(\"header\", \"true\").csv(csvPath)\r\n\r\n// Show the DataFrame schema and data\r\ndf3.printSchema()\r\ndf3.show()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:17.023",
+      "progress": 100,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- Source: string (nullable \u003d true)\n |-- Target: string (nullable \u003d true)\n |-- Type: string (nullable \u003d true)\n |-- weight: string (nullable \u003d true)\n |-- book: string (nullable \u003d true)\n\n+--------------------+------------------+----------+------+----+\n|              Source|            Target|      Type|weight|book|\n+--------------------+------------------+----------+------+----+\n|      Addam-Marbrand|       Gyles-Rosby|Undirected|     3|   3|\n|      Addam-Marbrand|   Jaime-Lannister|Undirected|     3|   3|\n|      Addam-Marbrand|      Jalabhar-Xho|Undirected|     3|   3|\n|      Addam-Marbrand| Joffrey-Baratheon|Undirected|     3|   3|\n|      Addam-Marbrand|   Kevan-Lannister|Undirected|     3|   3|\n|      Addam-Marbrand|    Oberyn-Martell|Undirected|     3|   3|\n|      Addam-Marbrand|  Tyrion-Lannister|Undirected|     7|   3|\n|      Addam-Marbrand|             Varys|Undirected|     4|   3|\n|Aegon-Frey-(son-o...|     Catelyn-Stark|Undirected|     4|   3|\n|Aegon-Frey-(son-o...|        Robb-Stark|Undirected|     5|   3|\n|Aegon-Frey-(son-o...|      Stevron-Frey|Undirected|     3|   3|\n|Aegon-Frey-(son-o...|       Walder-Frey|Undirected|     6|   3|\n|   Aegon-I-Targaryen|Daenerys-Targaryen|Undirected|     4|   3|\n|   Aegon-I-Targaryen| Stannis-Baratheon|Undirected|     4|   3|\n|   Aegon-I-Targaryen|     Torrhen-Stark|Undirected|     3|   3|\n|Aegon-Targaryen-(...|      Elia-Martell|Undirected|     3|   3|\n|Aemon-Targaryen-(...|   Jaime-Lannister|Undirected|     3|   3|\n|Aemon-Targaryen-(...|    Alliser-Thorne|Undirected|     3|   3|\n|Aemon-Targaryen-(...|            Clydas|Undirected|    16|   3|\n|Aemon-Targaryen-(...|       Cotter-Pyke|Undirected|     3|   3|\n+--------------------+------------------+----------+------+----+\nonly showing top 20 rows\n\n\u001b[1m\u001b[34mcsvPath\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d hdfs://namenode:9000/data/book3.csv\n\u001b[1m\u001b[34mdf3\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [Source: string, Target: string ... 3 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d19"
+            },
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d20"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702061559466_713795343",
+      "id": "paragraph_1702061559466_713795343",
+      "dateCreated": "2023-12-08 18:52:39.466",
+      "dateStarted": "2023-12-10 19:21:17.088",
+      "dateFinished": "2023-12-10 19:21:18.251",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Show null values before filling\r\ndf3.filter(df3.columns.map(c \u003d\u003e col(c).isNull).reduce(_ || _)).show()\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:18.302",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------+------+----+------+----+\n|Source|Target|Type|weight|book|\n+------+------+----+------+----+\n+------+------+----+------+----+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d21"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702061639839_1645413223",
+      "id": "paragraph_1702061639839_1645413223",
+      "dateCreated": "2023-12-08 18:53:59.839",
+      "dateStarted": "2023-12-10 19:21:18.389",
+      "dateFinished": "2023-12-10 19:21:19.431",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Load CSV data from HDFS into a DataFrame\r\nval csvPath \u003d \"hdfs://namenode:9000/data/book4.csv\"\r\nval df4 \u003d spark.read.option(\"header\", \"true\").csv(csvPath)\r\n\r\n// Show the DataFrame schema and data\r\ndf4.printSchema()\r\ndf4.show()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:19.508",
+      "progress": 100,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- Source: string (nullable \u003d true)\n |-- Target: string (nullable \u003d true)\n |-- Type: string (nullable \u003d true)\n |-- weight: string (nullable \u003d true)\n |-- book: string (nullable \u003d true)\n\n+--------------------+--------------------+----------+------+----+\n|              Source|              Target|      Type|weight|book|\n+--------------------+--------------------+----------+------+----+\n|      Addam-Marbrand|       Brynden-Tully|undirected|     3|   4|\n|      Addam-Marbrand|    Cersei-Lannister|undirected|     3|   4|\n|      Addam-Marbrand|     Jaime-Lannister|undirected|     8|   4|\n|      Addam-Marbrand|      Lyle-Crakehall|undirected|     4|   4|\n|Aegon-Targaryen-(...|   Rhaegar-Targaryen|undirected|     3|   4|\n|   Aegon-V-Targaryen|Aemon-Targaryen-(...|undirected|     3|   4|\n|Aemon-Targaryen-(...|             Alleras|undirected|     4|   4|\n|Aemon-Targaryen-(...|              Clydas|undirected|     5|   4|\n|Aemon-Targaryen-(...|              Dareon|undirected|     5|   4|\n|Aemon-Targaryen-(...|               Gilly|undirected|    17|   4|\n|Aemon-Targaryen-(...|            Jon-Snow|undirected|    17|   4|\n|Aemon-Targaryen-(...|       Samwell-Tarly|undirected|    41|   4|\n|       Aeron-Greyjoy|        Asha-Greyjoy|undirected|     7|   4|\n|       Aeron-Greyjoy|    Baelor-Blacktyde|undirected|     4|   4|\n|       Aeron-Greyjoy|       Balon-Greyjoy|undirected|    17|   4|\n|       Aeron-Greyjoy|       Dunstan-Drumm|undirected|     4|   4|\n|       Aeron-Greyjoy|              Emmond|undirected|     4|   4|\n|       Aeron-Greyjoy|       Euron-Greyjoy|undirected|    23|   4|\n|       Aeron-Greyjoy| Gormond-Goodbrother|undirected|     6|   4|\n|       Aeron-Greyjoy|  Gorold-Goodbrother|undirected|    10|   4|\n+--------------------+--------------------+----------+------+----+\nonly showing top 20 rows\n\n\u001b[1m\u001b[34mcsvPath\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d hdfs://namenode:9000/data/book4.csv\n\u001b[1m\u001b[34mdf4\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [Source: string, Target: string ... 3 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d22"
+            },
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d23"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702061666358_1805219306",
+      "id": "paragraph_1702061666358_1805219306",
+      "dateCreated": "2023-12-08 18:54:26.358",
+      "dateStarted": "2023-12-10 19:21:19.553",
+      "dateFinished": "2023-12-10 19:21:20.748",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Show null values before filling\r\ndf4.filter(df4.columns.map(c \u003d\u003e col(c).isNull).reduce(_ || _)).show()\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:20.767",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------+------+----+------+----+\n|Source|Target|Type|weight|book|\n+------+------+----+------+----+\n+------+------+----+------+----+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d24"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702061693567_224206429",
+      "id": "paragraph_1702061693567_224206429",
+      "dateCreated": "2023-12-08 18:54:53.567",
+      "dateStarted": "2023-12-10 19:21:20.872",
+      "dateFinished": "2023-12-10 19:21:22.155",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Load CSV data from HDFS into a DataFrame\r\nval csvPath \u003d \"hdfs://namenode:9000/data/book5.csv\"\r\nval df5 \u003d spark.read.option(\"header\", \"true\").csv(csvPath)\r\n\r\n// Show the DataFrame schema and data\r\ndf5.printSchema()\r\ndf5.show()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:22.181",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- Source: string (nullable \u003d true)\n |-- Target: string (nullable \u003d true)\n |-- Type: string (nullable \u003d true)\n |-- weight: string (nullable \u003d true)\n |-- book: string (nullable \u003d true)\n\n+--------------------+--------------------+----------+------+----+\n|              Source|              Target|      Type|weight|book|\n+--------------------+--------------------+----------+------+----+\n|   Aegon-I-Targaryen|  Daenerys-Targaryen|undirected|     4|   5|\n|Aegon-Targaryen-(...|  Daenerys-Targaryen|undirected|    11|   5|\n|Aegon-Targaryen-(...|        Elia-Martell|undirected|     4|   5|\n|Aegon-Targaryen-(...|    Franklyn-Flowers|undirected|     3|   5|\n|Aegon-Targaryen-(...|              Haldon|undirected|    14|   5|\n|Aegon-Targaryen-(...|    Harry-Strickland|undirected|     9|   5|\n|Aegon-Targaryen-(...|      Jon-Connington|undirected|    16|   5|\n|Aegon-Targaryen-(...|              Lemore|undirected|    10|   5|\n|Aegon-Targaryen-(...|   Rhaegar-Targaryen|undirected|     9|   5|\n|Aegon-Targaryen-(...|Rhaenys-Targaryen...|undirected|     4|   5|\n|Aegon-Targaryen-(...|     Rolly-Duckfield|undirected|    11|   5|\n|Aegon-Targaryen-(...|    Tyrion-Lannister|undirected|    23|   5|\n|Aegon-Targaryen-(...|     Tywin-Lannister|undirected|     3|   5|\n|Aegon-Targaryen-(...|   Viserys-Targaryen|undirected|     3|   5|\n|Aegon-Targaryen-(...|              Yandry|undirected|     6|   5|\n|Aegon-Targaryen-(...|              Ysilla|undirected|     4|   5|\n|Aemon-Targaryen-(...|              Clydas|undirected|     7|   5|\n|Aemon-Targaryen-(...|               Gilly|undirected|     3|   5|\n|Aemon-Targaryen-(...|            Jon-Snow|undirected|    12|   5|\n|Aemon-Targaryen-(...|       Samwell-Tarly|undirected|    16|   5|\n+--------------------+--------------------+----------+------+----+\nonly showing top 20 rows\n\n\u001b[1m\u001b[34mcsvPath\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d hdfs://namenode:9000/data/book5.csv\n\u001b[1m\u001b[34mdf5\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [Source: string, Target: string ... 3 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d25"
+            },
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d26"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702061709477_1842024659",
+      "id": "paragraph_1702061709477_1842024659",
+      "dateCreated": "2023-12-08 18:55:09.477",
+      "dateStarted": "2023-12-10 19:21:22.295",
+      "dateFinished": "2023-12-10 19:21:23.621",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Show null values before filling\r\ndf5.filter(df5.columns.map(c \u003d\u003e col(c).isNull).reduce(_ || _)).show()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:23.708",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------+------+----+------+----+\n|Source|Target|Type|weight|book|\n+------+------+----+------+----+\n+------+------+----+------+----+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d27"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702061816456_2038260662",
+      "id": "paragraph_1702061816456_2038260662",
+      "dateCreated": "2023-12-08 18:56:56.456",
+      "dateStarted": "2023-12-10 19:21:23.741",
+      "dateFinished": "2023-12-10 19:21:24.555",
+      "status": "FINISHED"
+    },
+    {
+      "text": "val combinedDF \u003d dfFilled.union(df2).union(df3).union(df4).union(df5)",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:24.642",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mcombinedDF\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\u001b[0m \u003d [Source: string, Target: string ... 3 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702061838061_2107791761",
+      "id": "paragraph_1702061838061_2107791761",
+      "dateCreated": "2023-12-08 18:57:18.061",
+      "dateStarted": "2023-12-10 19:21:24.670",
+      "dateFinished": "2023-12-10 19:21:25.047",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Check for null values in any column\r\nval nullRows \u003d combinedDF.filter(combinedDF.columns.map(col(_).isNull).reduce(_ || _))\r\n\r\n// Show the rows with null values\r\nnullRows.show()\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:25.067",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------+-----------+----------+------+----+\n|Source|     Target|      Type|weight|book|\n+------+-----------+----------+------+----+\n| Palla|Ramsay-Snow|Undirected|     3|null|\n+------+-----------+----------+------+----+\n\n\u001b[1m\u001b[34mnullRows\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\u001b[0m \u003d [Source: string, Target: string ... 3 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d28"
+            },
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d29"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702063321174_412638762",
+      "id": "paragraph_1702063321174_412638762",
+      "dateCreated": "2023-12-08 19:22:01.174",
+      "dateStarted": "2023-12-10 19:21:25.125",
+      "dateFinished": "2023-12-10 19:21:26.546",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Fill null values with 2\r\nval filledDF \u003d combinedDF.na.fill(2)\r\n\r\n// Show the DataFrame with filled values\r\nfilledDF.show()\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:26.640",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+------------------+----------+------+----+\n|              Source|            Target|      Type|weight|book|\n+--------------------+------------------+----------+------+----+\n|      Addam-Marbrand|   Jaime-Lannister|Undirected|     3|   1|\n|      Addam-Marbrand|   Tywin-Lannister|Undirected|     6|   1|\n|   Aegon-I-Targaryen|Daenerys-Targaryen|Undirected|     5|   1|\n|   Aegon-I-Targaryen|      Eddard-Stark|Undirected|     4|   1|\n|Aemon-Targaryen-(...|    Alliser-Thorne|Undirected|     4|   1|\n|Aemon-Targaryen-(...|       Bowen-Marsh|Undirected|     4|   1|\n|Aemon-Targaryen-(...|             Chett|Undirected|     9|   1|\n|Aemon-Targaryen-(...|            Clydas|Undirected|     5|   1|\n|Aemon-Targaryen-(...|      Jeor-Mormont|Undirected|    13|   1|\n|Aemon-Targaryen-(...|          Jon-Snow|Undirected|    34|   1|\n|Aemon-Targaryen-(...|     Samwell-Tarly|Undirected|     5|   1|\n|  Aerys-II-Targaryen|     Brandon-Stark|Undirected|     4|   1|\n|  Aerys-II-Targaryen|      Eddard-Stark|Undirected|    10|   1|\n|  Aerys-II-Targaryen|  Gerold-Hightower|Undirected|     3|   1|\n|  Aerys-II-Targaryen|   Jaime-Lannister|Undirected|     5|   1|\n|  Aerys-II-Targaryen|         Jon-Arryn|Undirected|     3|   1|\n|  Aerys-II-Targaryen|  Robert-Baratheon|Undirected|    12|   1|\n|                Aggo|Daenerys-Targaryen|Undirected|    11|   1|\n|                Aggo|             Drogo|Undirected|     6|   1|\n|                Aggo|             Jhogo|Undirected|     4|   1|\n+--------------------+------------------+----------+------+----+\nonly showing top 20 rows\n\n\u001b[1m\u001b[34mfilledDF\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [Source: string, Target: string ... 3 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d30"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702063365728_2005672004",
+      "id": "paragraph_1702063365728_2005672004",
+      "dateCreated": "2023-12-08 19:22:45.728",
+      "dateStarted": "2023-12-10 19:21:26.663",
+      "dateFinished": "2023-12-10 19:21:27.746",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Check for null values in any column\r\nval nullRows2 \u003d filledDF.filter(filledDF.columns.map(col(_).isNull).reduce(_ || _))\r\n\r\n// Show the rows with null values\r\nnullRows2.show()\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:27.781",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------+-----------+----------+------+----+\n|Source|     Target|      Type|weight|book|\n+------+-----------+----------+------+----+\n| Palla|Ramsay-Snow|Undirected|     3|null|\n+------+-----------+----------+------+----+\n\n\u001b[1m\u001b[34mnullRows2\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\u001b[0m \u003d [Source: string, Target: string ... 3 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d31"
+            },
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d32"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702063440160_1866731944",
+      "id": "paragraph_1702063440160_1866731944",
+      "dateCreated": "2023-12-08 19:24:00.160",
+      "dateStarted": "2023-12-10 19:21:27.832",
+      "dateFinished": "2023-12-10 19:21:29.206",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\r\nsc.version",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:29.281",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mres18\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d 2.4.5\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702063622427_501011785",
+      "id": "paragraph_1702063622427_501011785",
+      "dateCreated": "2023-12-08 19:27:02.427",
+      "dateStarted": "2023-12-10 19:21:29.320",
+      "dateFinished": "2023-12-10 19:21:29.633",
+      "status": "FINISHED"
+    },
+    {
+      "text": "import org.apache.spark.sql.{SaveMode, SparkSession}",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:29.721",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.{SaveMode, SparkSession}\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702066028449_2073173959",
+      "id": "paragraph_1702066028449_2073173959",
+      "dateCreated": "2023-12-08 20:07:08.449",
+      "dateStarted": "2023-12-10 19:21:29.763",
+      "dateFinished": "2023-12-10 19:21:30.115",
+      "status": "FINISHED"
+    },
+    {
+      "text": "import org.apache.spark.sql.{SaveMode, SparkSession}\r\n\r\nval spark \u003d SparkSession.builder().getOrCreate()\r\nimport spark.implicits._\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:30.166",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.{SaveMode, SparkSession}\n\u001b[1m\u001b[34mspark\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.SparkSession\u001b[0m \u003d org.apache.spark.sql.SparkSession@1bfe295f\nimport spark.implicits._\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702066117104_710249403",
+      "id": "paragraph_1702066117104_710249403",
+      "dateCreated": "2023-12-08 20:08:37.104",
+      "dateStarted": "2023-12-10 19:21:30.206",
+      "dateFinished": "2023-12-10 19:21:31.673",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\r\nval spark \u003d SparkSession.builder\r\n  .appName(\"Neo4jImport\")\r\n  .config(\"spark.neo4j.bolt.url\", \"bolt://neo4j:7687\")\r\n  .config(\"spark.neo4j.bolt.user\", \"neo4j\")\r\n  .config(\"spark.neo4j.bolt.password\", \"bitnami1\")\r\n  .config(\"spark.jars\", \"/path/to/neo4j-connector.jar\")  // Path within the container\r\n  .getOrCreate()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:31.707",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mspark\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.SparkSession\u001b[0m \u003d org.apache.spark.sql.SparkSession@1bfe295f\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702066137423_477146012",
+      "id": "paragraph_1702066137423_477146012",
+      "dateCreated": "2023-12-08 20:08:57.423",
+      "dateStarted": "2023-12-10 19:21:31.773",
+      "dateFinished": "2023-12-10 19:21:32.310",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\r\nval sparkVersion \u003d org.apache.spark.SPARK_VERSION\r\nprintln(s\"Spark Version: $sparkVersion\")\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:32.378",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Spark Version: 2.4.5\n\u001b[1m\u001b[34msparkVersion\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d 2.4.5\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702066392334_21872387",
+      "id": "paragraph_1702066392334_21872387",
+      "dateCreated": "2023-12-08 20:13:12.334",
+      "dateStarted": "2023-12-10 19:21:32.423",
+      "dateFinished": "2023-12-10 19:21:32.902",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\nimport org.apache.spark.sql.SparkSession\n\nval spark \u003d SparkSession.builder\n    .appName(\"YourSparkApp\")\n    .config(\"spark.jars\", \"/neo4j-spark-connector-2.4.5-M2.jar\")\n    .getOrCreate()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:32.933",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.SparkSession\n\u001b[1m\u001b[34mspark\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.SparkSession\u001b[0m \u003d org.apache.spark.sql.SparkSession@1bfe295f\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702078238198_1853991373",
+      "id": "paragraph_1702078238198_1853991373",
+      "dateCreated": "2023-12-08 23:30:38.198",
+      "dateStarted": "2023-12-10 19:21:33.065",
+      "dateFinished": "2023-12-10 19:21:33.473",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\r\nRETURN 1 AS result",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:33.570",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "result": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "result\n1\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702217192908_938076543",
+      "id": "paragraph_1702217192908_938076543",
+      "dateCreated": "2023-12-10 14:06:32.909",
+      "dateStarted": "2023-12-10 19:21:33.605",
+      "dateFinished": "2023-12-10 19:21:36.326",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\nMATCH (n)\nRETURN n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:36.412",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "name": "string",
+                      "age": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "stackedAreaChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "lineChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "id",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": []
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":0,\"data\":{\"name\":\"John Doe\",\"age\":\"30\"},\"label\":\"Person\"}],\"edges\":[],\"labels\":{\"Person\":\"#731EE2\"},\"types\":[],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702219319157_95935493",
+      "id": "paragraph_1702219319157_95935493",
+      "dateCreated": "2023-12-10 14:41:59.157",
+      "dateStarted": "2023-12-10 19:21:36.468",
+      "dateFinished": "2023-12-10 19:21:36.524",
+      "status": "FINISHED"
+    },
+    {
+      "text": "import org.neo4j.spark.Neo4j",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:36.548",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.neo4j.spark.Neo4j\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702223113187_29619963",
+      "id": "paragraph_1702223113187_29619963",
+      "dateCreated": "2023-12-10 15:45:13.187",
+      "dateStarted": "2023-12-10 19:21:36.574",
+      "dateFinished": "2023-12-10 19:21:36.870",
+      "status": "FINISHED"
+    },
+    {
+      "text": "import org.neo4j.spark.Neo4j\r\nimport org.apache.spark.sql.{DataFrame, SparkSession}\r\n\r\n// Create a Spark session\r\nval spark \u003d SparkSession.builder.appName(\"Neo4jExample\").getOrCreate()\r\n\r\n// Define the Neo4j connection settings\r\nval neo4jConfig \u003d Map(\"url\" -\u003e \"bolt://neo4j:7687\", \"user\" -\u003e \"neo4j\", \"password\" -\u003e \"your_password\")\r\n\r\n// Write the DataFrame to Neo4j\r\nNeo4jDataFrame.mergeEdgeList(spark, combinedDF, \"Source\", \"Target\", \"Type\", \"weight\", \"book\", \"KNOWS\", neo4jConfig)",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:21:36.878",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:49: \u001b[31merror: \u001b[0mnot found: value Neo4jDataFrame\n       Neo4jDataFrame.mergeEdgeList(spark, combinedDF, \"Source\", \"Target\", \"Type\", \"weight\", \"book\", \"KNOWS\", neo4jConfig)\n       ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702227394100_1274557303",
+      "id": "paragraph_1702227394100_1274557303",
+      "dateCreated": "2023-12-10 16:56:34.136",
+      "dateStarted": "2023-12-10 19:21:36.985",
+      "dateFinished": "2023-12-10 19:21:37.136",
+      "status": "ERROR"
+    },
+    {
+      "text": "import org.apache.spark.sql.{DataFrame, SparkSession}\r\nimport org.neo4j.spark.Neo4j\r\n\r\n// Create a Spark session\r\nval spark \u003d SparkSession.builder.appName(\"Neo4jExample\").getOrCreate()\r\n\r\n// Define the Neo4j connection settings\r\nval neo4jConfig \u003d Map(\"url\" -\u003e \"bolt://neo4j:7687\", \"user\" -\u003e \"neo4j\", \"password\" -\u003e \"your_password\")\r\n\r\n\r\n// Write the DataFrame to Neo4j\r\ncombinedDF.foreachPartition { partition \u003d\u003e\r\n  Neo4j.writePartition(partition, \"KNOWS\", Seq(\"Source\", \"Target\", \"Type\", \"weight\", \"book\"), neo4jConfig)\r\n}\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 18:39:20.798",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:45: \u001b[31merror: \u001b[0mvalue writePartition is not a member of object org.neo4j.spark.Neo4j\n         Neo4j.writePartition(partition, \"KNOWS\", Seq(\"Source\", \"Target\", \"Type\", \"weight\", \"book\"), neo4jConfig)\n               ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702233480669_1638370621",
+      "id": "paragraph_1702233480669_1638370621",
+      "dateCreated": "2023-12-10 18:38:00.670",
+      "dateStarted": "2023-12-10 18:39:20.820",
+      "dateFinished": "2023-12-10 18:39:20.978",
+      "status": "ERROR"
+    },
+    {
+      "text": "import org.apache.spark.sql.{SparkSession, DataFrame}\r\n\r\nval spark \u003d SparkSession.builder\r\n  .appName(\"Neo4jExample\")\r\n  .config(\"spark.neo4j.bolt.url\", \"bolt://neo4j:7687\")\r\n  .config(\"spark.neo4j.bolt.user\", \"neo4j\")\r\n  .config(\"spark.neo4j.bolt.password\", \"bitnami1\")\r\n  .getOrCreate()\r\n\r\n// Assuming filledDF is your DataFrame with the data\r\nval dataFrame: DataFrame \u003d filledDF\r\n\r\n// Write DataFrame to Neo4j\r\ncombinedDF.write\r\n  .format(\"org.neo4j.spark.DataSource\")\r\n  .mode(\"Overwrite\")  // Use \"Overwrite\" to clear existing data or \"Append\" to add to existing data\r\n  .option(\"url\", \"bolt://neo4j:7687\")\r\n  .option(\"authentication.basic.username\", \"neo4j\")\r\n  .option(\"authentication.basic.password\", \"bitnami1\")\r\n  .option(\"relationship.nodes.map\", \":Character\")\r\n  .option(\"relationship\", \"INTERACTS_IN\")\r\n  .option(\"relationship.source.labels.map\", \":Character\")\r\n  .option(\"relationship.source.node.keys\", \"Source\")\r\n  .option(\"relationship.target.labels.map\", \":Character\")\r\n  .option(\"relationship.target.node.keys\", \"Target\")\r\n  .option(\"relationship.properties\", \"Weight\")\r\n  .option(\"labels\", \":Book\")\r\n  .save()\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-13 18:20:25.235",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:51: \u001b[31merror: \u001b[0mnot found: value combinedDF\n       combinedDF.write\n       ^\n\u003cconsole\u003e:46: \u001b[31merror: \u001b[0mnot found: value filledDF\n       val dataFrame: DataFrame \u003d filledDF\n                                  ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702233560819_239271962",
+      "id": "paragraph_1702233560819_239271962",
+      "dateCreated": "2023-12-10 18:39:20.819",
+      "dateStarted": "2023-12-13 18:20:25.266",
+      "dateFinished": "2023-12-13 18:20:25.461",
+      "status": "ERROR"
+    },
+    {
+      "text": "import org.neo4j.spark.Neo4jDataFrame",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 18:42:50.549",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:29: \u001b[31merror: \u001b[0mobject Neo4jDataFrame is not a member of package org.neo4j.spark\n       import org.neo4j.spark.Neo4jDataFrame\n              ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702233709042_1178269147",
+      "id": "paragraph_1702233709042_1178269147",
+      "dateCreated": "2023-12-10 18:41:49.042",
+      "dateStarted": "2023-12-10 18:42:50.568",
+      "dateFinished": "2023-12-10 18:42:50.617",
+      "status": "ERROR"
+    },
+    {
+      "text": "import org.apache.spark.sql.{DataFrame, SparkSession}\r\nimport org.neo4j.spark.Neo4j\r\n\r\n// Create a Spark session\r\nval spark \u003d SparkSession.builder.appName(\"Neo4jExample\").getOrCreate()\r\n\r\n// Define the Neo4j connection settings\r\nval neo4jConfig \u003d Map(\"url\" -\u003e \"bolt://neo4j:7687\", \"user\" -\u003e \"neo4j\", \"password\" -\u003e \"bitnami1\")\r\n\r\n\r\n\r\n// Write the DataFrame to Neo4j\r\nNeo4jDataFrameWriter.save(combinedDF, \"KNOWS\", neo4jConfig)",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 18:45:44.464",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:44: \u001b[31merror: \u001b[0mvalue saveTable is not a member of object org.neo4j.spark.Neo4j\n       Neo4j.saveTable(combinedDF, \"KNOWS\", neo4jConfig)\n             ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702233770567_1810809172",
+      "id": "paragraph_1702233770567_1810809172",
+      "dateCreated": "2023-12-10 18:42:50.567",
+      "dateStarted": "2023-12-10 18:45:01.377",
+      "dateFinished": "2023-12-10 18:45:01.454",
+      "status": "ERROR"
+    },
+    {
+      "text": "import org.apache.spark.sql.{SaveMode, SparkSession}",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 18:48:07.403",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.{SaveMode, SparkSession}\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702233827471_1456075363",
+      "id": "paragraph_1702233827471_1456075363",
+      "dateCreated": "2023-12-10 18:43:47.471",
+      "dateStarted": "2023-12-10 18:48:07.426",
+      "dateFinished": "2023-12-10 18:48:07.625",
+      "status": "FINISHED"
+    },
+    {
+      "text": "val df \u003d List(  (\"John Doe\", 32),  (\"Jane Doe\", 42)).toDF(\"name\", \"age\")\r\n\r\n(df.write.format(\"org.neo4j.spark.DataSource\")\r\n  .mode(SaveMode.Append)\r\n  .option(\"url\", \"bolt://neo4j:7687\")\r\n  .option(\"authentication.basic.username\", \"neo4j\")\r\n  .option(\"authentication.basic.password\", \"bitnami1\")\r\n  .option(\"labels\", \":Person\")\r\n  .save())",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 18:49:32.410",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "java.lang.ClassNotFoundException: Failed to find data source: org.neo4j.spark.DataSource. Please find packages at http://spark.apache.org/third-party-projects.html\n  at org.apache.spark.sql.execution.datasources.DataSource$.lookupDataSource(DataSource.scala:657)\n  at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:245)\n  ... 48 elided\nCaused by: java.lang.ClassNotFoundException: org.neo4j.spark.DataSource.DefaultSource\n  at scala.reflect.internal.util.AbstractFileClassLoader.findClass(AbstractFileClassLoader.scala:62)\n  at java.lang.ClassLoader.loadClass(ClassLoader.java:418)\n  at java.lang.ClassLoader.loadClass(ClassLoader.java:351)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$20$$anonfun$apply$12.apply(DataSource.scala:634)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$20$$anonfun$apply$12.apply(DataSource.scala:634)\n  at scala.util.Try$.apply(Try.scala:192)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$20.apply(DataSource.scala:634)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$20.apply(DataSource.scala:634)\n  at scala.util.Try.orElse(Try.scala:84)\n  at org.apache.spark.sql.execution.datasources.DataSource$.lookupDataSource(DataSource.scala:634)\n  ... 49 more\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702233953195_1811904030",
+      "id": "paragraph_1702233953195_1811904030",
+      "dateCreated": "2023-12-10 18:45:53.195",
+      "dateStarted": "2023-12-10 18:49:32.429",
+      "dateFinished": "2023-12-10 18:49:34.358",
+      "status": "ERROR"
+    },
+    {
+      "text": "%neo4j\nMATCH (n)\nRETURN n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 18:51:43.795",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "name": "string",
+                      "age": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":0,\"data\":{\"name\":\"John Doe\",\"age\":\"30\"},\"label\":\"Person\"}],\"edges\":[],\"labels\":{\"Person\":\"#6D07E4\"},\"types\":[],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234125213_407454660",
+      "id": "paragraph_1702234125213_407454660",
+      "dateCreated": "2023-12-10 18:48:45.213",
+      "dateStarted": "2023-12-10 18:51:42.757",
+      "dateFinished": "2023-12-10 18:51:42.807",
+      "status": "FINISHED"
+    },
+    {
+      "text": "import org.apache.spark.sql.{SaveMode, SparkSession}\r\nimport scala.util.Random\r\n\r\nval spark \u003d SparkSession.builder().getOrCreate()\r\nimport spark.implicits._\r\n\r\ncase class Point3d(`type`: String \u003d \"point-3d\",\r\n                   srid: Int,\r\n                   x: Double,\r\n                   y: Double,\r\n                   z: Double)\r\n\r\ncase class Person(name: String, surname: String, age: Int, livesIn: Point3d)\r\n\r\nval total \u003d 10\r\nval rand \u003d Random\r\nval df \u003d (1 to total)\r\n  .map(i \u003d\u003e {\r\n    Person(name \u003d \"Andrea \" + i, \"Santurbano \" + i, rand.nextInt(100),\r\n    Point3d(srid \u003d 4979, x \u003d 12.5811776, y \u003d 41.9579492, z \u003d 1.3))\r\n  }).toDF()\r\n\r\ndf.write\r\n  .format(\"org.neo4j.spark.DataSource\")\r\n  .mode(SaveMode.ErrorIfExists)\r\n  .option(\"url\", \"bolt://localhost:7687\")\r\n  .option(\"authentication.basic.username\", \"neo4j\")\r\n  .option(\"authentication.basic.password\", \"bitnami1\")\r\n  .option(\"labels\", \":Person:Customer\")\r\n  .save()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 18:55:45.178",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "java.lang.ClassNotFoundException: Failed to find data source: org.neo4j.spark.DataSource. Please find packages at http://spark.apache.org/third-party-projects.html\n  at org.apache.spark.sql.execution.datasources.DataSource$.lookupDataSource(DataSource.scala:657)\n  at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:245)\n  ... 41 elided\nCaused by: java.lang.ClassNotFoundException: org.neo4j.spark.DataSource.DefaultSource\n  at scala.reflect.internal.util.AbstractFileClassLoader.findClass(AbstractFileClassLoader.scala:62)\n  at java.lang.ClassLoader.loadClass(ClassLoader.java:418)\n  at java.lang.ClassLoader.loadClass(ClassLoader.java:351)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$20$$anonfun$apply$12.apply(DataSource.scala:634)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$20$$anonfun$apply$12.apply(DataSource.scala:634)\n  at scala.util.Try$.apply(Try.scala:192)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$20.apply(DataSource.scala:634)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$20.apply(DataSource.scala:634)\n  at scala.util.Try.orElse(Try.scala:84)\n  at org.apache.spark.sql.execution.datasources.DataSource$.lookupDataSource(DataSource.scala:634)\n  ... 42 more\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234302757_773196317",
+      "id": "paragraph_1702234302757_773196317",
+      "dateCreated": "2023-12-10 18:51:42.757",
+      "dateStarted": "2023-12-10 18:55:45.205",
+      "dateFinished": "2023-12-10 18:55:46.736",
+      "status": "ERROR"
+    },
+    {
+      "text": "import org.neo4j.spark.Neo4j\r\nimport org.neo4j.spark.Neo4jDataFrameReader\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:20:28.288",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:24: \u001b[31merror: \u001b[0mobject Neo4jDataFrameReader is not a member of package org.neo4j.spark\n       import org.neo4j.spark.Neo4jDataFrameReader\n              ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234445689_462219974",
+      "id": "paragraph_1702234445689_462219974",
+      "dateCreated": "2023-12-10 18:54:05.689",
+      "dateStarted": "2023-12-10 19:20:28.334",
+      "dateFinished": "2023-12-10 19:20:43.802",
+      "status": "ERROR"
+    },
+    {
+      "text": "import org.neo4j.spark.Neo4j.*\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:10:48.576",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:30: \u001b[31merror: \u001b[0mvalue * is not a member of object org.neo4j.spark.Neo4j\n       import org.neo4j.spark.Neo4j.*\n              ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702234617633_1194757292",
+      "id": "paragraph_1702234617633_1194757292",
+      "dateCreated": "2023-12-10 18:56:57.633",
+      "dateStarted": "2023-12-10 19:10:48.600",
+      "dateFinished": "2023-12-10 19:10:48.648",
+      "status": "ERROR"
+    },
+    {
+      "text": "import org.neo4j.spark.Neo4j",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:12:02.090",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.neo4j.spark.Neo4j\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702235448598_1525289452",
+      "id": "paragraph_1702235448598_1525289452",
+      "dateCreated": "2023-12-10 19:10:48.598",
+      "dateStarted": "2023-12-10 19:12:02.112",
+      "dateFinished": "2023-12-10 19:12:02.362",
+      "status": "FINISHED"
+    },
+    {
+      "text": "import org.apache.spark.sql.{SaveMode, SparkSession}\r\n\r\nval spark \u003d SparkSession.builder\r\n  .appName(\"Neo4jExample\")\r\n  .master(\"local[*]\")\r\n  .getOrCreate()\r\n\r\nval df \u003d List(\r\n  (\"John Doe\", 32),\r\n  (\"Jane Doe\", 42)).toDF(\"name\", \"age\")\r\n\r\nval neo4jUrl \u003d \"bolt://neo4j:7687\"\r\nval neo4jUser \u003d \"neo4j\"\r\nval neo4jPassword \u003d \"bitnami1\"\r\n\r\ndf.write\r\n  .format(\"org.neo4j.spark.DataSource\")\r\n  .mode(SaveMode.Append)\r\n  .option(\"url\", neo4jUrl)\r\n  .option(\"authentication.basic.username\", neo4jUser)\r\n  .option(\"authentication.basic.password\", neo4jPassword)\r\n  .option(\"relationship\", \"KNOWS\")  // Specify the relationship type\r\n  .save()\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:28:05.405",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "java.lang.NoClassDefFoundError: org/apache/spark/sql/connector/catalog/TableProvider\n  at java.lang.ClassLoader.defineClass1(Native Method)\n  at java.lang.ClassLoader.defineClass(ClassLoader.java:756)\n  at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)\n  at java.net.URLClassLoader.defineClass(URLClassLoader.java:468)\n  at java.net.URLClassLoader.access$100(URLClassLoader.java:74)\n  at java.net.URLClassLoader$1.run(URLClassLoader.java:369)\n  at java.net.URLClassLoader$1.run(URLClassLoader.java:363)\n  at java.security.AccessController.doPrivileged(Native Method)\n  at java.net.URLClassLoader.findClass(URLClassLoader.java:362)\n  at java.lang.ClassLoader.loadClass(ClassLoader.java:418)\n  at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:352)\n  at java.lang.ClassLoader.loadClass(ClassLoader.java:405)\n  at java.lang.ClassLoader.loadClass(ClassLoader.java:405)\n  at java.lang.ClassLoader.loadClass(ClassLoader.java:405)\n  at java.lang.ClassLoader.loadClass(ClassLoader.java:351)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$19.apply(DataSource.scala:634)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$19.apply(DataSource.scala:634)\n  at scala.util.Try$.apply(Try.scala:192)\n  at org.apache.spark.sql.execution.datasources.DataSource$.lookupDataSource(DataSource.scala:634)\n  at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:245)\n  ... 48 elided\nCaused by: java.lang.ClassNotFoundException: org.apache.spark.sql.connector.catalog.TableProvider\n  at java.net.URLClassLoader.findClass(URLClassLoader.java:382)\n  at java.lang.ClassLoader.loadClass(ClassLoader.java:418)\n  at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:352)\n  at java.lang.ClassLoader.loadClass(ClassLoader.java:351)\n  ... 68 more\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702235505056_382064055",
+      "id": "paragraph_1702235505056_382064055",
+      "dateCreated": "2023-12-10 19:11:45.056",
+      "dateStarted": "2023-12-10 19:28:05.426",
+      "dateFinished": "2023-12-10 19:28:06.485",
+      "status": "ERROR"
+    },
+    {
+      "text": "import org.apache.spark.sql.SparkSession\r\n\r\nval spark \u003d SparkSession.builder\r\n  .appName(\"Neo4jConnectionTest\")\r\n  .master(\"local[*]\")\r\n  .getOrCreate()\r\n\r\nval neo4jUrl \u003d \"jdbc:neo4j:bolt://neo4j:7687\"\r\nval neo4jUser \u003d \"neo4j\"\r\nval neo4jPassword \u003d \"bitnami1\"\r\n\r\n// Read a small amount of data from Neo4j\r\nval query \u003d \"(n:Person) RETURN n.name, n.age LIMIT 5\"\r\nval neo4jDF \u003d spark.read\r\n  .format(\"jdbc\")\r\n  .option(\"url\", neo4jUrl)\r\n  .option(\"user\", neo4jUser)\r\n  .option(\"password\", neo4jPassword)\r\n  .option(\"dbtable\", s\"($query) as data\")\r\n  .load()\r\n\r\n// Show the DataFrame to verify the connection\r\nneo4jDF.show()\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:34:58.102",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "java.sql.SQLException: org.neo4j.driver.exceptions.ClientException: Invalid input \u0027SELECT\u0027: expected\n  \"ALTER\"\n  \"CALL\"\n  \"CREATE\"\n  \"DEALLOCATE\"\n  \"DELETE\"\n  \"DENY\"\n  \"DETACH\"\n  \"DROP\"\n  \"DRYRUN\"\n  \"ENABLE\"\n  \"FOREACH\"\n  \"GRANT\"\n  \"LOAD\"\n  \"MATCH\"\n  \"MERGE\"\n  \"OPTIONAL\"\n  \"REALLOCATE\"\n  \"REMOVE\"\n  \"RENAME\"\n  \"RETURN\"\n  \"REVOKE\"\n  \"SET\"\n  \"SHOW\"\n  \"START\"\n  \"STOP\"\n  \"TERMINATE\"\n  \"UNWIND\"\n  \"USE\"\n  \"USING\"\n  \"WITH\" (line 1, column 1 (offset: 0))\n\"SELECT * FROM ((n:Person) RETURN n.name, n.age LIMIT 5) as data WHERE 1\u003d0\"\n ^\n  at org.neo4j.jdbc.utils.BoltNeo4jUtils.executeInTx(BoltNeo4jUtils.java:85)\n  at org.neo4j.jdbc.bolt.BoltNeo4jPreparedStatement.executeInternal(BoltNeo4jPreparedStatement.java:103)\n  at org.neo4j.jdbc.bolt.BoltNeo4jPreparedStatement.executeQuery(BoltNeo4jPreparedStatement.java:70)\n  at org.apache.spark.sql.execution.datasources.jdbc.JDBCRDD$.resolveTable(JDBCRDD.scala:61)\n  at org.apache.spark.sql.execution.datasources.jdbc.JDBCRelation$.getSchema(JDBCRelation.scala:210)\n  at org.apache.spark.sql.execution.datasources.jdbc.JdbcRelationProvider.createRelation(JdbcRelationProvider.scala:35)\n  at org.apache.spark.sql.execution.datasources.DataSource.resolveRelation(DataSource.scala:318)\n  at org.apache.spark.sql.DataFrameReader.loadV1Source(DataFrameReader.scala:223)\n  at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:211)\n  at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:167)\n  ... 48 elided\nCaused by: org.neo4j.driver.exceptions.ClientException: Invalid input \u0027SELECT\u0027: expected\n  \"ALTER\"\n  \"CALL\"\n  \"CREATE\"\n  \"DEALLOCATE\"\n  \"DELETE\"\n  \"DENY\"\n  \"DETACH\"\n  \"DROP\"\n  \"DRYRUN\"\n  \"ENABLE\"\n  \"FOREACH\"\n  \"GRANT\"\n  \"LOAD\"\n  \"MATCH\"\n  \"MERGE\"\n  \"OPTIONAL\"\n  \"REALLOCATE\"\n  \"REMOVE\"\n  \"RENAME\"\n  \"RETURN\"\n  \"REVOKE\"\n  \"SET\"\n  \"SHOW\"\n  \"START\"\n  \"STOP\"\n  \"TERMINATE\"\n  \"UNWIND\"\n  \"USE\"\n  \"USING\"\n  \"WITH\" (line 1, column 1 (offset: 0))\n\"SELECT * FROM ((n:Person) RETURN n.name, n.age LIMIT 5) as data WHERE 1\u003d0\"\n ^\n  at org.neo4j.driver.internal.util.Futures.blockingGet(Futures.java:111)\n  at org.neo4j.driver.internal.InternalTransaction.run(InternalTransaction.java:58)\n  at org.neo4j.driver.internal.AbstractQueryRunner.run(AbstractQueryRunner.java:34)\n  at org.neo4j.driver.internal.AbstractQueryRunner.run(AbstractQueryRunner.java:39)\n  at org.neo4j.jdbc.utils.BoltNeo4jUtils.lambda$runTransactionWithRetries$0(BoltNeo4jUtils.java:105)\n  at io.github.resilience4j.retry.Retry.lambda$decorateCallable$5(Retry.java:306)\n  at org.neo4j.jdbc.utils.BoltNeo4jUtils.runTransactionWithRetries(BoltNeo4jUtils.java:106)\n  at org.neo4j.jdbc.utils.BoltNeo4jUtils.execute(BoltNeo4jUtils.java:98)\n  at org.neo4j.jdbc.utils.BoltNeo4jUtils.executeInTx(BoltNeo4jUtils.java:77)\n  ... 57 more\n  Suppressed: org.neo4j.driver.internal.util.ErrorUtil$InternalExceptionCause\n    at org.neo4j.driver.internal.util.ErrorUtil.newNeo4jError(ErrorUtil.java:76)\n    at org.neo4j.driver.internal.async.inbound.InboundMessageDispatcher.handleFailureMessage(InboundMessageDispatcher.java:107)\n    at org.neo4j.driver.internal.messaging.common.CommonMessageReader.unpackFailureMessage(CommonMessageReader.java:75)\n    at org.neo4j.driver.internal.messaging.common.CommonMessageReader.read(CommonMessageReader.java:53)\n    at org.neo4j.driver.internal.async.inbound.InboundMessageHandler.channelRead0(InboundMessageHandler.java:81)\n    at org.neo4j.driver.internal.async.inbound.InboundMessageHandler.channelRead0(InboundMessageHandler.java:37)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.SimpleChannelInboundHandler.channelRead(SimpleChannelInboundHandler.java:99)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)\n    at org.neo4j.driver.internal.shaded.io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346)\n    at org.neo4j.driver.internal.shaded.io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:318)\n    at org.neo4j.driver.internal.async.inbound.MessageDecoder.channelRead(MessageDecoder.java:42)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)\n    at org.neo4j.driver.internal.shaded.io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346)\n    at org.neo4j.driver.internal.shaded.io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:333)\n    at org.neo4j.driver.internal.shaded.io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:454)\n    at org.neo4j.driver.internal.shaded.io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:290)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)\n    at org.neo4j.driver.internal.shaded.io.netty.handler.timeout.IdleStateHandler.channelRead(IdleStateHandler.java:286)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)\n    at org.neo4j.driver.internal.shaded.io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)\n    at org.neo4j.driver.internal.shaded.io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)\n    at org.neo4j.driver.internal.shaded.io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)\n    at java.lang.Thread.run(Thread.java:748)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702236592174_290425322",
+      "id": "paragraph_1702236592174_290425322",
+      "dateCreated": "2023-12-10 19:29:52.174",
+      "dateStarted": "2023-12-10 19:34:58.123",
+      "dateFinished": "2023-12-10 19:34:58.783",
+      "status": "ERROR"
+    },
+    {
+      "text": "import org.apache.spark.sql.SparkSession\r\n\r\nval spark \u003d SparkSession.builder\r\n  .appName(\"Neo4jExample\")\r\n  .master(\"local[*]\")\r\n  .getOrCreate()\r\n\r\nval neo4jUrl \u003d \"jdbc:neo4j:bolt://neo4j:7687\"\r\nval neo4jUser \u003d \"neo4j\"\r\nval neo4jPassword \u003d \"bitnami1\"\r\n\r\n// Use a valid Cypher query without the SELECT * FROM part\r\nval query \u003d \"(n:Person) RETURN n.name, n.age LIMIT 5\"\r\nval neo4jDF \u003d spark.read\r\n  .format(\"jdbc\")\r\n  .option(\"url\", neo4jUrl)\r\n  .option(\"user\", neo4jUser)\r\n  .option(\"password\", neo4jPassword)\r\n  .option(\"dbtable\", query)\r\n  .load()\r\n\r\n// Show the DataFrame to verify the connection\r\nneo4jDF.show()\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:36:34.947",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "java.sql.SQLException: org.neo4j.driver.exceptions.ClientException: Invalid input \u0027SELECT\u0027: expected\n  \"ALTER\"\n  \"CALL\"\n  \"CREATE\"\n  \"DEALLOCATE\"\n  \"DELETE\"\n  \"DENY\"\n  \"DETACH\"\n  \"DROP\"\n  \"DRYRUN\"\n  \"ENABLE\"\n  \"FOREACH\"\n  \"GRANT\"\n  \"LOAD\"\n  \"MATCH\"\n  \"MERGE\"\n  \"OPTIONAL\"\n  \"REALLOCATE\"\n  \"REMOVE\"\n  \"RENAME\"\n  \"RETURN\"\n  \"REVOKE\"\n  \"SET\"\n  \"SHOW\"\n  \"START\"\n  \"STOP\"\n  \"TERMINATE\"\n  \"UNWIND\"\n  \"USE\"\n  \"USING\"\n  \"WITH\" (line 1, column 1 (offset: 0))\n\"SELECT * FROM (n:Person) RETURN n.name, n.age LIMIT 5 WHERE 1\u003d0\"\n ^\n  at org.neo4j.jdbc.utils.BoltNeo4jUtils.executeInTx(BoltNeo4jUtils.java:85)\n  at org.neo4j.jdbc.bolt.BoltNeo4jPreparedStatement.executeInternal(BoltNeo4jPreparedStatement.java:103)\n  at org.neo4j.jdbc.bolt.BoltNeo4jPreparedStatement.executeQuery(BoltNeo4jPreparedStatement.java:70)\n  at org.apache.spark.sql.execution.datasources.jdbc.JDBCRDD$.resolveTable(JDBCRDD.scala:61)\n  at org.apache.spark.sql.execution.datasources.jdbc.JDBCRelation$.getSchema(JDBCRelation.scala:210)\n  at org.apache.spark.sql.execution.datasources.jdbc.JdbcRelationProvider.createRelation(JdbcRelationProvider.scala:35)\n  at org.apache.spark.sql.execution.datasources.DataSource.resolveRelation(DataSource.scala:318)\n  at org.apache.spark.sql.DataFrameReader.loadV1Source(DataFrameReader.scala:223)\n  at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:211)\n  at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:167)\n  ... 48 elided\nCaused by: org.neo4j.driver.exceptions.ClientException: Invalid input \u0027SELECT\u0027: expected\n  \"ALTER\"\n  \"CALL\"\n  \"CREATE\"\n  \"DEALLOCATE\"\n  \"DELETE\"\n  \"DENY\"\n  \"DETACH\"\n  \"DROP\"\n  \"DRYRUN\"\n  \"ENABLE\"\n  \"FOREACH\"\n  \"GRANT\"\n  \"LOAD\"\n  \"MATCH\"\n  \"MERGE\"\n  \"OPTIONAL\"\n  \"REALLOCATE\"\n  \"REMOVE\"\n  \"RENAME\"\n  \"RETURN\"\n  \"REVOKE\"\n  \"SET\"\n  \"SHOW\"\n  \"START\"\n  \"STOP\"\n  \"TERMINATE\"\n  \"UNWIND\"\n  \"USE\"\n  \"USING\"\n  \"WITH\" (line 1, column 1 (offset: 0))\n\"SELECT * FROM (n:Person) RETURN n.name, n.age LIMIT 5 WHERE 1\u003d0\"\n ^\n  at org.neo4j.driver.internal.util.Futures.blockingGet(Futures.java:111)\n  at org.neo4j.driver.internal.InternalTransaction.run(InternalTransaction.java:58)\n  at org.neo4j.driver.internal.AbstractQueryRunner.run(AbstractQueryRunner.java:34)\n  at org.neo4j.driver.internal.AbstractQueryRunner.run(AbstractQueryRunner.java:39)\n  at org.neo4j.jdbc.utils.BoltNeo4jUtils.lambda$runTransactionWithRetries$0(BoltNeo4jUtils.java:105)\n  at io.github.resilience4j.retry.Retry.lambda$decorateCallable$5(Retry.java:306)\n  at org.neo4j.jdbc.utils.BoltNeo4jUtils.runTransactionWithRetries(BoltNeo4jUtils.java:106)\n  at org.neo4j.jdbc.utils.BoltNeo4jUtils.execute(BoltNeo4jUtils.java:98)\n  at org.neo4j.jdbc.utils.BoltNeo4jUtils.executeInTx(BoltNeo4jUtils.java:77)\n  ... 57 more\n  Suppressed: org.neo4j.driver.internal.util.ErrorUtil$InternalExceptionCause\n    at org.neo4j.driver.internal.util.ErrorUtil.newNeo4jError(ErrorUtil.java:76)\n    at org.neo4j.driver.internal.async.inbound.InboundMessageDispatcher.handleFailureMessage(InboundMessageDispatcher.java:107)\n    at org.neo4j.driver.internal.messaging.common.CommonMessageReader.unpackFailureMessage(CommonMessageReader.java:75)\n    at org.neo4j.driver.internal.messaging.common.CommonMessageReader.read(CommonMessageReader.java:53)\n    at org.neo4j.driver.internal.async.inbound.InboundMessageHandler.channelRead0(InboundMessageHandler.java:81)\n    at org.neo4j.driver.internal.async.inbound.InboundMessageHandler.channelRead0(InboundMessageHandler.java:37)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.SimpleChannelInboundHandler.channelRead(SimpleChannelInboundHandler.java:99)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)\n    at org.neo4j.driver.internal.shaded.io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346)\n    at org.neo4j.driver.internal.shaded.io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:318)\n    at org.neo4j.driver.internal.async.inbound.MessageDecoder.channelRead(MessageDecoder.java:42)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)\n    at org.neo4j.driver.internal.shaded.io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:346)\n    at org.neo4j.driver.internal.shaded.io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:318)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:444)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)\n    at org.neo4j.driver.internal.shaded.io.netty.handler.timeout.IdleStateHandler.channelRead(IdleStateHandler.java:286)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)\n    at org.neo4j.driver.internal.shaded.io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)\n    at org.neo4j.driver.internal.shaded.io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)\n    at org.neo4j.driver.internal.shaded.io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)\n    at org.neo4j.driver.internal.shaded.io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)\n    at java.lang.Thread.run(Thread.java:748)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702236187969_1814169797",
+      "id": "paragraph_1702236187969_1814169797",
+      "dateCreated": "2023-12-10 19:23:07.970",
+      "dateStarted": "2023-12-10 19:36:34.968",
+      "dateFinished": "2023-12-10 19:36:35.686",
+      "status": "ERROR"
+    },
+    {
+      "text": "import org.apache.spark.sql.SparkSession\r\nimport org.neo4j.spark.Neo4j\r\n\r\nval spark \u003d SparkSession.builder\r\n  .appName(\"Neo4jExample\")\r\n  .master(\"local[*]\")\r\n  .config(\"spark.jars.packages\", \"org.neo4j.spark:neo4j-spark-connector_2.12:4.0.0\")\r\n  .getOrCreate()\r\n\r\nval neo4jUrl \u003d \"bolt://neo4j:7687\"\r\nval neo4jUser \u003d \"neo4j\"\r\nval neo4jPassword \u003d \"bitnami1\"\r\n\r\nval query \u003d \"MATCH (n:Person) RETURN n.name, n.age LIMIT 5\"\r\n\r\n// Reading data from Neo4j to Spark DataFrame\r\nval neo4jDF \u003d Neo4j(spark.sparkContext).cypher(query).loadDataFrame\r\n\r\n// Show the DataFrame to verify the connection\r\nneo4jDF.show()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:49:29.654",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "java.lang.NoSuchMethodError: scala.Product.$init$(Lscala/Product;)V\n  at org.neo4j.spark.Neo4j$Query.\u003cinit\u003e(Neo4j.scala:29)\n  at org.neo4j.spark.Neo4j.\u003cinit\u003e(Neo4j.scala:44)\n  at org.neo4j.spark.Neo4j$.apply(Neo4j.scala:22)\n  ... 49 elided\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702236994967_2006350418",
+      "id": "paragraph_1702236994967_2006350418",
+      "dateCreated": "2023-12-10 19:36:34.967",
+      "dateStarted": "2023-12-10 19:49:29.678",
+      "dateFinished": "2023-12-10 19:49:30.199",
+      "status": "ERROR"
+    },
+    {
+      "text": "%neo4j\nMATCH (n:Person) RETURN n.name, n.age LIMIT 5",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-12 11:04:41.190",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "n.name": "string",
+                      "n.age": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "java.lang.NullPointerException\n\tat org.apache.zeppelin.interpreter.InterpreterOutput.write(InterpreterOutput.java:321)\n\tat org.apache.zeppelin.interpreter.InterpreterResult.add(InterpreterResult.java:90)\n\tat org.apache.zeppelin.interpreter.InterpreterResult.\u003cinit\u003e(InterpreterResult.java:75)\n\tat org.apache.zeppelin.graph.neo4j.Neo4jCypherInterpreter.runQuery(Neo4jCypherInterpreter.java:195)\n\tat org.apache.zeppelin.graph.neo4j.Neo4jCypherInterpreter.interpret(Neo4jCypherInterpreter.java:145)\n\tat org.apache.zeppelin.interpreter.LazyOpenInterpreter.interpret(LazyOpenInterpreter.java:110)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterServer$InterpretJob.jobRun(RemoteInterpreterServer.java:852)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterServer$InterpretJob.jobRun(RemoteInterpreterServer.java:744)\n\tat org.apache.zeppelin.scheduler.Job.run(Job.java:172)\n\tat org.apache.zeppelin.scheduler.AbstractScheduler.runJob(AbstractScheduler.java:132)\n\tat org.apache.zeppelin.scheduler.ParallelScheduler.lambda$runJobInScheduler$0(ParallelScheduler.java:46)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\n\tat java.lang.Thread.run(Thread.java:748)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702237053617_629434713",
+      "id": "paragraph_1702237053617_629434713",
+      "dateCreated": "2023-12-10 19:37:33.619",
+      "dateStarted": "2023-12-12 11:04:41.286",
+      "dateFinished": "2023-12-12 11:04:49.227",
+      "status": "ERROR"
+    },
+    {
+      "text": "%neo4j\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 19:39:58.925",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702237198924_205303358",
+      "id": "paragraph_1702237198924_205303358",
+      "dateCreated": "2023-12-10 19:39:58.924",
+      "status": "READY"
+    }
+  ],
+  "name": "Untitled Note 1",
+  "id": "2JJK4VCST",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

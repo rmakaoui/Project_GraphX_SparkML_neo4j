@@ -1,0 +1,45 @@
+{
+  "paragraphs": [
+    {
+      "text": "%dep\nz.load(\"org.apache.spark:spark-graphx_2.11:2.4.8\")\nz.load(\"org.neo4j.driver:neo4j-java-driver:4.3.2\")",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-19 00:01:43.130",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/text",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702944077964_1397064945",
+      "id": "paragraph_1702944077964_1397064945",
+      "dateCreated": "2023-12-19 00:01:17.964",
+      "status": "READY"
+    }
+  ],
+  "name": "GraphXDep",
+  "id": "2JKMJ41F6",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.10.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

@@ -1,0 +1,13 @@
+Source,Target,weight,prediction
+daemon-sand,doran-martell,3.0,0
+daemon-sand,oberyn-martell,3.0,0
+emmon-frey,forley-prester,3.0,0
+emmon-frey,genna-lannister,5.0,0
+emmon-frey,jaime-lannister,8.0,0
+emmon-frey,ryman-frey,4.0,0
+emmon-frey,tywin-lannister,3.0,0
+holly,jeyne-poole,4.0,0
+holly,rowan,3.0,0
+holly,theon-greyjoy,10.0,0
+jafer-flowers,jaremy-rykker,3.0,0
+martyn-rivers,robb-stark,3.0,0

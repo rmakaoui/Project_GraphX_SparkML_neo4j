@@ -1,0 +1,3562 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark\nimport org.apache.spark.sql.{SaveMode, SparkSession}\n\n// Configuration pour la connexion à Neo4j\nval neo4jUrl \u003d \"bolt://neo4j:7687\"\nval neo4jUser \u003d \"neo4j\"\nval neo4jPassword \u003d \"bitnami1\"\n\nval spark \u003d SparkSession.builder().getOrCreate()\n\nval all \u003d (spark.read.format(\"org.neo4j.spark.DataSource\")\n  .option(\"url\", \"bolt://neo4j:7687\")\n  .option(\"authentication.basic.username\", neo4jUser)\n  .option(\"authentication.basic.password\", neo4jPassword)\n  .option(\"query\", \"MATCH (n:Node1) WITH n MATCH (n)-[relation]-\u003e(target) WHERE relation.book IS NOT NULL AND relation.weight IS NOT NULL RETURN n.name AS Source, target.name AS Target, TYPE(relation) AS Type, relation.weight AS Weight, relation.book AS Book;\")\n  .load())\n all.show()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-18 23:45:40.856",
+      "progress": 100,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---------------+-----------------+----------+------+----+\n|         Source|           Target|      Type|Weight|Book|\n+---------------+-----------------+----------+------+----+\n| addam-marbrand|   lyle-crakehall|undirected|     4|   4|\n| addam-marbrand|  jaime-lannister|undirected|     8|   4|\n| addam-marbrand| cersei-lannister|undirected|     3|   4|\n| addam-marbrand|    brynden-tully|undirected|     3|   4|\n| addam-marbrand|            varys|Undirected|     4|   3|\n| addam-marbrand| tyrion-lannister|Undirected|     7|   3|\n| addam-marbrand|   oberyn-martell|Undirected|     3|   3|\n| addam-marbrand|  kevan-lannister|Undirected|     3|   3|\n| addam-marbrand|joffrey-baratheon|Undirected|     3|   3|\n| addam-marbrand|     jalabhar-xho|Undirected|     3|   3|\n| addam-marbrand|  jaime-lannister|Undirected|     3|   3|\n| addam-marbrand|      gyles-rosby|Undirected|     3|   3|\n| addam-marbrand|  tywin-lannister|Undirected|     6|   1|\n| addam-marbrand|  jaime-lannister|Undirected|     3|   1|\n|jaime-lannister|joffrey-baratheon|Undirected|    12|   1|\n|jaime-lannister|           walton|Undirected|    18|   3|\n|jaime-lannister|            varys|Undirected|     5|   3|\n|jaime-lannister|       vargo-hoat|Undirected|    16|   3|\n|jaime-lannister|          urswyck|Undirected|    11|   3|\n|jaime-lannister|  tywin-lannister|Undirected|    16|   3|\n+---------------+-----------------+----------+------+----+\nonly showing top 20 rows\n\nimport org.apache.spark.sql.{SaveMode, SparkSession}\n\u001b[1m\u001b[34mneo4jUrl\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d bolt://neo4j:7687\n\u001b[1m\u001b[34mneo4jUser\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d neo4j\n\u001b[1m\u001b[34mneo4jPassword\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d bitnami1\n\u001b[1m\u001b[34mspark\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.SparkSession\u001b[0m \u003d org.apache.spark.sql.SparkSession@38f93a64\n\u001b[1m\u001b[34mall\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [Source: string, Target: string ... 3 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d0"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702659836470_1643052554",
+      "id": "paragraph_1702659836470_1643052554",
+      "dateCreated": "2023-12-15 17:03:56.470",
+      "dateStarted": "2023-12-18 23:45:40.916",
+      "dateFinished": "2023-12-18 23:46:28.260",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\nall.printSchema()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-18 23:46:52.105",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- Source: string (nullable \u003d true)\n |-- Target: string (nullable \u003d true)\n |-- Type: string (nullable \u003d true)\n |-- Weight: long (nullable \u003d true)\n |-- Book: long (nullable \u003d true)\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702662331997_545284283",
+      "id": "paragraph_1702662331997_545284283",
+      "dateCreated": "2023-12-15 17:45:31.997",
+      "dateStarted": "2023-12-18 23:46:52.182",
+      "dateFinished": "2023-12-18 23:46:53.191",
+      "status": "FINISHED"
+    },
+    {
+      "text": "//CREATION DU GRAPH\r\n\r\nimport org.apache.spark.sql.Row\r\nimport org.apache.spark.graphx.{Graph, Edge, VertexId}\r\nimport org.apache.spark.rdd.RDD\r\n\r\n// Let\u0027s create the vertex RDD.\r\nval vertices: RDD[(VertexId, String)] \u003d all\r\n  .selectExpr(\"explode(array(Target, Source)) as vertex\")\r\n  .distinct\r\n  .rdd\r\n  .map(_.getAs[String](0))\r\n  .zipWithIndex\r\n  .map(_.swap)\r\n\r\n// Now let\u0027s define a vertex dataframe because joins are clearer in Spark SQL\r\nval vertexDf \u003d vertices.toDF(\"id\", \"node\")\r\n\r\n// And let\u0027s extract the edges and join their vertices with their respective IDs\r\nval edges: RDD[Edge[(String, Long, Long)]] \u003d all\r\n  .join(vertexDf, all(\"Source\") \u003d\u003d\u003d vertexDf(\"node\"))\r\n  .select(all(\"Type\"), all(\"Target\"), all(\"Weight\").alias(\"Weight\"), all(\"Book\").alias(\"Book\"), vertexDf(\"id\").alias(\"idS\"))\r\n  .join(vertexDf, all(\"Target\") \u003d\u003d\u003d vertexDf(\"node\"))\r\n  .select(\"idS\", \"id\", \"Type\", \"Weight\", \"Book\")\r\n  .rdd\r\n  .map { row \u003d\u003e\r\n    Edge(\r\n      row.getAs[Long](\"idS\"),\r\n      row.getAs[Long](\"id\"),\r\n      (row.getAs[String](\"Type\"), row.getAs[Long](\"Weight\"), row.getAs[Long](\"Book\"))\r\n    )\r\n  }\r\n\r\n// And finally\r\nval graph: Graph[Unit, (String, Long, Long)] \u003d Graph.fromEdges(edges, ())\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-18 23:46:54.919",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.Row\nimport org.apache.spark.graphx.{Graph, Edge, VertexId}\nimport org.apache.spark.rdd.RDD\n\u001b[1m\u001b[34mvertices\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.rdd.RDD[(org.apache.spark.graphx.VertexId, String)]\u001b[0m \u003d MapPartitionsRDD[13] at map at \u003cconsole\u003e:39\n\u001b[1m\u001b[34mvertexDf\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [id: bigint, node: string]\n\u001b[1m\u001b[34medges\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.rdd.RDD[org.apache.spark.graphx.Edge[(String, Long, Long)]]\u001b[0m \u003d MapPartitionsRDD[35] at map at \u003cconsole\u003e:51\n\u001b[1m\u001b[34mgraph\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.graphx.Graph[Unit,(String, Long, Long)]\u001b[0m \u003d org.apache.spark.graphx.impl.GraphImpl@501941c2\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702659358366_1116370649",
+      "id": "paragraph_1702659358366_1116370649",
+      "dateCreated": "2023-12-15 16:55:58.366",
+      "dateStarted": "2023-12-18 23:46:54.963",
+      "dateFinished": "2023-12-18 23:47:08.932",
+      "status": "FINISHED"
+    },
+    {
+      "text": "//AFFICHAGE DES NODES ET RELATIONS\r\n\r\n// Display the first 10 vertices\r\nprintln(\"First 10 Vertices:\")\r\ngraph.vertices.take(10).foreach(println)\r\n\r\n// Display the first 10 edges\r\nprintln(\"First 10 Edges:\")\r\ngraph.edges.take(10).foreach(println)\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-18 18:30:20.095",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "First 10 Vertices:\n(600,())\n(200,())\n(0,())\n(400,())\n(401,())\n(601,())\n(201,())\n(1,())\n(602,())\n(202,())\nFirst 10 Edges:\nEdge(275,343,(Undirected,3,1))\nEdge(486,489,(Undirected,3,2))\nEdge(3,375,(undirected,5,4))\nEdge(2,32,(Undirected,24,3))\nEdge(2,32,(Undirected,3,1))\nEdge(2,32,(undirected,10,4))\nEdge(3,32,(undirected,24,4))\nEdge(4,335,(Undirected,5,1))\nEdge(9,32,(Undirected,12,3))\nEdge(9,32,(Undirected,3,2))\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d35"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d36"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d37"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d38"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702659879536_60559298",
+      "id": "paragraph_1702659879536_60559298",
+      "dateCreated": "2023-12-15 17:04:39.536",
+      "dateStarted": "2023-12-18 18:29:42.268",
+      "dateFinished": "2023-12-18 18:29:52.096",
+      "status": "FINISHED"
+    },
+    {
+      "text": "//MANIPULATION DU GRAPH GRAPHX\r\n\r\n// Nombre de nœuds et d\u0027arêtes\r\nval numVertices \u003d graph.numVertices\r\nval numEdges \u003d graph.numEdges\r\n\r\n// Degré moyen, degré maximum et minimum des nœuds\r\nval avgDegree \u003d graph.degrees.map(_._2).mean()\r\nval maxDegree \u003d graph.degrees.map(_._2).max()\r\nval minDegree \u003d graph.degrees.map(_._2).min()\r\n\r\n// Statistiques des poids et des livres\r\nval weightStats \u003d graph.edges.map(_.attr._2).stats()\r\nval bookStats \u003d graph.edges.map(_.attr._3).stats()\r\n\r\n// Affichage des résultats\r\nprintln(s\"Nombre de nœuds: $numVertices\")\r\nprintln(s\"Nombre d\u0027arêtes: $numEdges\")\r\nprintln(s\"Degré moyen: $avgDegree\")\r\nprintln(s\"Degré maximum: $maxDegree\")\r\nprintln(s\"Degré minimum: $minDegree\")\r\n\r\nprintln(\"Statistiques des poids:\")\r\nprintln(weightStats)\r\n\r\nprintln(\"Statistiques des livres:\")\r\nprintln(bookStats)\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-18 18:30:34.354",
+      "progress": 17,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Nombre de nœuds: 796\nNombre d\u0027arêtes: 3908\nDegré moyen: 9.819095477386936\nDegré maximum: 217\nDegré minimum: 1\nStatistiques des poids:\n(count: 3908, mean: 8.348516, stdev: 11.147510, max: 291.000000, min: 3.000000)\nStatistiques des livres:\n(count: 3908, mean: 3.015353, stdev: 1.360267, max: 5.000000, min: 1.000000)\n\u001b[1m\u001b[34mnumVertices\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m \u003d 796\n\u001b[1m\u001b[34mnumEdges\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m \u003d 3908\n\u001b[1m\u001b[34mavgDegree\u001b[0m: \u001b[1m\u001b[32mDouble\u001b[0m \u003d 9.819095477386936\n\u001b[1m\u001b[34mmaxDegree\u001b[0m: \u001b[1m\u001b[32mInt\u001b[0m \u003d 217\n\u001b[1m\u001b[34mminDegree\u001b[0m: \u001b[1m\u001b[32mInt\u001b[0m \u003d 1\n\u001b[1m\u001b[34mweightStats\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.util.StatCounter\u001b[0m \u003d (count: 3908, mean: 8.348516, stdev: 11.147510, max: 291.000000, min: 3.000000)\n\u001b[1m\u001b[34mbookStats\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.util.StatCounter\u001b[0m \u003d (count: 3908, mean: 3.015353, stdev: 1.360267, max: 5.000000, min: 1.000000)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d39"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d40"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d41"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d42"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d43"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d44"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d45"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702661822751_1147057112",
+      "id": "paragraph_1702661822751_1147057112",
+      "dateCreated": "2023-12-15 17:37:02.751",
+      "dateStarted": "2023-12-18 18:30:34.382",
+      "dateFinished": "2023-12-18 18:30:43.791",
+      "status": "FINISHED"
+    },
+    {
+      "text": "//calcule la distribution des degrés des nœuds dans un graphe\r\n\r\nval degreeDistribution \u003d graph.degrees.map{ case (vertexId, degree) \u003d\u003e (degree, vertexId) }.countByValue()\r\n\r\n\r\n\r\n// Display degree distribution with names in descending order\r\nprintln(\"Top 20 Degree Distribution with Names (Descending Order):\")\r\ndegreeDistribution.toSeq.sortBy { case ((degree, vertexId), count) \u003d\u003e -degree }.take(20).foreach { case ((degree, vertexId), count) \u003d\u003e\r\n  val vertexName \u003d vertices.lookup(vertexId).headOption.getOrElse(\"UnknownVertex\")\r\n  println(s\"Vertex $vertexName, Degree $degree: $count nodes\")\r\n}\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-18 23:09:18.756",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Top 20 Degree Distribution with Names (Descending Order):\nVertex Jon-Snow, Degree 438: 1 nodes\nVertex Daenerys-Targaryen, Degree 353: 1 nodes\nVertex Tyrion-Lannister, Degree 349: 1 nodes\nVertex Stannis-Baratheon, Degree 335: 1 nodes\nVertex Cersei-Lannister, Degree 311: 1 nodes\nVertex Theon-Greyjoy, Degree 219: 1 nodes\nVertex Jaime-Lannister, Degree 209: 1 nodes\nVertex Robert-Baratheon, Degree 190: 1 nodes\nVertex Eddard-Stark, Degree 182: 1 nodes\nVertex Arya-Stark, Degree 180: 1 nodes\nVertex Robb-Stark, Degree 176: 1 nodes\nVertex Joffrey-Baratheon, Degree 155: 1 nodes\nVertex Barristan-Selmy, Degree 151: 1 nodes\nVertex Sansa-Stark, Degree 149: 1 nodes\nVertex Bran-Stark, Degree 143: 1 nodes\nVertex Catelyn-Stark, Degree 130: 1 nodes\nVertex Tywin-Lannister, Degree 129: 1 nodes\nVertex Hizdahr-zo-Loraq, Degree 110: 1 nodes\nVertex Mance-Rayder, Degree 108: 1 nodes\nVertex Asha-Greyjoy, Degree 102: 1 nodes\n\u001b[1m\u001b[34mdegreeDistribution\u001b[0m: \u001b[1m\u001b[32mscala.collection.Map[(Int, org.apache.spark.graphx.VertexId),Long]\u001b[0m \u003d Map((1,626) -\u003e 1, (1,617) -\u003e 1, (33,125) -\u003e 1, (20,748) -\u003e 1, (6,331) -\u003e 1, (1,376) -\u003e 1, (2,541) -\u003e 1, (3,122) -\u003e 1, (17,402) -\u003e 1, (6,414) -\u003e 1, (101,293) -\u003e 1, (24,17) -\u003e 1, (3,71) -\u003e 1, (1,192) -\u003e 1, (4,495) -\u003e 1, (35,668) -\u003e 1, (15,681) -\u003e 1, (58,11) -\u003e 1, (1,153) -\u003e 1, (349,30) -\u003e 1, (1,147) -\u003e 1, (5,31) -\u003e 1, (30,714) -\u003e 1, (3,88) -\u003e 1, (1,581) -\u003e 1, (3,145) -\u003e 1, (20,679) -\u003e 1, (5,720) -\u003e 1, (1,408) -\u003e 1, (2,453) -\u003e 1, (2,403) -\u003e 1, (2,411) -\u003e 1, (2,135) -\u003e 1, (2,622) -\u003e 1, (26,99) -\u003e 1, (15,666) -\u003e 1, (4,621) -\u003e 1, (1,551) -\u003e 1, (1,543) -\u003e 1, (2,504) -\u003e 1, (1,323) -\u003e 1, (20,656) -\u003e 1, (5,109) -\u003e 1, (6,582) -\u003e 1, (14,81) -\u003e 1, (2,279) -\u003e 1, (1,366) -\u003e 1, (6,182) -\u003e ..."
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d1260"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d1261"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d1262"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d1263"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d1264"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d1265"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d1266"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d1267"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d1268"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d1269"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d1270"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d1271"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d1272"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d1273"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d1274"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d1275"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d1276"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d1277"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d1278"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d1279"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d1280"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702664461820_1018287045",
+      "id": "paragraph_1702664461820_1018287045",
+      "dateCreated": "2023-12-15 18:21:01.820",
+      "dateStarted": "2023-12-15 22:02:01.745",
+      "dateFinished": "2023-12-15 22:02:09.623",
+      "status": "FINISHED"
+    },
+    {
+      "text": "//1.PAGE RANK ALGO\r\n\r\nimport org.apache.spark.graphx.lib.PageRank\r\nimport org.apache.spark.sql.types.{StructType, StructField, DoubleType, StringType}\r\n\r\n// Run PageRank\r\nval pageRankGraph \u003d PageRank.run(graph, numIter \u003d 10)\r\n\r\nval schema \u003d StructType(Seq(\r\n  StructField(\"VertexName\", StringType, nullable \u003d false),\r\n  StructField(\"PageRank\", DoubleType, nullable \u003d false)\r\n))\r\n\r\n// Create an empty DataFrame with the defined schema\r\nvar pageRankDF \u003d spark.createDataFrame(spark.sparkContext.emptyRDD[Row], schema)\r\n\r\n// Get the vertices with their PageRank scores\r\nval pageRanks: RDD[(VertexId, Double)] \u003d pageRankGraph.vertices\r\n\r\n// Display the top 10 vertices with their PageRank scores in descending order\r\nprintln(\"Top 10 Vertices with PageRank Scores (Descending Order):\")\r\npageRanks.sortBy(_._2, ascending \u003d false).take(10).foreach { case (vertexId, pageRank) \u003d\u003e\r\n  val vertexName \u003d vertices.lookup(vertexId).headOption.getOrElse(\"UnknownVertex\")\r\n  println(s\"Vertex $vertexName, PageRank: $pageRank\")\r\n  // Append data to the DataFrame\r\n  val newData \u003d Seq((vertexName, pageRank))\r\n  val newRow \u003d spark.createDataFrame(newData).toDF(\"VertexName\", \"PageRank\")\r\n  pageRankDF \u003d pageRankDF.union(newRow)\r\n}\r\n\r\nprintln(\"--------------------------------------------------------\")\r\npageRankDF.show()\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-19 20:32:49.243",
+      "progress": 100,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Top 10 Vertices with PageRank Scores (Descending Order):\nVertex tyrion-lannister, PageRank: 33.82024901695369\nVertex stannis-baratheon, PageRank: 21.518088168274776\nVertex tywin-lannister, PageRank: 20.934834220853137\nVertex varys, PageRank: 18.44609375631678\nVertex theon-greyjoy, PageRank: 13.114445571816548\nVertex sansa-stark, PageRank: 11.810659996975042\nVertex walder-frey, PageRank: 9.524869698684245\nVertex robb-stark, PageRank: 8.744489665371315\nVertex samwell-tarly, PageRank: 8.470270331248827\nVertex tommen-baratheon, PageRank: 8.339092035339142\n--------------------------------------------------------\n+-----------------+------------------+\n|       VertexName|          PageRank|\n+-----------------+------------------+\n| tyrion-lannister| 33.82024901695369|\n|stannis-baratheon|21.518088168274776|\n|  tywin-lannister|20.934834220853137|\n|            varys| 18.44609375631678|\n|    theon-greyjoy|13.114445571816548|\n|      sansa-stark|11.810659996975042|\n|      walder-frey| 9.524869698684245|\n|       robb-stark| 8.744489665371315|\n|    samwell-tarly| 8.470270331248827|\n| tommen-baratheon| 8.339092035339142|\n+-----------------+------------------+\n\nimport org.apache.spark.graphx.lib.PageRank\nimport org.apache.spark.sql.types.{StructType, StructField, DoubleType, StringType}\n\u001b[1m\u001b[34mpageRankGraph\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.graphx.Graph[Double,Double]\u001b[0m \u003d org.apache.spark.graphx.impl.GraphImpl@34d42d54\n\u001b[1m\u001b[34mschema\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.types.StructType\u001b[0m \u003d StructType(StructField(VertexName,StringType,false), StructField(PageRank,DoubleType,false))\n\u001b[1m\u001b[34mpageRankDF\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [VertexName: string, PageRank: double]\n\u001b[1m\u001b[34mpageRanks\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.rdd.RDD[(org.apache.spark.graphx.VertexId, Double)]\u001b[0m \u003d VertexRDDImpl[428] at RDD at VertexRDD.scala:57\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d46"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d47"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d48"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d49"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d50"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d51"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d52"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d53"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d54"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d55"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d56"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d57"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d58"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d59"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d60"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d61"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d62"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d63"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d64"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d65"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d66"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d67"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d68"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d69"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d70"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d71"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d72"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d73"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702668585937_338787772",
+      "id": "paragraph_1702668585937_338787772",
+      "dateCreated": "2023-12-15 19:29:45.937",
+      "dateStarted": "2023-12-18 18:33:44.133",
+      "dateFinished": "2023-12-18 18:35:25.161",
+      "status": "FINISHED"
+    },
+    {
+      "text": "//2.ConnectedComponents Algo\r\n\r\nimport org.apache.spark.graphx.{Graph, VertexId}\r\nimport org.apache.spark.graphx.lib.ConnectedComponents\r\nimport org.apache.spark.sql.{Row, SparkSession}\r\nimport org.apache.spark.sql.types.{StructField, StructType, StringType, LongType}\r\n\r\n// Assuming you already have \u0027spark\u0027 as your SparkSession\r\n\r\n// Define the schema for connected components DataFrame\r\nval schema \u003d StructType(Seq(\r\n  StructField(\"VertexName\", StringType, nullable \u003d false),\r\n  StructField(\"ConnectedComponent\", LongType, nullable \u003d false)\r\n))\r\n\r\n// Create an empty DataFrame with the defined schema\r\nvar connectedComponentsDF \u003d spark.createDataFrame(spark.sparkContext.emptyRDD[Row], schema)\r\n\r\n// Run ConnectedComponents\r\nval connectedComponentsGraph \u003d ConnectedComponents.run(graph)\r\n\r\n// Get the vertices with their connected component identifiers\r\nval components \u003d connectedComponentsGraph.vertices.collect()\r\n\r\n// Display the connected component of each vertex and create DataFrame\r\nprintln(\"Connected Components:\")\r\ncomponents.foreach { case (vertexId, componentId) \u003d\u003e\r\n  val vertexName \u003d vertices.lookup(vertexId).headOption.getOrElse(\"UnknownVertex\")\r\n  println(s\"Vertex $vertexName, Connected Component: $componentId\")\r\n  // Append data to the DataFrame\r\n  val newData \u003d Seq((vertexName, componentId))\r\n  val newRow \u003d spark.createDataFrame(newData).toDF(\"VertexName\", \"ConnectedComponent\")\r\n  connectedComponentsDF \u003d connectedComponentsDF.union(newRow)\r\n}\r\n\r\nprintln(\"--------------------------------------------------------\")\r\nconnectedComponentsDF.show()\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-19 20:32:55.364",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Connected Components:\nVertex softfoot, Connected Component: 0\nVertex zei, Connected Component: 0\nVertex lyle-crakehall, Connected Component: 0\nVertex balon-greyjoy, Connected Component: 0\nVertex euron-greyjoy, Connected Component: 0\nVertex kyra, Connected Component: 0\nVertex ygritte, Connected Component: 0\nVertex addam-marbrand, Connected Component: 0\nVertex lorent-caswell, Connected Component: 0\nVertex varamyr, Connected Component: 0\nVertex dagmer, Connected Component: 0\nVertex jaime-lannister, Connected Component: 0\nVertex balon-swann, Connected Component: 0\nVertex lorren, Connected Component: 0\nVertex cersei-lannister, Connected Component: 0\nVertex val, Connected Component: 0\nVertex boros-blount, Connected Component: 0\nVertex brynden-tully, Connected Component: 0\nVertex styr, Connected Component: 0\nVertex martyn-rivers, Connected Component: 0\nVertex spare-boot, Connected Component: 0\nVertex olyvar-frey, Connected Component: 0\nVertex steffon-baratheon, Connected Component: 0\nVertex varys, Connected Component: 0\nVertex palla, Connected Component: 0\nVertex ryk, Connected Component: 0\nVertex tyrion-lannister, Connected Component: 0\nVertex ben-plumm, Connected Component: 0\nVertex bloodbeard, Connected Component: 0\nVertex rattleshirt, Connected Component: 0\nVertex perwyn-frey, Connected Component: 0\nVertex oberyn-martell, Connected Component: 0\nVertex grazhar, Connected Component: 0\nVertex orell, Connected Component: 0\nVertex shadd, Connected Component: 0\nVertex kevan-lannister, Connected Component: 0\nVertex khrazz, Connected Component: 0\nVertex lambert-turnberry, Connected Component: 0\nVertex joffrey-baratheon, Connected Component: 0\nVertex melisandre, Connected Component: 0\nVertex larraq, Connected Component: 0\nVertex aegon-frey-(son-of-stevron), Connected Component: 0\nVertex mag-mar-tun-doh-weg, Connected Component: 0\nVertex jalabhar-xho, Connected Component: 0\nVertex gyles-rosby, Connected Component: 0\nVertex aegon-targaryen-(son-of-rhaegar), Connected Component: 0\nVertex steelskin, Connected Component: 0\nVertex kegs, Connected Component: 0\nVertex widower, Connected Component: 0\nVertex stonesnake, Connected Component: 0\nVertex tywin-lannister, Connected Component: 0\nVertex rhaenys-targaryen-(daughter-of-rhaegar), Connected Component: 0\nVertex walton, Connected Component: 0\nVertex shagga, Connected Component: 0\nVertex lemore, Connected Component: 0\nVertex matthar, Connected Component: 0\nVertex harry-strickland, Connected Component: 0\nVertex vargo-hoat, Connected Component: 0\nVertex othor, Connected Component: 0\nVertex urzen, Connected Component: 0\nVertex urswyck, Connected Component: 0\nVertex werlag, Connected Component: 0\nVertex todder, Connected Component: 0\nVertex haldon, Connected Component: 0\nVertex tommen-baratheon, Connected Component: 0\nVertex wun-weg-wun-dar-wun, Connected Component: 0\nVertex franklyn-flowers, Connected Component: 0\nVertex wex-pyke, Connected Component: 0\nVertex weeper, Connected Component: 0\nVertex walda-frey-(daughter-of-merrett), Connected Component: 0\nVertex aemon-targaryen-(dragonknight), Connected Component: 0\nVertex thoros-of-myr, Connected Component: 0\nVertex yellow-dick, Connected Component: 0\nVertex stannis-baratheon, Connected Component: 0\nVertex ulmer, Connected Component: 0\nVertex alerie-hightower, Connected Component: 0\nVertex alla-tyrell, Connected Component: 0\nVertex shagwell, Connected Component: 0\nVertex willow-witch-eye, Connected Component: 0\nVertex tycho-nestoris, Connected Component: 0\nVertex will-(prologue), Connected Component: 0\nVertex toregg, Connected Component: 0\nVertex elinor-tyrell, Connected Component: 0\nVertex sansa-stark, Connected Component: 0\nVertex rorge, Connected Component: 0\nVertex anders-yronwood, Connected Component: 0\nVertex jack-bulwer, Connected Component: 0\nVertex tom-barleycorn, Connected Component: 0\nVertex roose-bolton, Connected Component: 0\nVertex gerald-gower, Connected Component: 0\nVertex soren-shieldbreaker, Connected Component: 0\nVertex helman-tallhart, Connected Component: 0\nVertex robin-ryger, Connected Component: 0\nVertex andrew-estermont, Connected Component: 0\nVertex sigorn, Connected Component: 0\nVertex bronn, Connected Component: 0\nVertex shireen-baratheon, Connected Component: 0\nVertex lollys-stokeworth, Connected Component: 0\nVertex robert-baratheon, Connected Component: 0\nVertex anguy, Connected Component: 0\nVertex robb-stark, Connected Component: 0\nVertex husband, Connected Component: 0\nVertex timett, Connected Component: 0\nVertex selyse-florent, Connected Component: 0\nVertex chiggen, Connected Component: 0\nVertex arson, Connected Component: 0\nVertex rory, Connected Component: 0\nVertex rickard-karstark, Connected Component: 0\nVertex symon-silver-tongue, Connected Component: 0\nVertex renly-baratheon, Connected Component: 0\nVertex arstan, Connected Component: 0\nVertex patrek-of-kings-mountain, Connected Component: 0\nVertex ulf-son-of-umar, Connected Component: 0\nVertex qyburn, Connected Component: 0\nVertex narbert-grandison, Connected Component: 0\nVertex azor-ahai, Connected Component: 0\nVertex malegorn, Connected Component: 0\nVertex emmon-frey, Connected Component: 0\nVertex osmund-kettleblack, Connected Component: 0\nVertex baelor-i-targaryen, Connected Component: 0\nVertex bannen, Connected Component: 0\nVertex leathers, Connected Component: 0\nVertex edwyn-frey, Connected Component: 0\nVertex meryn-trant, Connected Component: 0\nVertex bedwyck, Connected Component: 0\nVertex xhondo, Connected Component: 0\nVertex daven-lannister, Connected Component: 0\nVertex lysa-arryn, Connected Component: 0\nVertex theobald, Connected Component: 0\nVertex tybero-istarion, Connected Component: 0\nVertex loras-tyrell, Connected Component: 0\nVertex forley-prester, Connected Component: 0\nVertex kasporio, Connected Component: 0\nVertex aerys-ii-targaryen, Connected Component: 0\nVertex lem, Connected Component: 0\nVertex maddy, Connected Component: 0\nVertex jon-arryn, Connected Component: 0\nVertex sallor, Connected Component: 0\nVertex gretchel, Connected Component: 0\nVertex owen-merryweather, Connected Component: 0\nVertex prendahl-na-ghezn, Connected Component: 0\nVertex jory-cassel, Connected Component: 0\nVertex elbert-arryn, Connected Component: 0\nVertex jon-umber-(smalljon), Connected Component: 0\nVertex myranda-royce, Connected Component: 0\nVertex petyr-baelish, Connected Component: 0\nVertex denys-darklyn, Connected Component: 0\nVertex big-boil, Connected Component: 0\nVertex terrance-lynderly, Connected Component: 0\nVertex blane, Connected Component: 0\nVertex rodrik-cassel, Connected Component: 0\nVertex barristan-selmy, Connected Component: 0\nVertex brella, Connected Component: 0\nVertex cayn, Connected Component: 0\nVertex rossart, Connected Component: 0\nVertex sandor-clegane, Connected Component: 0\nVertex wyl-(guard), Connected Component: 0\nVertex brenett, Connected Component: 0\nVertex william-foxglove, Connected Component: 0\nVertex brienne-of-tarth, Connected Component: 0\nVertex theomore, Connected Component: 0\nVertex arthur-dayne, Connected Component: 0\nVertex jon-snow, Connected Component: 0\nVertex butterbumps, Connected Component: 0\nVertex mandon-moore, Connected Component: 0\nVertex chella, Connected Component: 0\nVertex byam-flint, Connected Component: 0\nVertex brandon-stark, Connected Component: 0\nVertex stafford-lannister, Connected Component: 0\nVertex clement-piper, Connected Component: 0\nVertex merrett-frey, Connected Component: 0\nVertex rickard-stark, Connected Component: 0\nVertex cleon, Connected Component: 0\nVertex lewyn-martell, Connected Component: 0\nVertex cohollo, Connected Component: 0\nVertex theon-greyjoy, Connected Component: 0\nVertex conn, Connected Component: 0\nVertex tysha, Connected Component: 0\nVertex oswell-whent, Connected Component: 0\nVertex clubfoot-karl, Connected Component: 0\nVertex kojja-mo, Connected Component: 0\nVertex robert-arryn, Connected Component: 0\nVertex coratt, Connected Component: 0\nVertex josmyn-peckledon, Connected Component: 0\nVertex tytos-blackwood, Connected Component: 0\nVertex aggo, Connected Component: 0\nVertex daeron-i-targaryen, Connected Component: 0\nVertex rolly-duckfield, Connected Component: 0\nVertex jonos-bracken, Connected Component: 0\nVertex dalla, Connected Component: 0\nVertex daario-naharis, Connected Component: 0\nVertex rhaella-targaryen, Connected Component: 0\nVertex dick-follard, Connected Component: 0\nVertex zollo, Connected Component: 0\nVertex danwell-frey, Connected Component: 0\nVertex belwas, Connected Component: 0\nVertex errok, Connected Component: 0\nVertex jared-frey, Connected Component: 0\nVertex rhaego, Connected Component: 0\nVertex wylis-manderly, Connected Component: 0\nVertex grigg, Connected Component: 0\nVertex walder-rivers, Connected Component: 0\nVertex ogo, Connected Component: 0\nVertex hosteen-frey, Connected Component: 0\nVertex rhaegar-frey, Connected Component: 0\nVertex walder-frey, Connected Component: 0\nVertex jommo, Connected Component: 0\nVertex jarl, Connected Component: 0\nVertex taena-of-myr, Connected Component: 0\nVertex nurse, Connected Component: 0\nVertex galyeon-of-cuy, Connected Component: 0\nVertex lanna-(happy-port), Connected Component: 0\nVertex albett, Connected Component: 0\nVertex sybell-spicer, Connected Component: 0\nVertex gawen-westerling, Connected Component: 0\nVertex daryn-hornwood, Connected Component: 0\nVertex dolf, Connected Component: 0\nVertex willas-tyrell, Connected Component: 0\nVertex shitmouth, Connected Component: 0\nVertex gendel, Connected Component: 0\nVertex dywen, Connected Component: 0\nVertex shadrich, Connected Component: 0\nVertex vylarr, Connected Component: 0\nVertex gorne, Connected Component: 0\nVertex ryman-frey, Connected Component: 0\nVertex robett-glover, Connected Component: 0\nVertex vardis-egen, Connected Component: 0\nVertex grazdan-mo-eraz, Connected Component: 0\nVertex grisel, Connected Component: 0\nVertex ronnet-connington, Connected Component: 0\nVertex willis-wode, Connected Component: 0\nVertex willow-heddle, Connected Component: 0\nVertex merrit, Connected Component: 0\nVertex ysilla, Connected Component: 0\nVertex rhaegar-targaryen, Connected Component: 0\nVertex hareth-(moles-town), Connected Component: 0\nVertex rennifer-longwaters, Connected Component: 0\nVertex fogo, Connected Component: 0\nVertex yezzan-zo-qaggaz, Connected Component: 0\nVertex hop-robin, Connected Component: 0\nVertex gared, Connected Component: 0\nVertex yandry, Connected Component: 0\nVertex rafford, Connected Component: 0\nVertex harma, Connected Component: 0\nVertex pycelle, Connected Component: 0\nVertex jack-be-lucky, Connected Component: 0\nVertex alyn, Connected Component: 0\nVertex gunthor-son-of-gurn, Connected Component: 0\nVertex hullen, Connected Component: 0\nVertex pia, Connected Component: 0\nVertex joanna-lannister, Connected Component: 0\nVertex heward, Connected Component: 0\nVertex jonothor-darry, Connected Component: 0\nVertex smiling-knight, Connected Component: 0\nVertex hugh, Connected Component: 0\nVertex olenna-redwyne, Connected Component: 0\nVertex jafer-flowers, Connected Component: 0\nVertex melara-hetherspoon, Connected Component: 0\nVertex joramun, Connected Component: 0\nVertex polliver, Connected Component: 0\nVertex jyck, Connected Component: 0\nVertex arya-stark, Connected Component: 0\nVertex mariya-darry, Connected Component: 0\nVertex kella, Connected Component: 0\nVertex margaery-tyrell, Connected Component: 0\nVertex mallador-locke, Connected Component: 0\nVertex morrec, Connected Component: 0\nVertex tom-of-sevenstreams, Connected Component: 0\nVertex kurleket, Connected Component: 0\nVertex tickler, Connected Component: 0\nVertex martyn-lannister, Connected Component: 0\nVertex mace-tyrell, Connected Component: 0\nVertex munda, Connected Component: 0\nVertex leo-lefford, Connected Component: 0\nVertex ravella-swann, Connected Component: 0\nVertex lewys-piper, Connected Component: 0\nVertex lyn-corbray, Connected Component: 0\nVertex lancel-lannister, Connected Component: 0\nVertex pate-(old), Connected Component: 0\nVertex nage, Connected Component: 0\nVertex lyonel-corbray, Connected Component: 0\nVertex mad-huntsman, Connected Component: 0\nVertex karyl-vance, Connected Component: 0\nVertex oswell-kettleblack, Connected Component: 0\nVertex joy-hill, Connected Component: 0\nVertex mord, Connected Component: 0\nVertex petyr-frey, Connected Component: 0\nVertex hot-pie, Connected Component: 0\nVertex simon-toyne, Connected Component: 0\nVertex greenbeard, Connected Component: 0\nVertex aegon-v-targaryen, Connected Component: 0\nVertex weese, Connected Component: 0\nVertex tion-frey, Connected Component: 0\nVertex aenys-frey, Connected Component: 0\nVertex daenerys-targaryen, Connected Component: 0\nVertex elmar-frey, Connected Component: 0\nVertex aeron-greyjoy, Connected Component: 0\nVertex aegon-i-targaryen, Connected Component: 0\nVertex roone, Connected Component: 0\nVertex dunsen, Connected Component: 0\nVertex rus, Connected Component: 0\nVertex catelyn-stark, Connected Component: 0\nVertex torrhen-stark, Connected Component: 0\nVertex pate-(novice), Connected Component: 0\nVertex visenya-targaryen, Connected Component: 0\nVertex mollander, Connected Component: 0\nVertex bran-stark, Connected Component: 0\nVertex murenmure, Connected Component: 0\nVertex beric-dondarrion, Connected Component: 0\nVertex rhaenys-targaryen, Connected Component: 0\nVertex meldred-merlyn, Connected Component: 0\nVertex marwyn, Connected Component: 0\nVertex leo-tyrell, Connected Component: 0\nVertex woth, Connected Component: 0\nVertex greydon-goodbrother, Connected Component: 0\nVertex nan, Connected Component: 0\nVertex harren-hoare, Connected Component: 0\nVertex gorold-goodbrother, Connected Component: 0\nVertex weasel, Connected Component: 0\nVertex armen, Connected Component: 0\nVertex praed, Connected Component: 0\nVertex eddard-stark, Connected Component: 0\nVertex gormond-goodbrother, Connected Component: 0\nVertex walgrave, Connected Component: 0\nVertex irri, Connected Component: 0\nVertex rosey, Connected Component: 0\nVertex benjen-stark, Connected Component: 0\nVertex emmond, Connected Component: 0\nVertex dunstan-drumm, Connected Component: 0\nVertex viserys-targaryen, Connected Component: 0\nVertex quill, Connected Component: 0\nVertex desmond, Connected Component: 0\nVertex jeyne-poole, Connected Component: 0\nVertex alys-arryn, Connected Component: 0\nVertex rhaegel-targaryen, Connected Component: 0\nVertex baelor-blacktyde, Connected Component: 0\nVertex rakharo, Connected Component: 0\nVertex myrcella-baratheon, Connected Component: 0\nVertex asha-greyjoy, Connected Component: 0\nVertex elys-waynwood, Connected Component: 0\nVertex aerys-i-targaryen, Connected Component: 0\nVertex amerei-frey, Connected Component: 0\nVertex biter, Connected Component: 0\nVertex oznak-zo-pahl, Connected Component: 0\nVertex aggar, Connected Component: 0\nVertex chiswyck, Connected Component: 0\nVertex andrey-dalt, Connected Component: 0\nVertex missandei, Connected Component: 0\nVertex arianne-martell, Connected Component: 0\nVertex gynir, Connected Component: 0\nVertex mero, Connected Component: 0\nVertex dobber, Connected Component: 0\nVertex harra, Connected Component: 0\nVertex gelmarr, Connected Component: 0\nVertex timoth, Connected Component: 0\nVertex kraznys-mo-nakloz, Connected Component: 0\nVertex jaqen-hghar, Connected Component: 0\nVertex gariss, Connected Component: 0\nVertex jorah-mormont, Connected Component: 0\nVertex ricasso, Connected Component: 0\nVertex murch, Connected Component: 0\nVertex jhogo, Connected Component: 0\nVertex koss, Connected Component: 0\nVertex morra, Connected Component: 0\nVertex sour-alyn, Connected Component: 0\nVertex mellei, Connected Component: 0\nVertex lommy-greenhands, Connected Component: 0\nVertex jhiqui, Connected Component: 0\nVertex franklyn-fowler, Connected Component: 0\nVertex bellegere-otherys, Connected Component: 0\nVertex doreah, Connected Component: 0\nVertex skinner, Connected Component: 0\nVertex waif, Connected Component: 0\nVertex drogo, Connected Component: 0\nVertex alayaya, Connected Component: 0\nVertex cedra, Connected Component: 0\nVertex anya-waynwood, Connected Component: 0\nVertex kindly-man, Connected Component: 0\nVertex dancy, Connected Component: 0\nVertex eroeh, Connected Component: 0\nVertex haggo, Connected Component: 0\nVertex brusco, Connected Component: 0\nVertex alebelly, Connected Component: 0\nVertex horton-redfort, Connected Component: 0\nVertex yorko-terys, Connected Component: 0\nVertex illyrio-mopatis, Connected Component: 0\nVertex harrold-hardyng, Connected Component: 0\nVertex alester-florent, Connected Component: 0\nVertex umma, Connected Component: 0\nVertex mirri-maz-duur, Connected Component: 0\nVertex gilwood-hunter, Connected Component: 0\nVertex lamprey, Connected Component: 0\nVertex benedar-belmore, Connected Component: 0\nVertex ternesio-terys, Connected Component: 0\nVertex qotho, Connected Component: 0\nVertex davos-seaworth, Connected Component: 0\nVertex areo-hotah, Connected Component: 0\nVertex axell-florent, Connected Component: 0\nVertex quaro, Connected Component: 0\nVertex talea, Connected Component: 0\nVertex lynesse-hightower, Connected Component: 0\nVertex meralyn, Connected Component: 0\nVertex caleotte, Connected Component: 0\nVertex cortnay-penrose, Connected Component: 0\nVertex pono, Connected Component: 0\nVertex denyo-terys, Connected Component: 0\nVertex salladhor-saan, Connected Component: 0\nVertex sigfryd-harlaw, Connected Component: 0\nVertex marlon-manderly, Connected Component: 0\nVertex aurane-waters, Connected Component: 0\nVertex brea, Connected Component: 0\nVertex pyat-pree, Connected Component: 0\nVertex leona-woolfield, Connected Component: 0\nVertex waymar-royce, Connected Component: 0\nVertex balman-byrch, Connected Component: 0\nVertex quaithe, Connected Component: 0\nVertex blue-bard, Connected Component: 0\nVertex godric-borrell, Connected Component: 0\nVertex xaro-xhoan-daxos, Connected Component: 0\nVertex jaremy-rykker, Connected Component: 0\nVertex ghael, Connected Component: 0\nVertex garth-(wolfs-den), Connected Component: 0\nVertex poxy-tym, Connected Component: 0\nVertex bonifer-hasty, Connected Component: 0\nVertex grey-worm, Connected Component: 0\nVertex meera-reed, Connected Component: 0\nVertex pylos, Connected Component: 0\nVertex eustace-brune, Connected Component: 0\nVertex genna-lannister, Connected Component: 0\nVertex jon-umber-(greatjon), Connected Component: 0\nVertex groleo, Connected Component: 0\nVertex porridge, Connected Component: 0\nVertex cedric-payne, Connected Component: 0\nVertex khorane-sathmantes, Connected Component: 0\nVertex daeron-ii-targaryen, Connected Component: 0\nVertex jojen-reed, Connected Component: 0\nVertex guncer-sunglass, Connected Component: 0\nVertex torbert, Connected Component: 0\nVertex hodor, Connected Component: 0\nVertex yurkhaz-zo-yunzak, Connected Component: 0\nVertex coldhands, Connected Component: 0\nVertex edric-storm, Connected Component: 0\nVertex victarion-greyjoy, Connected Component: 0\nVertex daemon-sand, Connected Component: 0\nVertex devan-seaworth, Connected Component: 0\nVertex ralf-stonehouse, Connected Component: 0\nVertex walder-frey-(son-of-merrett), Connected Component: 0\nVertex tattered-prince, Connected Component: 0\nVertex walder-frey-(son-of-jammos), Connected Component: 0\nVertex monford-velaryon, Connected Component: 0\nVertex symon-stripeback, Connected Component: 0\nVertex garrett-paege, Connected Component: 0\nVertex gerold-grafton, Connected Component: 0\nVertex matthos-seaworth, Connected Component: 0\nVertex spotted-cat, Connected Component: 0\nVertex reek, Connected Component: 0\nVertex hali, Connected Component: 0\nVertex imry-florent, Connected Component: 0\nVertex skahaz-mo-kandaq, Connected Component: 0\nVertex gormon-tyrell, Connected Component: 0\nVertex reznak-mo-reznak, Connected Component: 0\nVertex gyles-grafton, Connected Component: 0\nVertex allar-deem, Connected Component: 0\nVertex hallis-mollen, Connected Component: 0\nVertex quentyn-martell, Connected Component: 0\nVertex joseth, Connected Component: 0\nVertex harras-harlaw, Connected Component: 0\nVertex allard-seaworth, Connected Component: 0\nVertex hugo-vance, Connected Component: 0\nVertex qezza, Connected Component: 0\nVertex osha, Connected Component: 0\nVertex marya-seaworth, Connected Component: 0\nVertex amabel, Connected Component: 0\nVertex qavo-nogarys, Connected Component: 0\nVertex stiv, Connected Component: 0\nVertex jaehaerys-i-targaryen, Connected Component: 0\nVertex amory-lorch, Connected Component: 0\nVertex penny, Connected Component: 0\nVertex rugen, Connected Component: 0\nVertex chayle, Connected Component: 0\nVertex moqorro, Connected Component: 0\nVertex cley-cerwyn, Connected Component: 0\nVertex jeyne-farman, Connected Component: 0\nVertex sharna, Connected Component: 0\nVertex donella-hornwood, Connected Component: 0\nVertex torwold-browntooth, Connected Component: 0\nVertex miklaz, Connected Component: 0\nVertex mebble, Connected Component: 0\nVertex mezzara, Connected Component: 0\nVertex hayhead, Connected Component: 0\nVertex lucas-codd, Connected Component: 0\nVertex ardrian-celtigar, Connected Component: 0\nVertex manfrey-martell, Connected Component: 0\nVertex mikken, Connected Component: 0\nVertex aron-santagar, Connected Component: 0\nVertex meris, Connected Component: 0\nVertex arwyn-oakheart, Connected Component: 0\nVertex leaf, Connected Component: 0\nVertex pate-(whipping-boy), Connected Component: 0\nVertex marselen, Connected Component: 0\nVertex brynden-rivers, Connected Component: 0\nVertex lysono-maar, Connected Component: 0\nVertex shortear, Connected Component: 0\nVertex tristifer-botley, Connected Component: 0\nVertex puckens, Connected Component: 0\nVertex torgon-greyiron, Connected Component: 0\nVertex desmond-grell, Connected Component: 0\nVertex jon-connington, Connected Component: 0\nVertex vyman, Connected Component: 0\nVertex hizdahr-zo-loraq, Connected Component: 0\nVertex quhuru-mo, Connected Component: 0\nVertex sybelle-glover, Connected Component: 0\nVertex hero, Connected Component: 0\nVertex rolfe-the-dwarf, Connected Component: 0\nVertex ralf-(limper), Connected Component: 0\nVertex tansy, Connected Component: 0\nVertex qarl-the-maid, Connected Component: 0\nVertex roslin-frey, Connected Component: 0\nVertex sarella-sand, Connected Component: 0\nVertex gerris-drinkwater, Connected Component: 0\nVertex galazza-galare, Connected Component: 0\nVertex justin-massey, Connected Component: 0\nVertex talbert-serry, Connected Component: 0\nVertex raynald-westerling, Connected Component: 0\nVertex maege-mormont, Connected Component: 0\nVertex ezzara, Connected Component: 0\nVertex hagen, Connected Component: 0\nVertex myles-toyne, Connected Component: 0\nVertex lothar-frey, Connected Component: 0\nVertex nyessos-vhassar, Connected Component: 0\nVertex grimtongue, Connected Component: 0\nVertex doran-martell, Connected Component: 0\nVertex godry-farring, Connected Component: 0\nVertex jeyne-westerling, Connected Component: 0\nVertex rickon-stark, Connected Component: 0\nVertex alys-karstark, Connected Component: 0\nVertex gregor-clegane, Connected Component: 0\nVertex clayton-suggs, Connected Component: 0\nVertex alysane-mormont, Connected Component: 0\nVertex jason-mallister, Connected Component: 0\nVertex hoster-tully, Connected Component: 0\nVertex rodrik-harlaw, Connected Component: 0\nVertex maron-greyjoy, Connected Component: 0\nVertex richard-horpe, Connected Component: 0\nVertex dacey-mormont, Connected Component: 0\nVertex luwin, Connected Component: 0\nVertex archibald-yronwood, Connected Component: 0\nVertex red-oarsman, Connected Component: 0\nVertex janos-slynt, Connected Component: 0\nVertex cleos-frey, Connected Component: 0\nVertex cletus-yronwood, Connected Component: 0\nVertex bael-the-bard, Connected Component: 0\nVertex wendel-manderly, Connected Component: 0\nVertex ilyn-payne, Connected Component: 0\nVertex ballabar, Connected Component: 0\nVertex kedry, Connected Component: 0\nVertex frenken, Connected Component: 0\nVertex wylla, Connected Component: 0\nVertex arnolf-karstark, Connected Component: 0\nVertex utherydes-wayn, Connected Component: 0\nVertex wulfe, Connected Component: 0\nVertex robar-royce, Connected Component: 0\nVertex arthor-karstark, Connected Component: 0\nVertex vayon-poole, Connected Component: 0\nVertex benfred-tallhart, Connected Component: 0\nVertex arron, Connected Component: 0\nVertex varly, Connected Component: 0\nVertex randyll-tarly, Connected Component: 0\nVertex emrick, Connected Component: 0\nVertex tregar, Connected Component: 0\nVertex stygg, Connected Component: 0\nVertex mathis-rowan, Connected Component: 0\nVertex colemon, Connected Component: 0\nVertex ashara-dayne, Connected Component: 0\nVertex leobald-tallhart, Connected Component: 0\nVertex torrhen-karstark, Connected Component: 0\nVertex barbrey-dustin, Connected Component: 0\nVertex beth-cassel, Connected Component: 0\nVertex donnel-waynwood, Connected Component: 0\nVertex tomard, Connected Component: 0\nVertex eon-hunter, Connected Component: 0\nVertex mors-umber, Connected Component: 0\nVertex roger-ryswell, Connected Component: 0\nVertex tobho-mott, Connected Component: 0\nVertex marillion, Connected Component: 0\nVertex syrio-forel, Connected Component: 0\nVertex marghaz-zo-loraq, Connected Component: 0\nVertex emmon-cuy, Connected Component: 0\nVertex barsena, Connected Component: 0\nVertex masha-heddle, Connected Component: 0\nVertex selwyn-tarth, Connected Component: 0\nVertex edmure-tully, Connected Component: 0\nVertex clarence-crabb, Connected Component: 0\nVertex bartimus, Connected Component: 0\nVertex galbart-glover, Connected Component: 0\nVertex moreo-tumitis, Connected Component: 0\nVertex mya-stone, Connected Component: 0\nVertex creighton-longbough, Connected Component: 0\nVertex gendry, Connected Component: 0\nVertex belaquo, Connected Component: 0\nVertex gerold-hightower, Connected Component: 0\nVertex goghor-the-giant, Connected Component: 0\nVertex mychel-redfort, Connected Component: 0\nVertex dick-crabb, Connected Component: 0\nVertex harwin, Connected Component: 0\nVertex nestor-royce, Connected Component: 0\nVertex dontos-hollard, Connected Component: 0\nVertex ben-bones, Connected Component: 0\nVertex sweets, Connected Component: 0\nVertex stevron-frey, Connected Component: 0\nVertex high-septon-(fat_one), Connected Component: 0\nVertex elder-brother, Connected Component: 0\nVertex illifer, Connected Component: 0\nVertex howland-reed, Connected Component: 0\nVertex benerro, Connected Component: 0\nVertex colen-of-greenpools, Connected Component: 0\nVertex jeyne-heddle, Connected Component: 0\nVertex hyle-hunt, Connected Component: 0\nVertex rodrik-sparr, Connected Component: 0\nVertex jacks, Connected Component: 0\nVertex shae, Connected Component: 0\nVertex benethon-scales, Connected Component: 0\nVertex joss, Connected Component: 0\nVertex meribald, Connected Component: 0\nVertex narbert, Connected Component: 0\nVertex black-balaq, Connected Component: 0\nVertex lyanna-stark, Connected Component: 0\nVertex ellaria-sand, Connected Component: 0\nVertex torghen-flint, Connected Component: 0\nVertex pyg, Connected Component: 0\nVertex marq-piper, Connected Component: 0\nVertex elia-martell, Connected Component: 0\nVertex mordane, Connected Component: 0\nVertex brandon-norrey, Connected Component: 0\nVertex tanda-stokeworth, Connected Component: 0\nVertex bryce-caron, Connected Component: 0\nVertex mycah, Connected Component: 0\nVertex preston-greenfield, Connected Component: 0\nVertex guyard-morrigen, Connected Component: 0\nVertex brus-buckler, Connected Component: 0\nVertex porther, Connected Component: 0\nVertex eldon-estermont, Connected Component: 0\nVertex osney-kettleblack, Connected Component: 0\nVertex bump, Connected Component: 0\nVertex raymun-darry, Connected Component: 0\nVertex caggo, Connected Component: 0\nVertex steffon-varner, Connected Component: 0\nVertex osfryd-kettleblack, Connected Component: 0\nVertex captain-myraham, Connected Component: 0\nVertex lucifer-long, Connected Component: 0\nVertex jacelyn-bywater, Connected Component: 0\nVertex wyman-manderly, Connected Component: 0\nVertex captain-myraham-daughter, Connected Component: 0\nVertex camarron, Connected Component: 0\nVertex willam-dustin, Connected Component: 0\nVertex dorcas, Connected Component: 0\nVertex megga-tyrell, Connected Component: 0\nVertex ramsay-snow, Connected Component: 0\nVertex unella, Connected Component: 0\nVertex corliss-penny, Connected Component: 0\nVertex cromm, Connected Component: 0\nVertex chataya, Connected Component: 0\nVertex aemon-targaryen-(maester-aemon), Connected Component: 0\nVertex scolera, Connected Component: 0\nVertex craster, Connected Component: 0\nVertex robert-strong, Connected Component: 0\nVertex damon-dance-for-me, Connected Component: 0\nVertex samwell-tarly, Connected Component: 0\nVertex moelle, Connected Component: 0\nVertex grunt, Connected Component: 0\nVertex dirk, Connected Component: 0\nVertex gilly, Connected Component: 0\nVertex emmett, Connected Component: 0\nVertex high-sparrow, Connected Component: 0\nVertex denzo-dhan, Connected Component: 0\nVertex clydas, Connected Component: 0\nVertex dick-straw, Connected Component: 0\nVertex dareon, Connected Component: 0\nVertex tallad, Connected Component: 0\nVertex watt, Connected Component: 0\nVertex cressen, Connected Component: 0\nVertex senelle, Connected Component: 0\nVertex alleras, Connected Component: 0\nVertex hugh-hungerford, Connected Component: 0\nVertex wynton-stout, Connected Component: 0\nVertex raynard, Connected Component: 0\nVertex patchface, Connected Component: 0\nVertex draqaz, Connected Component: 0\nVertex dryn, Connected Component: 0\nVertex tarber, Connected Component: 0\nVertex pypar, Connected Component: 0\nVertex orton-merryweather, Connected Component: 0\nVertex moon-boy, Connected Component: 0\nVertex owen, Connected Component: 0\nVertex cutjack, Connected Component: 0\nVertex frenya, Connected Component: 0\nVertex kurz, Connected Component: 0\nVertex mark-mullendore, Connected Component: 0\nVertex holly, Connected Component: 0\nVertex mance-rayder, Connected Component: 0\nVertex fulk, Connected Component: 0\nVertex maggy, Connected Component: 0\nVertex jeor-mormont, Connected Component: 0\nVertex dalbridge, Connected Component: 0\nVertex maegor-i-targaryen, Connected Component: 0\nVertex ebben, Connected Component: 0\nVertex garth-greyfeather, Connected Component: 0\nVertex hobb, Connected Component: 0\nVertex ragwyle, Connected Component: 0\nVertex hairy-hal, Connected Component: 0\nVertex jocelyn-swyft, Connected Component: 0\nVertex grenn, Connected Component: 0\nVertex lothor-brune, Connected Component: 0\nVertex high-septon-(tyrions), Connected Component: 0\nVertex eddison-tollett, Connected Component: 0\nVertex raymun-redbeard, Connected Component: 0\nVertex gerrick-kingsblood, Connected Component: 0\nVertex harys-swyft, Connected Component: 0\nVertex donal-noye, Connected Component: 0\nVertex obara-sand, Connected Component: 0\nVertex denys-mallister, Connected Component: 0\nVertex garth-tyrell, Connected Component: 0\nVertex haggon, Connected Component: 0\nVertex nymeria-sand, Connected Component: 0\nVertex garlan-tyrell, Connected Component: 0\nVertex harl, Connected Component: 0\nVertex cotter-pyke, Connected Component: 0\nVertex tyene-sand, Connected Component: 0\nVertex harwood-stout, Connected Component: 0\nVertex drennan, Connected Component: 0\nVertex alliser-thorne, Connected Component: 0\nVertex falyse-stokeworth, Connected Component: 0\nVertex squint, Connected Component: 0\nVertex hoster-blackwood, Connected Component: 0\nVertex squirrel, Connected Component: 0\nVertex maekar-i-targaryen, Connected Component: 0\nVertex hother-umber, Connected Component: 0\nVertex chett, Connected Component: 0\nVertex sawane-botley, Connected Component: 0\nVertex rowan, Connected Component: 0\nVertex quellon-greyjoy, Connected Component: 0\nVertex bowen-marsh, Connected Component: 0\nVertex paxter-redwyne, Connected Component: 0\nVertex kerwin, Connected Component: 0\nVertex trystane-martell, Connected Component: 0\nVertex nute, Connected Component: 0\nVertex qhorin-halfhand, Connected Component: 0\nVertex longwater-pyke, Connected Component: 0\nVertex rast, Connected Component: 0\nVertex humfrey-hewett, Connected Component: 0\nVertex sylva-santagar, Connected Component: 0\nVertex luton, Connected Component: 0\nVertex yohn-royce, Connected Component: 0\nVertex halder, Connected Component: 0\nVertex lyanna-mormont, Connected Component: 0\nVertex hotho-harlaw, Connected Component: 0\nVertex wick-whittlestick, Connected Component: 0\nVertex farlen, Connected Component: 0\nVertex podrick-payne, Connected Component: 0\nVertex malaquo-maegyr, Connected Component: 0\nVertex morgo, Connected Component: 0\nVertex symond-templeton, Connected Component: 0\nVertex tormund, Connected Component: 0\nVertex florian-the-fool, Connected Component: 0\nVertex jonquil, Connected Component: 0\nVertex satin, Connected Component: 0\nVertex old-bill-bone, Connected Component: 0\nVertex willem-lannister, Connected Component: 0\nVertex leonette-fossoway, Connected Component: 0\nVertex roose-ryswell, Connected Component: 0\nVertex tristifer-iv-mudd, Connected Component: 0\nVertex othell-yarwyck, Connected Component: 0\nVertex hake, Connected Component: 0\nVertex cellador, Connected Component: 0\nVertex scar, Connected Component: 0\nVertex rolph-spicer, Connected Component: 0\nVertex rollam-westerling, Connected Component: 0\nVertex small-paul, Connected Component: 0\nVertex hallyne, Connected Component: 0\nVertex shrouded-lord, Connected Component: 0\nVertex robin-flint, Connected Component: 0\nVertex thistle, Connected Component: 0\nVertex lark, Connected Component: 0\nVertex halys-hornwood, Connected Component: 0\nVertex timeon, Connected Component: 0\nVertex horas-redwyne, Connected Component: 0\nVertex mully, Connected Component: 0\nVertex gerold-dayne, Connected Component: 0\nVertex hobber-redwyne, Connected Component: 0\nVertex thoren-smallwood, Connected Component: 0\nVertex arys-oakheart, Connected Component: 0\nVertex jarman-buckwell, Connected Component: 0\nVertex ottyn-wythers, Connected Component: 0\nVertex garin-(orphan), Connected Component: 0\nVertex jon-fossoway, Connected Component: 0\nVertex yoren, Connected Component: 0\n--------------------------------------------------------\n+----------------+------------------+\n|      VertexName|ConnectedComponent|\n+----------------+------------------+\n|        softfoot|                 0|\n|             zei|                 0|\n|  lyle-crakehall|                 0|\n|   balon-greyjoy|                 0|\n|   euron-greyjoy|                 0|\n|            kyra|                 0|\n|         ygritte|                 0|\n|  addam-marbrand|                 0|\n|  lorent-caswell|                 0|\n|         varamyr|                 0|\n|          dagmer|                 0|\n| jaime-lannister|                 0|\n|     balon-swann|                 0|\n|          lorren|                 0|\n|cersei-lannister|                 0|\n|             val|                 0|\n|    boros-blount|                 0|\n|   brynden-tully|                 0|\n|            styr|                 0|\n|   martyn-rivers|                 0|\n+----------------+------------------+\nonly showing top 20 rows\n\nimport org.apache.spark.graphx.{Graph, VertexId}\nimport org.apache.spark.graphx.lib.ConnectedComponents\nimport org.apache.spark.sql.{Row, SparkSession}\nimport org.apache.spark.sql.types.{StructField, StructType, StringType, LongType}\n\u001b[1m\u001b[34mschema\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.types.StructType\u001b[0m \u003d StructType(StructField(VertexName,StringType,false), StructField(ConnectedComponent,LongType,false))\n\u001b[1m\u001b[34mconnectedComponentsDF\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [VertexName: string, ConnectedComponent: bigint]\n\u001b[1m\u001b[34mconnectedComponentsGraph\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.graphx.Graph[org.apache.spark.graphx.VertexId,(String, Long, Long)]\u001b[0m \u003d org.apache.spark.graphx.impl.GraphImpl@4108702b\n\u001b[1m\u001b[34mcomponents\u001b[0m: \u001b[1m\u001b[32mArray[(org.apache.spark.graphx.Verte..."
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d880"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d881"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d882"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d883"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d884"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d885"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d887"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d890"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d895"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d897"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d900"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d902"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d905"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d907"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d910"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d912"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d915"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d917"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d919"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d922"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d924"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d926"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d927"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d928"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d929"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d930"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d931"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d932"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d933"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d934"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d935"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d937"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d938"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d939"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d941"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d942"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d943"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d944"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d945"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d946"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d947"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d948"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d949"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d950"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d951"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d952"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d953"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d954"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d955"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d956"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d957"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d958"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d959"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d960"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d961"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d962"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d963"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d964"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d965"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d966"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d967"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d968"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d969"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d970"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d971"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d972"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d973"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d974"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d975"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d976"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d977"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d978"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d979"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d980"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d981"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d982"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d983"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d984"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d985"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d986"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d987"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d988"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d989"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d990"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d991"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d992"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d993"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d994"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d995"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d996"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d997"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d998"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d999"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1000"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1001"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1002"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1003"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1004"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1005"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1006"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1007"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1008"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1009"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1010"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1011"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1012"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1013"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1014"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1015"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1016"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1017"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1018"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1019"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1020"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1021"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1022"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1023"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1024"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1025"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1026"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1027"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1028"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1029"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1030"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1031"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1032"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1033"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1034"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1035"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1036"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1037"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1038"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1039"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1040"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1041"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1042"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1043"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1044"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1045"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1046"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1047"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1048"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1049"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1050"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1051"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1052"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1053"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1054"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1055"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1056"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1057"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1058"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1059"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1060"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1061"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1062"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1063"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1064"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1065"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1066"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1067"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1068"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1069"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1070"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1071"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1072"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1073"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1074"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1075"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1076"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1077"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1078"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1079"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1080"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1081"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1082"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1083"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1084"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1085"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1086"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1087"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1088"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1089"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1090"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1091"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1092"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1093"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1094"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1095"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1096"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1097"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1098"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1099"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1100"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1101"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1102"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1103"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1104"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1105"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1106"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1107"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1108"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1109"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1110"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1111"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1112"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1113"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1114"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1115"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1116"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1117"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1118"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1119"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1120"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1121"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1122"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1123"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1124"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1125"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1126"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1127"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1128"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1129"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1130"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1131"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1132"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1133"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1134"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1135"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1136"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1137"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1138"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1139"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1140"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1141"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1142"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1143"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1144"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1145"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1146"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1147"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1148"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1149"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1150"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1151"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1152"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1153"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1154"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1155"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1156"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1157"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1158"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1159"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1160"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1161"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1162"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1163"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1164"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1165"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1166"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1167"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1168"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1169"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1170"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1171"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1172"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1173"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1174"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1175"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1176"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1177"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1178"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1179"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1180"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1181"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1182"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1183"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1184"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1185"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1186"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1187"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1188"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1189"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1190"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1191"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1192"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1193"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1194"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1195"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1196"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1197"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1198"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1199"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1200"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1201"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1202"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1203"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1204"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1205"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1206"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1207"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1208"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1209"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1210"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1211"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1212"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1213"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1214"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1215"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1216"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1217"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1218"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1219"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1220"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1221"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1222"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1223"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1224"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1225"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1226"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1227"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1228"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1229"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1230"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1231"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1232"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1233"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1234"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1235"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1236"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1237"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1238"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1239"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1240"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1241"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1242"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1243"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1244"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1245"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1246"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1247"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1248"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1249"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1250"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1251"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1252"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1253"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1254"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1255"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1256"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1257"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1258"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1259"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1260"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1261"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1262"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1263"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1264"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1265"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1266"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1267"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1268"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1269"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1270"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1271"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1272"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1273"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1274"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1275"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1276"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1277"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1278"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1279"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1280"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1281"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1282"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1283"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1284"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1285"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1286"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1287"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1288"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1289"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1290"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1291"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1292"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1293"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1294"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1295"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1296"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1297"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1298"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1299"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1300"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1301"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1302"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1303"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1304"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1305"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1306"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1307"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1308"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1309"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1310"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1311"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1312"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1313"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1314"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1315"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1316"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1317"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1318"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1319"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1320"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1321"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1322"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1323"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1324"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1325"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1326"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1327"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1328"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1329"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1330"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1331"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1332"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1333"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1334"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1335"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1336"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1337"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1338"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1339"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1340"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1341"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1342"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1343"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1344"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1345"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1346"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1347"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1348"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1349"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1350"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1351"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1352"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1353"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1354"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1355"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1356"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1357"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1358"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1359"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1360"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1361"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1362"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1363"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1364"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1365"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1366"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1367"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1368"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1369"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1370"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1371"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1372"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1373"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1374"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1375"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1376"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1377"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1378"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1379"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1380"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1381"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1382"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1383"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1384"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1385"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1386"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1387"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1388"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1389"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1390"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1391"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1392"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1393"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1394"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1395"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1396"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1397"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1398"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1399"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1400"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1401"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1402"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1403"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1404"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1405"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1406"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1407"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1408"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1409"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1410"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1411"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1412"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1413"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1414"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1415"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1416"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1417"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1418"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1419"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1420"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1421"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1422"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1423"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1424"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1425"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1426"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1427"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1428"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1429"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1430"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1431"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1432"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1433"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1434"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1435"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1436"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1437"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1438"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1439"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1440"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1441"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1442"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1443"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1444"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1445"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1446"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1447"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1448"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1449"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1450"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1451"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1452"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1453"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1454"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1455"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1456"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1457"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1458"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1459"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1460"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1461"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1462"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1463"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1464"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1465"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1466"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1467"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1468"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1469"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1470"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1471"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1472"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1473"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1474"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1475"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1476"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1477"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1478"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1479"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1480"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1481"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1482"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1483"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1484"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1485"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1486"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1487"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1488"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1489"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1490"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1491"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1492"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1493"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1494"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1495"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1496"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1497"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1498"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1499"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1500"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1501"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1502"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1503"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1504"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1505"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1506"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1507"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1508"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1509"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1510"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1511"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1512"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1513"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1514"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1515"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1516"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1517"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1518"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1519"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1520"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1521"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1522"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1523"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1524"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1525"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1526"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1527"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1528"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1529"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1530"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1531"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1532"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1533"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1534"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1535"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1536"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1537"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1538"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1539"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1540"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1541"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1542"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1543"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1544"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1545"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1546"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1547"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1548"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1549"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1550"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1551"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1552"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1553"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1554"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1555"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1556"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1557"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1558"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1559"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1560"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1561"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1562"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1563"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1564"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1565"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1566"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1567"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1568"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1569"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1570"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1571"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1572"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1573"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1574"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1575"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1576"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1577"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1578"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1579"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1580"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1581"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1582"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1583"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1584"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1585"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1586"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1587"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1588"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1589"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1590"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1591"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1592"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1593"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1594"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1595"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1596"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1597"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1598"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1599"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1600"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1601"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1602"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1603"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1604"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1605"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1606"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1607"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1608"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1609"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1610"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1611"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1612"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1613"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1614"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1615"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1616"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1617"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1618"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1619"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1620"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1621"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1622"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1623"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1624"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1625"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1626"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1627"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1628"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1629"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1630"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1631"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1632"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1633"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1634"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1635"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1636"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1637"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1638"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1639"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1640"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1641"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1642"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1643"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1644"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1645"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1646"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1647"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1648"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1649"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1650"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1651"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1652"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1653"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1654"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1655"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1656"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1657"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1658"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1659"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1660"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1661"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1662"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1663"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1664"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1665"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1666"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1667"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1668"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1669"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1670"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1671"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1672"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1673"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1674"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1675"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1676"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1677"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1678"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1679"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1680"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1681"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1682"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1683"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1684"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1685"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1686"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1687"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1688"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1689"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1690"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1691"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1692"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1693"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1694"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1695"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1696"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1697"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1698"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1699"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1700"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1701"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1702"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1703"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1704"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1705"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1706"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1707"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1708"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1709"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1710"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1711"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1712"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1713"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1714"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702668600380_1850672241",
+      "id": "paragraph_1702668600380_1850672241",
+      "dateCreated": "2023-12-15 19:30:00.380",
+      "dateStarted": "2023-12-18 18:49:42.796",
+      "dateFinished": "2023-12-18 18:56:18.449",
+      "status": "FINISHED"
+    },
+    {
+      "text": "//3.Label Propagation\r\n\r\n\r\nimport org.apache.spark.graphx.{Graph, VertexId}\r\nimport org.apache.spark.graphx.lib.LabelPropagation\r\n\r\nval schema \u003d StructType(Seq(\r\n  StructField(\"VertexName\", StringType, nullable \u003d false),\r\n  StructField(\"communityLabel\", DoubleType, nullable \u003d false)\r\n))\r\n\r\n// Create an empty DataFrame with the defined schema\r\nvar communityDF \u003d spark.createDataFrame(spark.sparkContext.emptyRDD[Row], schema)\r\n\r\n// Run Label Propagation with a reasonable number of maxSteps\r\nval maxSteps \u003d 10\r\nval labeledGraph \u003d LabelPropagation.run(graph, maxSteps)\r\n\r\n// Get the vertices with their final community labels\r\nval communities \u003d labeledGraph.vertices\r\n\r\n// Display the top 20 vertices with their community labels\r\nprintln(\"Top 20 Vertices with Community Labels:\")\r\ncommunities.sortBy(_._2, ascending \u003d false).take(20).foreach { case (vertexId, communityLabel) \u003d\u003e\r\n  val vertexName \u003d vertices.lookup(vertexId).headOption.getOrElse(\"UnknownVertex\")\r\n  println(s\"Vertex $vertexName, Community Label: $communityLabel\")\r\n  // Append data to the DataFrame\r\n  val newData \u003d Seq((vertexName, communityLabel))\r\n  val newRow \u003d spark.createDataFrame(newData).toDF(\"VertexName\", \"communityLabel\")\r\n  communityDF \u003d communityDF.union(newRow)\r\n}\r\n\r\nprintln(\"--------------------------------------------------------\")\r\ncommunityDF.show()\r\n\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-19 20:33:03.550",
+      "progress": 100,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Top 20 Vertices with Community Labels:\nVertex Raymun-Redbeard, Community Label: 754\nVertex Gerrick-Kingsblood, Community Label: 753\nVertex Torghen-Flint, Community Label: 708\nVertex Brandon-Norrey, Community Label: 707\nVertex Justin-Massey, Community Label: 658\nVertex Alysane-Mormont, Community Label: 657\nVertex Richard-Horpe, Community Label: 657\nVertex Shortear, Community Label: 637\nVertex Puckens, Community Label: 636\nVertex Walgrave, Community Label: 634\nVertex Quill, Community Label: 634\nVertex Rosey, Community Label: 634\nVertex Ralf-Stonehouse, Community Label: 632\nVertex Rodrik-Harlaw, Community Label: 555\nVertex Manfrey-Martell, Community Label: 533\nVertex Sarella-Sand, Community Label: 533\nVertex Andrey-Dalt, Community Label: 533\nVertex Garin-(orphan), Community Label: 533\nVertex Sylva-Santagar, Community Label: 533\nVertex Tyene-Sand, Community Label: 533\n--------------------------------------------------------\n+------------------+--------------+\n|        VertexName|communityLabel|\n+------------------+--------------+\n|   Raymun-Redbeard|         754.0|\n|Gerrick-Kingsblood|         753.0|\n|     Torghen-Flint|         708.0|\n|    Brandon-Norrey|         707.0|\n|     Justin-Massey|         658.0|\n|   Alysane-Mormont|         657.0|\n|     Richard-Horpe|         657.0|\n|          Shortear|         637.0|\n|           Puckens|         636.0|\n|          Walgrave|         634.0|\n|             Quill|         634.0|\n|             Rosey|         634.0|\n|   Ralf-Stonehouse|         632.0|\n|     Rodrik-Harlaw|         555.0|\n|   Manfrey-Martell|         533.0|\n|      Sarella-Sand|         533.0|\n|       Andrey-Dalt|         533.0|\n|    Garin-(orphan)|         533.0|\n|    Sylva-Santagar|         533.0|\n|        Tyene-Sand|         533.0|\n+------------------+--------------+\n\nimport org.apache.spark.graphx.{Graph, VertexId}\nimport org.apache.spark.graphx.lib.LabelPropagation\n\u001b[1m\u001b[34mschema\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.types.StructType\u001b[0m \u003d StructType(StructField(VertexName,StringType,false), StructField(communityLabel,DoubleType,false))\n\u001b[1m\u001b[34mcommunityDF\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [VertexName: string, communityLabel: double]\n\u001b[1m\u001b[34mmaxSteps\u001b[0m: \u001b[1m\u001b[32mInt\u001b[0m \u003d 10\n\u001b[1m\u001b[34mlabeledGraph\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.graphx.Graph[org.apache.spark.graphx.VertexId,(String, Long, Long)]\u001b[0m \u003d org.apache.spark.graphx.impl.GraphImpl@483929e5\n\u001b[1m\u001b[34mcommunities\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.graphx.VertexRDD[org.apache.spark.graphx.VertexId]\u001b[0m \u003d VertexRDDImpl[7208] at RDD at VertexRDD.scala:57\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2199"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2200"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2201"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2202"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2203"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2204"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2205"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2206"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2207"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2208"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2209"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2210"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2211"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2212"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2213"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2214"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2215"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2216"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2217"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2218"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2219"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2220"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2221"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2222"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2223"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2224"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2225"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2226"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2227"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2228"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2229"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2230"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2231"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2232"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2233"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2234"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2235"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2236"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702673499990_59714279",
+      "id": "paragraph_1702673499990_59714279",
+      "dateCreated": "2023-12-15 20:51:39.990",
+      "dateStarted": "2023-12-16 00:18:28.718",
+      "dateFinished": "2023-12-16 00:25:37.242",
+      "status": "FINISHED"
+    },
+    {
+      "text": "//4.TRIANGLECOUNT\r\n\r\n\r\nimport org.apache.spark.graphx._\r\nimport org.apache.spark.graphx.lib.TriangleCount\r\nimport org.apache.spark.sql.{Row, SparkSession}\r\nimport org.apache.spark.sql.types.{StructType, StructField, StringType, DoubleType}\r\n\r\n// Assuming \u0027graph\u0027 is your original graph\r\n\r\n// Define the schema for the triangle count DataFrame\r\nval schema \u003d StructType(Seq(\r\n  StructField(\"VertexName\", StringType, nullable \u003d false),\r\n  StructField(\"triangleCount\", DoubleType, nullable \u003d false)\r\n))\r\n\r\n// Create an empty DataFrame with the defined schema\r\nvar triangleCountDF \u003d spark.createDataFrame(spark.sparkContext.emptyRDD[Row], schema)\r\n\r\n// Run TriangleCount algorithm on the graph\r\nval triangleCountGraph: Graph[Int, (String, Long, Long)] \u003d TriangleCount.run(graph)\r\n\r\n// Get the vertices with their triangle counts\r\nval triangleCounts \u003d triangleCountGraph.vertices\r\n\r\n// Display the top 20 vertices with their triangle counts\r\nprintln(\"Top 20 Vertices with Triangle Counts:\")\r\ntriangleCounts.sortBy(_._2, ascending \u003d false).take(20).foreach { case (vertexId, triangleCount) \u003d\u003e\r\n  val vertexName \u003d vertices.lookup(vertexId).headOption.getOrElse(\"UnknownVertex\")\r\n  println(s\"Vertex $vertexName, Triangle Count: $triangleCount\")\r\n  // Append data to the DataFrame\r\n  val newData \u003d Seq((vertexName, triangleCount.toDouble))\r\n  val newRow \u003d spark.createDataFrame(newData).toDF(\"VertexName\", \"triangleCount\")\r\n  triangleCountDF \u003d triangleCountDF.union(newRow)\r\n}\r\n\r\nprintln(\"--------------------------------------------------------\")\r\ntriangleCountDF.show()\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-19 20:33:12.348",
+      "progress": 100,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Top 20 Vertices with Triangle Counts:\nVertex tyrion-lannister, Triangle Count: 659\nVertex Tyrion-Lannister, Triangle Count: 659\nVertex cersei-lannister, Triangle Count: 613\nVertex Cersei-Lannister, Triangle Count: 613\nVertex Jaime-Lannister, Triangle Count: 548\nVertex jaime-lannister, Triangle Count: 548\nVertex joffrey-baratheon, Triangle Count: 515\nVertex Joffrey-Baratheon, Triangle Count: 515\nVertex sansa-stark, Triangle Count: 465\nVertex Sansa-Stark, Triangle Count: 465\nVertex jon-snow, Triangle Count: 427\nVertex Jon-Snow, Triangle Count: 427\nVertex robert-baratheon, Triangle Count: 420\nVertex Robert-Baratheon, Triangle Count: 420\nVertex stannis-baratheon, Triangle Count: 419\nVertex Stannis-Baratheon, Triangle Count: 419\nVertex eddard-stark, Triangle Count: 410\nVertex Eddard-Stark, Triangle Count: 410\nVertex arya-stark, Triangle Count: 392\nVertex Arya-Stark, Triangle Count: 392\n--------------------------------------------------------\n+-----------------+-------------+\n|       VertexName|triangleCount|\n+-----------------+-------------+\n| tyrion-lannister|        659.0|\n| Tyrion-Lannister|        659.0|\n| cersei-lannister|        613.0|\n| Cersei-Lannister|        613.0|\n|  Jaime-Lannister|        548.0|\n|  jaime-lannister|        548.0|\n|joffrey-baratheon|        515.0|\n|Joffrey-Baratheon|        515.0|\n|      sansa-stark|        465.0|\n|      Sansa-Stark|        465.0|\n|         jon-snow|        427.0|\n|         Jon-Snow|        427.0|\n| robert-baratheon|        420.0|\n| Robert-Baratheon|        420.0|\n|stannis-baratheon|        419.0|\n|Stannis-Baratheon|        419.0|\n|     eddard-stark|        410.0|\n|     Eddard-Stark|        410.0|\n|       arya-stark|        392.0|\n|       Arya-Stark|        392.0|\n+-----------------+-------------+\n\nimport org.apache.spark.graphx._\nimport org.apache.spark.graphx.lib.TriangleCount\nimport org.apache.spark.sql.{Row, SparkSession}\nimport org.apache.spark.sql.types.{StructType, StructField, StringType, DoubleType}\n\u001b[1m\u001b[34mschema\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.types.StructType\u001b[0m \u003d StructType(StructField(VertexName,StringType,false), StructField(triangleCount,DoubleType,false))\n\u001b[1m\u001b[34mtriangleCountDF\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [VertexName: string, triangleCount: double]\n\u001b[1m\u001b[34mtriangleCountGraph\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.graphx.Graph[Int,(String, Long, Long)]\u001b[0m \u003d org.apache.spark.graphx.impl.GraphImpl@22a66873\n\u001b[1m\u001b[34mtriangleCounts\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.graphx.VertexRDD[Int]\u001b[0m \u003d VertexRDDImpl[148] at RDD at VertexRDD.scala:57\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d3"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d4"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d5"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d6"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d7"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d8"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d9"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d10"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d11"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d12"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d13"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d14"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d15"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d16"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d17"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d18"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d19"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d20"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d21"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d22"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d23"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d24"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d25"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d26"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d27"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d28"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702904621382_345440903",
+      "id": "paragraph_1702904621382_345440903",
+      "dateCreated": "2023-12-18 13:03:41.382",
+      "dateStarted": "2023-12-18 13:24:46.309",
+      "dateFinished": "2023-12-18 13:26:56.744",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n//5.STRONGLY CONNECTED\n\n\nimport org.apache.spark.graphx._\nimport org.apache.spark.sql.{Row, SparkSession}\nimport org.apache.spark.sql.types.{StructType, StructField, StringType, LongType}\n\n// Assuming \u0027graph\u0027 is your original graph\n\n// Run stronglyConnectedComponents algorithm\nval stronglyConnectedComponents: Graph[VertexId, (String, Long, Long)] \u003d graph.stronglyConnectedComponents(5)\n\n// Define the schema for the strongly connected components DataFrame\nval schema \u003d StructType(Seq(\n  StructField(\"VertexName\", StringType, nullable \u003d false),\n  StructField(\"componentId\", LongType, nullable \u003d false),\n  StructField(\"componentName\", StringType, nullable \u003d false)\n))\n\n// Convert \u0027vertices\u0027 RDD to a DataFrame\nval verticesDF \u003d vertices.toDF(\"VertexId\", \"VertexName\")\n\n// Get the vertices with their component IDs\nval componentVertices \u003d stronglyConnectedComponents.vertices.collect()\n\n// Get the mapping between VertexId and VertexName from the \u0027vertices\u0027 DataFrame\nval vertexMapping \u003d verticesDF.select(\"VertexId\", \"VertexName\").as[(Long, String)].collect.toMap\n\n// Create a sequence of rows for DataFrame creation\nval rows \u003d componentVertices.map { case (vertexId, componentId) \u003d\u003e\n  val vertexName \u003d vertexMapping.getOrElse(vertexId, \"UnknownVertex\")\n  val componentName \u003d vertexMapping.getOrElse(componentId, \"UnknownComponent\")\n  Row(vertexName, componentId, componentName)\n}\n\n// Create the DataFrame once using the sequence of rows\nval sccDF \u003d spark.createDataFrame(spark.sparkContext.parallelize(rows), schema)\n\nprintln(\"Vertices with Strongly Connected Components:\")\nsccDF.show()\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-19 20:33:25.582",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Vertices with Strongly Connected Components:\n+----------------+-----------+----------------+\n|      VertexName|componentId|   componentName|\n+----------------+-----------+----------------+\n|        softfoot|        600|        softfoot|\n|             zei|        200|             zei|\n|  lyle-crakehall|          0|  lyle-crakehall|\n|   balon-greyjoy|        400|   balon-greyjoy|\n|   euron-greyjoy|        401|   euron-greyjoy|\n|            kyra|        601|            kyra|\n|         ygritte|        201|         ygritte|\n|  addam-marbrand|          1|  addam-marbrand|\n|  lorent-caswell|        602|  lorent-caswell|\n|         varamyr|        202|         varamyr|\n|          dagmer|        402|          dagmer|\n| jaime-lannister|          2| jaime-lannister|\n|     balon-swann|        403|     balon-swann|\n|          lorren|        603|          lorren|\n|cersei-lannister|          3|cersei-lannister|\n|             val|        203|             val|\n|    boros-blount|        404|    boros-blount|\n|   brynden-tully|          4|   brynden-tully|\n|            styr|        204|            styr|\n|   martyn-rivers|        604|   martyn-rivers|\n+----------------+-----------+----------------+\nonly showing top 20 rows\n\nimport org.apache.spark.graphx._\nimport org.apache.spark.sql.{Row, SparkSession}\nimport org.apache.spark.sql.types.{StructType, StructField, StringType, LongType}\n\u001b[1m\u001b[34mstronglyConnectedComponents\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.graphx.Graph[org.apache.spark.graphx.VertexId,(String, Long, Long)]\u001b[0m \u003d org.apache.spark.graphx.impl.GraphImpl@620710de\n\u001b[1m\u001b[34mschema\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.types.StructType\u001b[0m \u003d StructType(StructField(VertexName,StringType,false), StructField(componentId,LongType,false), StructField(componentName,StringType,false))\n\u001b[1m\u001b[34mverticesDF\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [VertexId: bigint, VertexName: string]\n\u001b[1m\u001b[34mcomponentVertices\u001b[0m: \u001b[1m\u001b[32mArray[(org.apache.spark.graphx.VertexId, org.apache.spark.graphx.VertexId)]\u001b[0m ..."
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d2"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d3"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d4"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d5"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d6"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d7"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d8"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d9"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d10"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d11"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d12"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d13"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d14"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d15"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d16"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d17"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d18"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d19"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d20"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d21"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d22"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d23"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d24"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d25"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d26"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d27"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d28"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d29"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d30"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d31"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d32"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d33"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d34"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d35"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d36"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d37"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d38"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d39"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d40"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d41"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d42"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d43"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d44"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d45"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d46"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d47"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d48"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d49"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d50"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d51"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d52"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d53"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d54"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d55"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d56"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d57"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d58"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702924942088_1867377471",
+      "id": "paragraph_1702924942088_1867377471",
+      "dateCreated": "2023-12-18 18:42:22.089",
+      "dateStarted": "2023-12-18 23:47:11.526",
+      "dateFinished": "2023-12-18 23:55:17.984",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\nsccDF.coalesce(1).write.csv(\"/zeppelin/notebook/StronglyConnected.csv\")\ntriangleCountDF.coalesce(1).write.csv(\"/zeppelin/notebook/TriangleCount.csv\")\nconnectedComponentsDF.coalesce(1).write.csv(\"/zeppelin/notebook/connectedCompo.csv\")\ncommunityDF.coalesce(1).write.csv(\"/zeppelin/notebook/labelPropa.csv\")\npageRankDF.coalesce(1).write.csv(\"/zeppelin/notebook/pageRankDF.csv\")\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-18 20:08:45.288",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702926624684_1119001866",
+      "id": "paragraph_1702926624684_1119001866",
+      "dateCreated": "2023-12-18 19:10:24.684",
+      "status": "READY"
+    }
+  ],
+  "name": "GraphX",
+  "id": "2JHGMWBPK",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.10.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

@@ -1,0 +1,16 @@
+Source,Target,weight,prediction
+balman-byrch,bronn,7.0,0
+balman-byrch,cersei-lannister,7.0,0
+balman-byrch,falyse-stokeworth,10.0,0
+halder,jon-snow,23.0,2
+halder,jon-snow,3.0,0
+halder,pypar,8.0,0
+halder,rast,3.0,0
+halder,samwell-tarly,6.0,0
+halder,todder,3.0,0
+halder,todder,3.0,0
+mandon-moore,sandor-clegane,5.0,0
+mandon-moore,sansa-stark,3.0,0
+mandon-moore,tyrion-lannister,16.0,0
+mandon-moore,tyrion-lannister,3.0,0
+mandon-moore,varys,3.0,0

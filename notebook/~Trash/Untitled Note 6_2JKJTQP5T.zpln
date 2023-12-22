@@ -1,0 +1,1213 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark\nimport org.apache.spark._\nimport org.apache.spark.graphx._\n// To make some of the examples work we will also need RDD\nimport org.apache.spark.rdd.RDD",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-15 16:43:31.385",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark._\nimport org.apache.spark.graphx._\nimport org.apache.spark.rdd.RDD\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702580513075_444634397",
+      "id": "paragraph_1702580513075_444634397",
+      "dateCreated": "2023-12-14 19:01:53.075",
+      "dateStarted": "2023-12-15 16:43:31.403",
+      "dateFinished": "2023-12-15 16:43:31.839",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\nimport org.apache.spark.sql.{SaveMode, SparkSession}\n\n// Configuration pour la connexion à Neo4j\nval neo4jUrl \u003d \"bolt://neo4j:7687\"\nval neo4jUser \u003d \"neo4j\"\nval neo4jPassword \u003d \"bitnami1\"\n\nval spark \u003d SparkSession.builder().getOrCreate()\n\nval all \u003d (spark.read.format(\"org.neo4j.spark.DataSource\")\n  .option(\"url\", \"bolt://neo4j:7687\")\n  .option(\"authentication.basic.username\", neo4jUser)\n  .option(\"authentication.basic.password\", neo4jPassword)\n  .option(\"query\", \"MATCH (source)-[relation]-\u003e(target) where relation.book IS NOT NULL and relation.weight IS NOT NULL RETURN source.name AS Source, target.name AS Target, TYPE(relation) AS Type, relation.weight AS Weight, relation.book AS Book\")\n  .load())\n all.show()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-15 16:38:57.261",
+      "progress": 100,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+------------------+----------+------+----+\n|              Source|            Target|      Type|Weight|Book|\n+--------------------+------------------+----------+------+----+\n|      Addam-Marbrand|   Jaime-Lannister|Undirected|     3|   1|\n|      Addam-Marbrand|   Tywin-Lannister|Undirected|     6|   1|\n|   Aegon-I-Targaryen|Daenerys-Targaryen|Undirected|     5|   1|\n|   Aegon-I-Targaryen|      Eddard-Stark|Undirected|     4|   1|\n|Aemon-Targaryen-(...|    Alliser-Thorne|Undirected|     4|   1|\n|Aemon-Targaryen-(...|       Bowen-Marsh|Undirected|     4|   1|\n|Aemon-Targaryen-(...|             Chett|Undirected|     9|   1|\n|Aemon-Targaryen-(...|            Clydas|Undirected|     5|   1|\n|Aemon-Targaryen-(...|      Jeor-Mormont|Undirected|    13|   1|\n|Aemon-Targaryen-(...|          Jon-Snow|Undirected|    34|   1|\n|Aemon-Targaryen-(...|     Samwell-Tarly|Undirected|     5|   1|\n|  Aerys-II-Targaryen|     Brandon-Stark|Undirected|     4|   1|\n|  Aerys-II-Targaryen|      Eddard-Stark|Undirected|    10|   1|\n|  Aerys-II-Targaryen|  Gerold-Hightower|Undirected|     3|   1|\n|  Aerys-II-Targaryen|   Jaime-Lannister|Undirected|     5|   1|\n|  Aerys-II-Targaryen|         Jon-Arryn|Undirected|     3|   1|\n|  Aerys-II-Targaryen|  Robert-Baratheon|Undirected|    12|   1|\n|                Aggo|Daenerys-Targaryen|Undirected|    11|   1|\n|                Aggo|             Drogo|Undirected|     6|   1|\n|                Aggo|             Jhogo|Undirected|     4|   1|\n+--------------------+------------------+----------+------+----+\nonly showing top 20 rows\n\nimport org.apache.spark.sql.{SaveMode, SparkSession}\n\u001b[1m\u001b[34mneo4jUrl\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d bolt://neo4j:7687\n\u001b[1m\u001b[34mneo4jUser\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d neo4j\n\u001b[1m\u001b[34mneo4jPassword\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d bitnami1\n\u001b[1m\u001b[34mspark\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.SparkSession\u001b[0m \u003d org.apache.spark.sql.SparkSession@1a6f67c6\n\u001b[1m\u001b[34mall\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [Source: string, Target: string ... 3 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d0"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702584777671_522278551",
+      "id": "paragraph_1702584777671_522278551",
+      "dateCreated": "2023-12-14 20:12:57.672",
+      "dateStarted": "2023-12-15 16:38:57.309",
+      "dateFinished": "2023-12-15 16:39:24.867",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n// Let\u0027s create the vertex RDD.\nval vertices : RDD[(VertexId, String)] \u003d all\n    .select(explode(array(\u0027Source, \u0027Target))) // S and O are the vertices\n    .distinct // we remove duplicates\n    .rdd.map(_.getAs[String](0)) // transform to RDD\n    .zipWithIndex // associate a long index to each vertex\n    .map(_.swap)\n\n// Now let\u0027s define a vertex dataframe because joins are clearer in sparkSQL\nval vertexDf \u003d vertices.toDF(\"id\", \"node\")\n\n// And let\u0027s extract the edges and join their vertices with their respective IDs\nval edges : RDD[Edge[String]] \u003d df\n    .join(vertexDf, df(\"S\") \u003d\u003d\u003d vertexDf(\"node\")) // getting the IDs for \"S\"\n    .select(\u0027P, \u0027O, \u0027id as \u0027idS)\n    .join(vertexDf, df(\"O\") \u003d\u003d\u003d vertexDf(\"node\")) // getting the IDs for \"O\"\n    .rdd.map(row \u003d\u003e // creating the edge using column \"P\" as metadata \n      Edge(row.getAs[Long](\"idS\"), row.getAs[Long](\"id\"), row.getAs[String](\"P\")))\n\n// And finally\nval graph \u003d Graph(vertices, edges)",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-15 16:58:42.400",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702659472995_932140471",
+      "id": "paragraph_1702659472995_932140471",
+      "dateCreated": "2023-12-15 16:57:52.995",
+      "status": "READY"
+    },
+    {
+      "text": "%spark\nval verticesDF \u003d all.select(\"Source\").union(all.select(\"Target\")).distinct()\nval vertices: RDD[(VertexId, String)] \u003d verticesDF.rdd.map {\n  case org.apache.spark.sql.Row(name: String) \u003d\u003e (name.hashCode.toLong, name)\n}",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-15 16:43:34.762",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mverticesDF\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\u001b[0m \u003d [Source: string]\n\u001b[1m\u001b[34mvertices\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.rdd.RDD[(org.apache.spark.graphx.VertexId, String)]\u001b[0m \u003d MapPartitionsRDD[16] at map at \u003cconsole\u003e:35\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702586329477_1002365134",
+      "id": "paragraph_1702586329477_1002365134",
+      "dateCreated": "2023-12-14 20:38:49.477",
+      "dateStarted": "2023-12-15 16:43:34.781",
+      "dateFinished": "2023-12-15 16:43:38.198",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\nvertices.take(1)",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-15 16:43:41.076",
+      "progress": 33,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mres2\u001b[0m: \u001b[1m\u001b[32mArray[(org.apache.spark.graphx.VertexId, String)]\u001b[0m \u003d Array((1982491464,Bannen))\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d1"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702586347927_884751970",
+      "id": "paragraph_1702586347927_884751970",
+      "dateCreated": "2023-12-14 20:39:07.927",
+      "dateStarted": "2023-12-15 16:43:41.097",
+      "dateFinished": "2023-12-15 16:43:42.924",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n// Print the schema of the DataFrame\nall.printSchema()\n\n// Show a few rows of the DataFrame\nall.show()\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-15 16:43:45.996",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- Source: string (nullable \u003d true)\n |-- Target: string (nullable \u003d true)\n |-- Type: string (nullable \u003d true)\n |-- Weight: long (nullable \u003d true)\n |-- Book: long (nullable \u003d true)\n\n+--------------------+------------------+----------+------+----+\n|              Source|            Target|      Type|Weight|Book|\n+--------------------+------------------+----------+------+----+\n|      Addam-Marbrand|   Jaime-Lannister|Undirected|     3|   1|\n|      Addam-Marbrand|   Tywin-Lannister|Undirected|     6|   1|\n|   Aegon-I-Targaryen|Daenerys-Targaryen|Undirected|     5|   1|\n|   Aegon-I-Targaryen|      Eddard-Stark|Undirected|     4|   1|\n|Aemon-Targaryen-(...|    Alliser-Thorne|Undirected|     4|   1|\n|Aemon-Targaryen-(...|       Bowen-Marsh|Undirected|     4|   1|\n|Aemon-Targaryen-(...|             Chett|Undirected|     9|   1|\n|Aemon-Targaryen-(...|            Clydas|Undirected|     5|   1|\n|Aemon-Targaryen-(...|      Jeor-Mormont|Undirected|    13|   1|\n|Aemon-Targaryen-(...|          Jon-Snow|Undirected|    34|   1|\n|Aemon-Targaryen-(...|     Samwell-Tarly|Undirected|     5|   1|\n|  Aerys-II-Targaryen|     Brandon-Stark|Undirected|     4|   1|\n|  Aerys-II-Targaryen|      Eddard-Stark|Undirected|    10|   1|\n|  Aerys-II-Targaryen|  Gerold-Hightower|Undirected|     3|   1|\n|  Aerys-II-Targaryen|   Jaime-Lannister|Undirected|     5|   1|\n|  Aerys-II-Targaryen|         Jon-Arryn|Undirected|     3|   1|\n|  Aerys-II-Targaryen|  Robert-Baratheon|Undirected|    12|   1|\n|                Aggo|Daenerys-Targaryen|Undirected|    11|   1|\n|                Aggo|             Drogo|Undirected|     6|   1|\n|                Aggo|             Jhogo|Undirected|     4|   1|\n+--------------------+------------------+----------+------+----+\nonly showing top 20 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702588639435_1386202372",
+      "id": "paragraph_1702588639435_1386202372",
+      "dateCreated": "2023-12-14 21:17:19.435",
+      "dateStarted": "2023-12-15 16:43:46.014",
+      "dateFinished": "2023-12-15 16:43:47.402",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\r\nval filteredAll \u003d all.na.drop(Seq(\"source\", \"target\", \"weight\", \"book\"))\r\n// Extract edges from Source, Target, Weight, and Book columns\r\nval edges: RDD[Edge[(Long, Long)]] \u003d filteredAll.rdd.map {\r\n  case org.apache.spark.sql.Row(source: String, target: String, weight: Long, book: Long) \u003d\u003e\r\n    Edge(source.hashCode.toLong, target.hashCode.toLong, (weight, book))\r\n}\r\n\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-15 16:44:57.140",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mfilteredAll\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [Source: string, Target: string ... 3 more fields]\n\u001b[1m\u001b[34medges\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.rdd.RDD[org.apache.spark.graphx.Edge[(Long, Long)]]\u001b[0m \u003d MapPartitionsRDD[26] at map at \u003cconsole\u003e:36\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702587001044_1484267851",
+      "id": "paragraph_1702587001044_1484267851",
+      "dateCreated": "2023-12-14 20:50:01.044",
+      "dateStarted": "2023-12-15 16:44:57.160",
+      "dateFinished": "2023-12-15 16:44:58.522",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n// Create a default vertex value in case a vertex is missing in the edgesRDD\nval defaultVertex \u003d (\"Unknown\")\n\n// Build the Graph\nval graph \u003d Graph(vertices, edges, defaultVertex)\n\nprintln(\"verdices :\")\ngraph.vertices.collect.foreach(println)\nprintln(\"edge :\")\ngraph.edges.collect.foreach(println)",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-15 16:45:29.523",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "verdices :\norg.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 4.0 failed 1 times, most recent failure: Lost task 0.0 in stage 4.0 (TID 5, localhost, executor driver): scala.MatchError: [Addam-Marbrand,Jaime-Lannister,Undirected,3,1] (of class org.apache.spark.sql.catalyst.expressions.GenericRowWithSchema)\n\tat $anonfun$1.apply(\u003cconsole\u003e:36)\n\tat $anonfun$1.apply(\u003cconsole\u003e:36)\n\tat scala.collection.Iterator$$anon$11.next(Iterator.scala:410)\n\tat scala.collection.Iterator$class.foreach(Iterator.scala:891)\n\tat scala.collection.AbstractIterator.foreach(Iterator.scala:1334)\n\tat org.apache.spark.graphx.EdgeRDD$$anonfun$1.apply(EdgeRDD.scala:107)\n\tat org.apache.spark.graphx.EdgeRDD$$anonfun$1.apply(EdgeRDD.scala:105)\n\tat org.apache.spark.rdd.RDD$$anonfun$mapPartitionsWithIndex$1$$anonfun$apply$25.apply(RDD.scala:875)\n\tat org.apache.spark.rdd.RDD$$anonfun$mapPartitionsWithIndex$1$$anonfun$apply$25.apply(RDD.scala:875)\n\tat org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)\n\tat org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:346)\n\tat org.apache.spark.rdd.RDD.iterator(RDD.scala:310)\n\tat org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)\n\tat org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:346)\n\tat org.apache.spark.rdd.RDD.iterator(RDD.scala:310)\n\tat org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:99)\n\tat org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:55)\n\tat org.apache.spark.scheduler.Task.run(Task.scala:123)\n\tat org.apache.spark.executor.Executor$TaskRunner$$anonfun$10.apply(Executor.scala:408)\n\tat org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:1360)\n\tat org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:414)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\n\tat java.lang.Thread.run(Thread.java:748)\n\nDriver stacktrace:\n  at org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1891)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1879)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1878)\n  at scala.collection.mutable.ResizableArray$class.foreach(ResizableArray.scala:59)\n  at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:48)\n  at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:1878)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:927)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:927)\n  at scala.Option.foreach(Option.scala:257)\n  at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:927)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:2112)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2061)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2050)\n  at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:49)\n  at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:738)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:2061)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:2082)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:2101)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:2126)\n  at org.apache.spark.rdd.RDD$$anonfun$collect$1.apply(RDD.scala:990)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)\n  at org.apache.spark.rdd.RDD.withScope(RDD.scala:385)\n  at org.apache.spark.rdd.RDD.collect(RDD.scala:989)\n  ... 49 elided\nCaused by: scala.MatchError: [Addam-Marbrand,Jaime-Lannister,Undirected,3,1] (of class org.apache.spark.sql.catalyst.expressions.GenericRowWithSchema)\n  at $anonfun$1.apply(\u003cconsole\u003e:36)\n  at $anonfun$1.apply(\u003cconsole\u003e:36)\n  at scala.collection.Iterator$$anon$11.next(Iterator.scala:410)\n  at scala.collection.Iterator$class.foreach(Iterator.scala:891)\n  at scala.collection.AbstractIterator.foreach(Iterator.scala:1334)\n  at org.apache.spark.graphx.EdgeRDD$$anonfun$1.apply(EdgeRDD.scala:107)\n  at org.apache.spark.graphx.EdgeRDD$$anonfun$1.apply(EdgeRDD.scala:105)\n  at org.apache.spark.rdd.RDD$$anonfun$mapPartitionsWithIndex$1$$anonfun$apply$25.apply(RDD.scala:875)\n  at org.apache.spark.rdd.RDD$$anonfun$mapPartitionsWithIndex$1$$anonfun$apply$25.apply(RDD.scala:875)\n  at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)\n  at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:346)\n  at org.apache.spark.rdd.RDD.iterator(RDD.scala:310)\n  at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)\n  at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:346)\n  at org.apache.spark.rdd.RDD.iterator(RDD.scala:310)\n  at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:99)\n  at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:55)\n  at org.apache.spark.scheduler.Task.run(Task.scala:123)\n  at org.apache.spark.executor.Executor$TaskRunner$$anonfun$10.apply(Executor.scala:408)\n  at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:1360)\n  at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:414)\n  ... 3 more\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d3"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702587249385_1540047144",
+      "id": "paragraph_1702587249385_1540047144",
+      "dateCreated": "2023-12-14 20:54:09.385",
+      "dateStarted": "2023-12-15 16:45:29.550",
+      "dateFinished": "2023-12-15 16:45:31.120",
+      "status": "ERROR"
+    },
+    {
+      "text": "%spark\n// Create a default vertex value in case a vertex is missing in the edgesRDD\nval defaultVertex \u003d (\"Unknown\")\n\n// Build the Graph\nval graph \u003d Graph(verticesRDD, edgesRDD, defaultVertex)\n\n// Display the graph\ngraph.vertices.take(10).foreach(println)\ngraph.edges.take(10).foreach(println)",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-14 20:52:17.221",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 48.0 failed 1 times, most recent failure: Lost task 0.0 in stage 48.0 (TID 80, localhost, executor driver): scala.MatchError: [Addam-Marbrand,Jaime-Lannister,Undirected,3,1] (of class org.apache.spark.sql.catalyst.expressions.GenericRowWithSchema)\n\tat $anonfun$1.apply(\u003cconsole\u003e:54)\n\tat $anonfun$1.apply(\u003cconsole\u003e:54)\n\tat scala.collection.Iterator$$anon$11.next(Iterator.scala:410)\n\tat scala.collection.Iterator$class.foreach(Iterator.scala:891)\n\tat scala.collection.AbstractIterator.foreach(Iterator.scala:1334)\n\tat org.apache.spark.graphx.EdgeRDD$$anonfun$1.apply(EdgeRDD.scala:107)\n\tat org.apache.spark.graphx.EdgeRDD$$anonfun$1.apply(EdgeRDD.scala:105)\n\tat org.apache.spark.rdd.RDD$$anonfun$mapPartitionsWithIndex$1$$anonfun$apply$25.apply(RDD.scala:875)\n\tat org.apache.spark.rdd.RDD$$anonfun$mapPartitionsWithIndex$1$$anonfun$apply$25.apply(RDD.scala:875)\n\tat org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)\n\tat org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:346)\n\tat org.apache.spark.rdd.RDD.iterator(RDD.scala:310)\n\tat org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)\n\tat org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:346)\n\tat org.apache.spark.rdd.RDD.iterator(RDD.scala:310)\n\tat org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:99)\n\tat org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:55)\n\tat org.apache.spark.scheduler.Task.run(Task.scala:123)\n\tat org.apache.spark.executor.Executor$TaskRunner$$anonfun$10.apply(Executor.scala:408)\n\tat org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:1360)\n\tat org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:414)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\n\tat java.lang.Thread.run(Thread.java:748)\n\nDriver stacktrace:\n  at org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1891)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1879)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1878)\n  at scala.collection.mutable.ResizableArray$class.foreach(ResizableArray.scala:59)\n  at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:48)\n  at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:1878)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:927)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:927)\n  at scala.Option.foreach(Option.scala:257)\n  at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:927)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:2112)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2061)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2050)\n  at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:49)\n  at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:738)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:2061)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:2082)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:2101)\n  at org.apache.spark.rdd.RDD$$anonfun$take$1.apply(RDD.scala:1409)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)\n  at org.apache.spark.rdd.RDD.withScope(RDD.scala:385)\n  at org.apache.spark.rdd.RDD.take(RDD.scala:1382)\n  ... 59 elided\nCaused by: scala.MatchError: [Addam-Marbrand,Jaime-Lannister,Undirected,3,1] (of class org.apache.spark.sql.catalyst.expressions.GenericRowWithSchema)\n  at $anonfun$1.apply(\u003cconsole\u003e:54)\n  at $anonfun$1.apply(\u003cconsole\u003e:54)\n  at scala.collection.Iterator$$anon$11.next(Iterator.scala:410)\n  at scala.collection.Iterator$class.foreach(Iterator.scala:891)\n  at scala.collection.AbstractIterator.foreach(Iterator.scala:1334)\n  at org.apache.spark.graphx.EdgeRDD$$anonfun$1.apply(EdgeRDD.scala:107)\n  at org.apache.spark.graphx.EdgeRDD$$anonfun$1.apply(EdgeRDD.scala:105)\n  at org.apache.spark.rdd.RDD$$anonfun$mapPartitionsWithIndex$1$$anonfun$apply$25.apply(RDD.scala:875)\n  at org.apache.spark.rdd.RDD$$anonfun$mapPartitionsWithIndex$1$$anonfun$apply$25.apply(RDD.scala:875)\n  at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)\n  at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:346)\n  at org.apache.spark.rdd.RDD.iterator(RDD.scala:310)\n  at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)\n  at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:346)\n  at org.apache.spark.rdd.RDD.iterator(RDD.scala:310)\n  at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:99)\n  at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:55)\n  at org.apache.spark.scheduler.Task.run(Task.scala:123)\n  at org.apache.spark.executor.Executor$TaskRunner$$anonfun$10.apply(Executor.scala:408)\n  at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:1360)\n  at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:414)\n  ... 3 more\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d24"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702587133536_1382636246",
+      "id": "paragraph_1702587133536_1382636246",
+      "dateCreated": "2023-12-14 20:52:13.537",
+      "dateStarted": "2023-12-14 20:52:17.283",
+      "dateFinished": "2023-12-14 20:52:19.925",
+      "status": "ERROR"
+    },
+    {
+      "text": "%spark\nval vertices \u003d Array((1L,(\"A\")),(2L,(\"B\")),(3L,(\"C\")))\nval vRDD \u003d sc.parallelize(vertices)\nvRDD.take(1)",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-14 19:28:31.227",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mvertices\u001b[0m: \u001b[1m\u001b[32mArray[(Long, String)]\u001b[0m \u003d Array((1,A), (2,B), (3,C))\n\u001b[1m\u001b[34mvRDD\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.rdd.RDD[(Long, String)]\u001b[0m \u003d ParallelCollectionRDD[4] at parallelize at \u003cconsole\u003e:49\n\u001b[1m\u001b[34mres9\u001b[0m: \u001b[1m\u001b[32mArray[(Long, String)]\u001b[0m \u003d Array((1,A))\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d1"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d2"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702581192314_128377250",
+      "id": "paragraph_1702581192314_128377250",
+      "dateCreated": "2023-12-14 19:13:12.314",
+      "dateStarted": "2023-12-14 19:28:31.268",
+      "dateFinished": "2023-12-14 19:28:33.936",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\nval edges\u003dArray(Edge(1L,2L,1800),Edge(1L,2L,1800),Edge(2L,3L,800),Edge(3L,1L,1400))\nval eRDD \u003dsc.parallelize(edges)\neRDD.take(2)",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-14 19:40:34.054",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34medges\u001b[0m: \u001b[1m\u001b[32mArray[org.apache.spark.graphx.Edge[Int]]\u001b[0m \u003d Array(Edge(1,2,1800), Edge(1,2,1800), Edge(2,3,800), Edge(3,1,1400))\n\u001b[1m\u001b[34meRDD\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.rdd.RDD[org.apache.spark.graphx.Edge[Int]]\u001b[0m \u003d ParallelCollectionRDD[6] at parallelize at \u003cconsole\u003e:51\n\u001b[1m\u001b[34mres12\u001b[0m: \u001b[1m\u001b[32mArray[org.apache.spark.graphx.Edge[Int]]\u001b[0m \u003d Array(Edge(1,2,1800), Edge(1,2,1800))\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d5"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d6"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702582111246_1039126943",
+      "id": "paragraph_1702582111246_1039126943",
+      "dateCreated": "2023-12-14 19:28:31.246",
+      "dateStarted": "2023-12-14 19:40:34.081",
+      "dateFinished": "2023-12-14 19:40:36.681",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\nval nowhere \u003d \"nowhere\"",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-14 19:36:32.093",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mnowhere\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d nowhere\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702582383469_478905362",
+      "id": "paragraph_1702582383469_478905362",
+      "dateCreated": "2023-12-14 19:33:03.470",
+      "dateStarted": "2023-12-14 19:36:32.182",
+      "dateFinished": "2023-12-14 19:36:33.455",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\nval graph \u003d Graph(vRDD,eRDD,nowhere)\nprintln(\"verdices :\")\ngraph.vertices.collect.foreach(println)\nprintln(\"edge :\")\ngraph.edges.collect.foreach(println)",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-14 19:40:46.102",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "verdices :\n(1,A)\n(2,B)\n(3,C)\nedge :\nEdge(1,2,1800)\nEdge(1,2,1800)\nEdge(2,3,800)\nEdge(3,1,1400)\n\u001b[1m\u001b[34mgraph\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.graphx.Graph[String,Int]\u001b[0m \u003d org.apache.spark.graphx.impl.GraphImpl@1ad846f0\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d7"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d8"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702582592151_1656852551",
+      "id": "paragraph_1702582592151_1656852551",
+      "dateCreated": "2023-12-14 19:36:32.151",
+      "dateStarted": "2023-12-14 19:40:46.143",
+      "dateFinished": "2023-12-14 19:40:51.820",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\nval numarport \u003d graph.numVertices",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-14 19:43:49.448",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mnumarport\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m \u003d 3\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d9"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702582796280_850375089",
+      "id": "paragraph_1702582796280_850375089",
+      "dateCreated": "2023-12-14 19:39:56.280",
+      "dateStarted": "2023-12-14 19:43:49.507",
+      "dateFinished": "2023-12-14 19:43:50.789",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\nval numroutes \u003d graph.numEdges",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-14 19:44:37.759",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mnumroutes\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m \u003d 4\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d10"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702583012086_1190526771",
+      "id": "paragraph_1702583012086_1190526771",
+      "dateCreated": "2023-12-14 19:43:32.086",
+      "dateStarted": "2023-12-14 19:44:37.854",
+      "dateFinished": "2023-12-14 19:44:39.295",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\ngraph.edges.filter{ case Edge(src,dst,prop) \u003d\u003e prop \u003e 1000}.collect.foreach(println)",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-14 19:46:48.753",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Edge(1,2,1800)\nEdge(1,2,1800)\nEdge(3,1,1400)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d11"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702583077793_1099102935",
+      "id": "paragraph_1702583077793_1099102935",
+      "dateCreated": "2023-12-14 19:44:37.793",
+      "dateStarted": "2023-12-14 19:46:48.798",
+      "dateFinished": "2023-12-14 19:46:50.585",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\ngraph.triplets.take(3).foreach(println)",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-14 19:47:41.087",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "((1,A),(2,B),1800)\n((1,A),(2,B),1800)\n((2,B),(3,C),800)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d12"
+            },
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d13"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702583208784_1981750730",
+      "id": "paragraph_1702583208784_1981750730",
+      "dateCreated": "2023-12-14 19:46:48.797",
+      "dateStarted": "2023-12-14 19:47:41.136",
+      "dateFinished": "2023-12-14 19:47:42.812",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\nval f \u003d graph.inDegrees",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-14 19:52:19.367",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mf\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.graphx.VertexRDD[Int]\u001b[0m \u003d VertexRDDImpl[31] at RDD at VertexRDD.scala:57\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702583261122_138252250",
+      "id": "paragraph_1702583261122_138252250",
+      "dateCreated": "2023-12-14 19:47:41.123",
+      "dateStarted": "2023-12-14 19:52:19.402",
+      "dateFinished": "2023-12-14 19:52:21.137",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\nf.collect()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-14 19:52:33.242",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mres17\u001b[0m: \u001b[1m\u001b[32mArray[(org.apache.spark.graphx.VertexId, Int)]\u001b[0m \u003d Array((1,1), (2,2), (3,1))\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d14"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702583539400_516048356",
+      "id": "paragraph_1702583539400_516048356",
+      "dateCreated": "2023-12-14 19:52:19.400",
+      "dateStarted": "2023-12-14 19:52:33.297",
+      "dateFinished": "2023-12-14 19:52:34.777",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\nval f \u003d graph.outDegrees",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-14 19:53:02.602",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mf\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.graphx.VertexRDD[Int]\u001b[0m \u003d VertexRDDImpl[35] at RDD at VertexRDD.scala:57\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702583553288_838997652",
+      "id": "paragraph_1702583553288_838997652",
+      "dateCreated": "2023-12-14 19:52:33.288",
+      "dateStarted": "2023-12-14 19:53:02.677",
+      "dateFinished": "2023-12-14 19:53:03.525",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\nf.collect",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-14 19:53:11.327",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mres18\u001b[0m: \u001b[1m\u001b[32mArray[(org.apache.spark.graphx.VertexId, Int)]\u001b[0m \u003d Array((1,2), (2,1), (3,1))\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d15"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702583582645_517578379",
+      "id": "paragraph_1702583582645_517578379",
+      "dateCreated": "2023-12-14 19:53:02.645",
+      "dateStarted": "2023-12-14 19:53:11.350",
+      "dateFinished": "2023-12-14 19:53:12.085",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\nval totalDegrees \u003d graph.degrees",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-14 19:53:52.157",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mtotalDegrees\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.graphx.VertexRDD[Int]\u001b[0m \u003d VertexRDDImpl[39] at RDD at VertexRDD.scala:57\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702583591347_54376206",
+      "id": "paragraph_1702583591347_54376206",
+      "dateCreated": "2023-12-14 19:53:11.347",
+      "dateStarted": "2023-12-14 19:53:52.258",
+      "dateFinished": "2023-12-14 19:53:53.300",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\ntotalDegrees.collect()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-14 19:54:08.646",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mres19\u001b[0m: \u001b[1m\u001b[32mArray[(org.apache.spark.graphx.VertexId, Int)]\u001b[0m \u003d Array((1,3), (2,3), (3,2))\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d16"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702583632212_1079080755",
+      "id": "paragraph_1702583632212_1079080755",
+      "dateCreated": "2023-12-14 19:53:52.223",
+      "dateStarted": "2023-12-14 19:54:08.685",
+      "dateFinished": "2023-12-14 19:54:10.067",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\r\nimport org.apache.spark.graphx.{Graph, VertexId}\r\nimport org.apache.spark.rdd.RDD\r\n\r\n// Extracting vertices and edges from the DataFrame\r\nval vertices: RDD[(VertexId, String)] \u003d all.select(\"Source\").rdd.distinct().map(row \u003d\u003e (row.getString(0).hashCode.toLong, row.getString(0)))\r\nval edges: RDD[Edge[Long]] \u003d all.select(\"Source\", \"Target\", \"Weight\", \"Book\").rdd.map(row \u003d\u003e Edge(row.getString(0).hashCode.toLong, row.getString(1).hashCode.toLong, (row.getLong(2), row.getLong(3))))\r\n\r\n// Creating the Graph\r\nval graph: Graph[String, (Long, Long)] \u003d Graph(vertices, edges)\r\n\r\n// Now you can perform graph processing operations using GraphX API\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-15 16:39:33.864",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:32: \u001b[31merror: \u001b[0mnot found: type Edge\n       val edges: RDD[Edge[Long]] \u003d all.select(\"Source\", \"Target\", \"Weight\", \"Book\").rdd.map(row \u003d\u003e Edge(row.getString(0).hashCode.toLong, row.getString(1).hashCode.toLong, (row.getLong(2), row.getLong(3))))\n                      ^\n\u003cconsole\u003e:32: \u001b[31merror: \u001b[0mnot found: value Edge\n       val edges: RDD[Edge[Long]] \u003d all.select(\"Source\", \"Target\", \"Weight\", \"Book\").rdd.map(row \u003d\u003e Edge(row.getString(0).hashCode.toLong, row.getString(1).hashCode.toLong, (row.getLong(2), row.getLong(3))))\n                                                                                                    ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702583648681_673005032",
+      "id": "paragraph_1702583648681_673005032",
+      "dateCreated": "2023-12-14 19:54:08.681",
+      "dateStarted": "2023-12-15 16:39:33.885",
+      "dateFinished": "2023-12-15 16:39:34.525",
+      "status": "ERROR"
+    },
+    {
+      "text": "%spark\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-15 16:39:33.884",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702658373884_26771008",
+      "id": "paragraph_1702658373884_26771008",
+      "dateCreated": "2023-12-15 16:39:33.884",
+      "status": "READY"
+    }
+  ],
+  "name": "Untitled Note 6",
+  "id": "2JKJTQP5T",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.10.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

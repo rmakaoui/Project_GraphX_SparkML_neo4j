@@ -1,0 +1,14 @@
+Source,Target,weight,prediction
+clayton-suggs,godry-farring,5.0,0
+clayton-suggs,stannis-baratheon,6.0,0
+donella-hornwood,leobald-tallhart,3.0,0
+donella-hornwood,luwin,7.0,0
+donella-hornwood,mors-umber,3.0,0
+donella-hornwood,ramsay-snow,3.0,0
+donella-hornwood,rodrik-cassel,4.0,0
+elmar-frey,jaime-lannister,6.0,0
+elmar-frey,robb-stark,9.0,0
+elmar-frey,roose-bolton,3.0,0
+elmar-frey,tywin-lannister,3.0,0
+elmar-frey,walder-frey,6.0,0
+nan,robb-stark,4.0,0

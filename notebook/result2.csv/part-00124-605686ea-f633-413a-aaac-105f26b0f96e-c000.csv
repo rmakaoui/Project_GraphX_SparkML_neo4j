@@ -1,0 +1,11 @@
+Source,Target,weight,prediction
+blue-bard,cersei-lannister,7.0,0
+blue-bard,lambert-turnberry,3.0,0
+blue-bard,margaery-tyrell,6.0,0
+blue-bard,qyburn,4.0,0
+blue-bard,tallad,3.0,0
+falyse-stokeworth,qyburn,7.0,0
+jaehaerys-i-targaryen,maegor-i-targaryen,3.0,0
+kerwin,victarion-greyjoy,12.0,0
+missandei,quentyn-martell,3.0,0
+missandei,skahaz-mo-kandaq,6.0,0

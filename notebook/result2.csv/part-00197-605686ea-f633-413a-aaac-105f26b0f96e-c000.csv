@@ -1,0 +1,13 @@
+Source,Target,weight,prediction
+barsena,daenerys-targaryen,4.0,0
+jeyne-poole,loras-tyrell,4.0,0
+jeyne-poole,mordane,7.0,0
+jeyne-poole,ramsay-snow,12.0,0
+jeyne-poole,robert-baratheon,3.0,0
+jeyne-poole,roose-bolton,3.0,0
+jeyne-poole,rowan,3.0,0
+jeyne-poole,sansa-stark,27.0,2
+jeyne-poole,squirrel,3.0,0
+jeyne-poole,theon-greyjoy,24.0,2
+jonothor-darry,lewyn-martell,3.0,0
+jonothor-darry,oswell-whent,3.0,0

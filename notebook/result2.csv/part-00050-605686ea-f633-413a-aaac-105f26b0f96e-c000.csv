@@ -1,0 +1,15 @@
+Source,Target,weight,prediction
+cotter-pyke,denys-mallister,14.0,0
+cotter-pyke,denys-mallister,4.0,0
+cotter-pyke,eddison-tollett,3.0,0
+cotter-pyke,jon-snow,3.0,0
+cotter-pyke,jon-snow,11.0,0
+cotter-pyke,othell-yarwyck,6.0,0
+cotter-pyke,pypar,3.0,0
+cotter-pyke,samwell-tarly,10.0,0
+cotter-pyke,selyse-florent,3.0,0
+cotter-pyke,stannis-baratheon,5.0,0
+gyles-grafton,robert-arryn,3.0,0
+gyles-grafton,terrance-lynderly,5.0,0
+ralf-stonehouse,victarion-greyjoy,3.0,0
+rhaella-targaryen,viserys-targaryen,3.0,0

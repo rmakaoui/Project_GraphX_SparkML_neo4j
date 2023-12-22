@@ -1,0 +1,1164 @@
+{
+  "paragraphs": [
+    {
+      "text": "val x \u003d 10\r\nval y \u003d 20\r\nval sum \u003d x + y\r\nsum",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 17:07:04.844",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mx\u001b[0m: \u001b[1m\u001b[32mInt\u001b[0m \u003d 10\n\u001b[1m\u001b[34my\u001b[0m: \u001b[1m\u001b[32mInt\u001b[0m \u003d 20\n\u001b[1m\u001b[34msum\u001b[0m: \u001b[1m\u001b[32mInt\u001b[0m \u003d 30\n\u001b[1m\u001b[34mres1\u001b[0m: \u001b[1m\u001b[32mInt\u001b[0m \u003d 30\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702228012975_305845830",
+      "id": "paragraph_1702228012975_305845830",
+      "dateCreated": "2023-12-10 17:06:52.975",
+      "dateStarted": "2023-12-10 17:07:04.922",
+      "dateFinished": "2023-12-10 17:07:25.855",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Load CSV data from HDFS into a DataFrame\r\nval csvPath \u003d \"hdfs://namenode:9000/data/book1.csv\"\r\nval df \u003d spark.read.option(\"header\", \"true\").csv(csvPath)\r\n\r\n// Show the DataFrame schema and data\r\ndf.printSchema()\r\ndf.show()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 17:07:37.097",
+      "progress": 100,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- Source: string (nullable \u003d true)\n |-- Target: string (nullable \u003d true)\n |-- Type: string (nullable \u003d true)\n |-- weight: string (nullable \u003d true)\n |-- book: string (nullable \u003d true)\n\n+--------------------+------------------+----------+------+----+\n|              Source|            Target|      Type|weight|book|\n+--------------------+------------------+----------+------+----+\n|      Addam-Marbrand|   Jaime-Lannister|Undirected|     3|   1|\n|      Addam-Marbrand|   Tywin-Lannister|Undirected|     6|   1|\n|   Aegon-I-Targaryen|Daenerys-Targaryen|Undirected|     5|   1|\n|   Aegon-I-Targaryen|      Eddard-Stark|Undirected|     4|   1|\n|Aemon-Targaryen-(...|    Alliser-Thorne|Undirected|     4|   1|\n|Aemon-Targaryen-(...|       Bowen-Marsh|Undirected|     4|   1|\n|Aemon-Targaryen-(...|             Chett|Undirected|     9|   1|\n|Aemon-Targaryen-(...|            Clydas|Undirected|     5|   1|\n|Aemon-Targaryen-(...|      Jeor-Mormont|Undirected|    13|   1|\n|Aemon-Targaryen-(...|          Jon-Snow|Undirected|    34|   1|\n|Aemon-Targaryen-(...|     Samwell-Tarly|Undirected|     5|   1|\n|  Aerys-II-Targaryen|     Brandon-Stark|Undirected|     4|   1|\n|  Aerys-II-Targaryen|      Eddard-Stark|Undirected|    10|   1|\n|  Aerys-II-Targaryen|  Gerold-Hightower|Undirected|     3|   1|\n|  Aerys-II-Targaryen|   Jaime-Lannister|Undirected|     5|   1|\n|  Aerys-II-Targaryen|         Jon-Arryn|Undirected|     3|   1|\n|  Aerys-II-Targaryen|  Robert-Baratheon|Undirected|    12|   1|\n|                Aggo|Daenerys-Targaryen|Undirected|    11|   1|\n|                Aggo|             Drogo|Undirected|     6|   1|\n|                Aggo|             Jhogo|Undirected|     4|   1|\n+--------------------+------------------+----------+------+----+\nonly showing top 20 rows\n\n\u001b[1m\u001b[34mcsvPath\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d hdfs://namenode:9000/data/book1.csv\n\u001b[1m\u001b[34mdf\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [Source: string, Target: string ... 3 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d0"
+            },
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d1"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702228024917_2093166184",
+      "id": "paragraph_1702228024917_2093166184",
+      "dateCreated": "2023-12-10 17:07:04.917",
+      "dateStarted": "2023-12-10 17:07:37.129",
+      "dateFinished": "2023-12-10 17:07:46.447",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Display lines with null values\r\ndf.filter(df.columns.map(c \u003d\u003e col(c).isNull).reduce(_ || _)).show()\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 17:07:51.376",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------+------+----+------+----+\n|Source|Target|Type|weight|book|\n+------+------+----+------+----+\n+------+------+----+------+----+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d2"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702228057126_1233462811",
+      "id": "paragraph_1702228057126_1233462811",
+      "dateCreated": "2023-12-10 17:07:37.126",
+      "dateStarted": "2023-12-10 17:07:51.426",
+      "dateFinished": "2023-12-10 17:07:54.229",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Display distinct values of the \"Type\" column\r\ndf.select(\"Type\").distinct().show()\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 17:07:59.750",
+      "progress": 64,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+----------+\n|      Type|\n+----------+\n|Undirected|\n+----------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d3"
+            },
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d4"
+            },
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d5"
+            },
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d6"
+            },
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d7"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702228071423_982020689",
+      "id": "paragraph_1702228071423_982020689",
+      "dateCreated": "2023-12-10 17:07:51.423",
+      "dateStarted": "2023-12-10 17:07:59.807",
+      "dateFinished": "2023-12-10 17:08:04.779",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Load CSV data from HDFS into a DataFrame\r\nval csvPath \u003d \"hdfs://namenode:9000/data/book2.csv\"\r\nval df2 \u003d spark.read.option(\"header\", \"true\").csv(csvPath)\r\n\r\n// Show the DataFrame schema and data\r\ndf2.printSchema()\r\ndf2.show()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 17:08:07.435",
+      "progress": 100,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- Source: string (nullable \u003d true)\n |-- Target: string (nullable \u003d true)\n |-- Type: string (nullable \u003d true)\n |-- weight: string (nullable \u003d true)\n |-- book: string (nullable \u003d true)\n\n+--------------------+--------------------+----------+------+----+\n|              Source|              Target|      Type|weight|book|\n+--------------------+--------------------+----------+------+----+\n|   Aegon-I-Targaryen|        Harren-Hoare|Undirected|     4|   2|\n|   Aegon-I-Targaryen|                 Nan|Undirected|     3|   2|\n|   Aegon-I-Targaryen|   Rhaenys-Targaryen|Undirected|     4|   2|\n|   Aegon-I-Targaryen|    Tyrion-Lannister|Undirected|     3|   2|\n|   Aegon-I-Targaryen|   Visenya-Targaryen|Undirected|     3|   2|\n|   Aegon-V-Targaryen|Aemon-Targaryen-(...|Undirected|     3|   2|\n|Aemon-Targaryen-(...| Daeron-II-Targaryen|Undirected|     3|   2|\n|Aemon-Targaryen-(...|        Jeor-Mormont|Undirected|     9|   2|\n|Aemon-Targaryen-(...|            Jon-Snow|Undirected|    11|   2|\n|Aemon-Targaryen-(...|  Maekar-I-Targaryen|Undirected|     3|   2|\n|Aemon-Targaryen-(...|       Samwell-Tarly|Undirected|     5|   2|\n|          Aenys-Frey|          Arya-Stark|Undirected|     6|   2|\n|       Aeron-Greyjoy|              Dagmer|Undirected|     5|   2|\n|       Aeron-Greyjoy|       Theon-Greyjoy|Undirected|    17|   2|\n|   Aerys-I-Targaryen|    Robert-Baratheon|Undirected|     3|   2|\n|  Aerys-II-Targaryen|        Eddard-Stark|Undirected|     5|   2|\n|  Aerys-II-Targaryen|     Jaime-Lannister|Undirected|     4|   2|\n|  Aerys-II-Targaryen|   Rhaegar-Targaryen|Undirected|     4|   2|\n|  Aerys-II-Targaryen|    Robert-Baratheon|Undirected|     6|   2|\n|  Aerys-II-Targaryen|    Tyrion-Lannister|Undirected|     3|   2|\n+--------------------+--------------------+----------+------+----+\nonly showing top 20 rows\n\n\u001b[1m\u001b[34mcsvPath\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d hdfs://namenode:9000/data/book2.csv\n\u001b[1m\u001b[34mdf2\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [Source: string, Target: string ... 3 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d8"
+            },
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d9"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702228079784_953152793",
+      "id": "paragraph_1702228079784_953152793",
+      "dateCreated": "2023-12-10 17:07:59.784",
+      "dateStarted": "2023-12-10 17:08:07.469",
+      "dateFinished": "2023-12-10 17:08:09.198",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Fill null values in the \"book\" column with 2\r\nval dfFilled \u003d df2.na.fill(2, Seq(\"book\"))\r\n\r\n// Show the DataFrame after filling null values\r\ndfFilled.show()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 17:08:29.973",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+--------------------+----------+------+----+\n|              Source|              Target|      Type|weight|book|\n+--------------------+--------------------+----------+------+----+\n|   Aegon-I-Targaryen|        Harren-Hoare|Undirected|     4|   2|\n|   Aegon-I-Targaryen|                 Nan|Undirected|     3|   2|\n|   Aegon-I-Targaryen|   Rhaenys-Targaryen|Undirected|     4|   2|\n|   Aegon-I-Targaryen|    Tyrion-Lannister|Undirected|     3|   2|\n|   Aegon-I-Targaryen|   Visenya-Targaryen|Undirected|     3|   2|\n|   Aegon-V-Targaryen|Aemon-Targaryen-(...|Undirected|     3|   2|\n|Aemon-Targaryen-(...| Daeron-II-Targaryen|Undirected|     3|   2|\n|Aemon-Targaryen-(...|        Jeor-Mormont|Undirected|     9|   2|\n|Aemon-Targaryen-(...|            Jon-Snow|Undirected|    11|   2|\n|Aemon-Targaryen-(...|  Maekar-I-Targaryen|Undirected|     3|   2|\n|Aemon-Targaryen-(...|       Samwell-Tarly|Undirected|     5|   2|\n|          Aenys-Frey|          Arya-Stark|Undirected|     6|   2|\n|       Aeron-Greyjoy|              Dagmer|Undirected|     5|   2|\n|       Aeron-Greyjoy|       Theon-Greyjoy|Undirected|    17|   2|\n|   Aerys-I-Targaryen|    Robert-Baratheon|Undirected|     3|   2|\n|  Aerys-II-Targaryen|        Eddard-Stark|Undirected|     5|   2|\n|  Aerys-II-Targaryen|     Jaime-Lannister|Undirected|     4|   2|\n|  Aerys-II-Targaryen|   Rhaegar-Targaryen|Undirected|     4|   2|\n|  Aerys-II-Targaryen|    Robert-Baratheon|Undirected|     6|   2|\n|  Aerys-II-Targaryen|    Tyrion-Lannister|Undirected|     3|   2|\n+--------------------+--------------------+----------+------+----+\nonly showing top 20 rows\n\n\u001b[1m\u001b[34mdfFilled\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [Source: string, Target: string ... 3 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d10"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702228087467_1263408823",
+      "id": "paragraph_1702228087467_1263408823",
+      "dateCreated": "2023-12-10 17:08:07.467",
+      "dateStarted": "2023-12-10 17:08:30.012",
+      "dateFinished": "2023-12-10 17:08:31.926",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Show null values before filling\r\ndf.filter(col(\"book\").isNull).show()\r\n\r\n// Fill null values\r\nval dfFilled \u003d df.na.fill(2, Seq(\"book\"))\r\n\r\n// Show null values after filling\r\ndfFilled.filter(col(\"book\").isNull).show()\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 17:09:17.746",
+      "progress": 100,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------+------+----+------+----+\n|Source|Target|Type|weight|book|\n+------+------+----+------+----+\n+------+------+----+------+----+\n\n+------+------+----+------+----+\n|Source|Target|Type|weight|book|\n+------+------+----+------+----+\n+------+------+----+------+----+\n\n\u001b[1m\u001b[34mdfFilled\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [Source: string, Target: string ... 3 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d11"
+            },
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d12"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702228110009_735170677",
+      "id": "paragraph_1702228110009_735170677",
+      "dateCreated": "2023-12-10 17:08:30.010",
+      "dateStarted": "2023-12-10 17:09:17.769",
+      "dateFinished": "2023-12-10 17:09:19.078",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Load CSV data from HDFS into a DataFrame\r\nval csvPath \u003d \"hdfs://namenode:9000/data/book3.csv\"\r\nval df3 \u003d spark.read.option(\"header\", \"true\").csv(csvPath)\r\n\r\n// Show the DataFrame schema and data\r\ndf3.printSchema()\r\ndf3.show()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 17:09:27.468",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- Source: string (nullable \u003d true)\n |-- Target: string (nullable \u003d true)\n |-- Type: string (nullable \u003d true)\n |-- weight: string (nullable \u003d true)\n |-- book: string (nullable \u003d true)\n\n+--------------------+------------------+----------+------+----+\n|              Source|            Target|      Type|weight|book|\n+--------------------+------------------+----------+------+----+\n|      Addam-Marbrand|       Gyles-Rosby|Undirected|     3|   3|\n|      Addam-Marbrand|   Jaime-Lannister|Undirected|     3|   3|\n|      Addam-Marbrand|      Jalabhar-Xho|Undirected|     3|   3|\n|      Addam-Marbrand| Joffrey-Baratheon|Undirected|     3|   3|\n|      Addam-Marbrand|   Kevan-Lannister|Undirected|     3|   3|\n|      Addam-Marbrand|    Oberyn-Martell|Undirected|     3|   3|\n|      Addam-Marbrand|  Tyrion-Lannister|Undirected|     7|   3|\n|      Addam-Marbrand|             Varys|Undirected|     4|   3|\n|Aegon-Frey-(son-o...|     Catelyn-Stark|Undirected|     4|   3|\n|Aegon-Frey-(son-o...|        Robb-Stark|Undirected|     5|   3|\n|Aegon-Frey-(son-o...|      Stevron-Frey|Undirected|     3|   3|\n|Aegon-Frey-(son-o...|       Walder-Frey|Undirected|     6|   3|\n|   Aegon-I-Targaryen|Daenerys-Targaryen|Undirected|     4|   3|\n|   Aegon-I-Targaryen| Stannis-Baratheon|Undirected|     4|   3|\n|   Aegon-I-Targaryen|     Torrhen-Stark|Undirected|     3|   3|\n|Aegon-Targaryen-(...|      Elia-Martell|Undirected|     3|   3|\n|Aemon-Targaryen-(...|   Jaime-Lannister|Undirected|     3|   3|\n|Aemon-Targaryen-(...|    Alliser-Thorne|Undirected|     3|   3|\n|Aemon-Targaryen-(...|            Clydas|Undirected|    16|   3|\n|Aemon-Targaryen-(...|       Cotter-Pyke|Undirected|     3|   3|\n+--------------------+------------------+----------+------+----+\nonly showing top 20 rows\n\n\u001b[1m\u001b[34mcsvPath\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d hdfs://namenode:9000/data/book3.csv\n\u001b[1m\u001b[34mdf3\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [Source: string, Target: string ... 3 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d13"
+            },
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d14"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702228157766_837941118",
+      "id": "paragraph_1702228157766_837941118",
+      "dateCreated": "2023-12-10 17:09:17.767",
+      "dateStarted": "2023-12-10 17:09:27.495",
+      "dateFinished": "2023-12-10 17:09:29.122",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Show null values before filling\r\ndf3.filter(df3.columns.map(c \u003d\u003e col(c).isNull).reduce(_ || _)).show()\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 17:09:43.018",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------+------+----+------+----+\n|Source|Target|Type|weight|book|\n+------+------+----+------+----+\n+------+------+----+------+----+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d15"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702228167492_89486315",
+      "id": "paragraph_1702228167492_89486315",
+      "dateCreated": "2023-12-10 17:09:27.492",
+      "dateStarted": "2023-12-10 17:09:43.043",
+      "dateFinished": "2023-12-10 17:09:44.609",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Load CSV data from HDFS into a DataFrame\r\nval csvPath \u003d \"hdfs://namenode:9000/data/book4.csv\"\r\nval df4 \u003d spark.read.option(\"header\", \"true\").csv(csvPath)\r\n\r\n// Show the DataFrame schema and data\r\ndf4.printSchema()\r\ndf4.show()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 17:09:52.367",
+      "progress": 100,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- Source: string (nullable \u003d true)\n |-- Target: string (nullable \u003d true)\n |-- Type: string (nullable \u003d true)\n |-- weight: string (nullable \u003d true)\n |-- book: string (nullable \u003d true)\n\n+--------------------+--------------------+----------+------+----+\n|              Source|              Target|      Type|weight|book|\n+--------------------+--------------------+----------+------+----+\n|      Addam-Marbrand|       Brynden-Tully|undirected|     3|   4|\n|      Addam-Marbrand|    Cersei-Lannister|undirected|     3|   4|\n|      Addam-Marbrand|     Jaime-Lannister|undirected|     8|   4|\n|      Addam-Marbrand|      Lyle-Crakehall|undirected|     4|   4|\n|Aegon-Targaryen-(...|   Rhaegar-Targaryen|undirected|     3|   4|\n|   Aegon-V-Targaryen|Aemon-Targaryen-(...|undirected|     3|   4|\n|Aemon-Targaryen-(...|             Alleras|undirected|     4|   4|\n|Aemon-Targaryen-(...|              Clydas|undirected|     5|   4|\n|Aemon-Targaryen-(...|              Dareon|undirected|     5|   4|\n|Aemon-Targaryen-(...|               Gilly|undirected|    17|   4|\n|Aemon-Targaryen-(...|            Jon-Snow|undirected|    17|   4|\n|Aemon-Targaryen-(...|       Samwell-Tarly|undirected|    41|   4|\n|       Aeron-Greyjoy|        Asha-Greyjoy|undirected|     7|   4|\n|       Aeron-Greyjoy|    Baelor-Blacktyde|undirected|     4|   4|\n|       Aeron-Greyjoy|       Balon-Greyjoy|undirected|    17|   4|\n|       Aeron-Greyjoy|       Dunstan-Drumm|undirected|     4|   4|\n|       Aeron-Greyjoy|              Emmond|undirected|     4|   4|\n|       Aeron-Greyjoy|       Euron-Greyjoy|undirected|    23|   4|\n|       Aeron-Greyjoy| Gormond-Goodbrother|undirected|     6|   4|\n|       Aeron-Greyjoy|  Gorold-Goodbrother|undirected|    10|   4|\n+--------------------+--------------------+----------+------+----+\nonly showing top 20 rows\n\n\u001b[1m\u001b[34mcsvPath\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d hdfs://namenode:9000/data/book4.csv\n\u001b[1m\u001b[34mdf4\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [Source: string, Target: string ... 3 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d16"
+            },
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d17"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702228183042_2111796611",
+      "id": "paragraph_1702228183042_2111796611",
+      "dateCreated": "2023-12-10 17:09:43.042",
+      "dateStarted": "2023-12-10 17:09:52.392",
+      "dateFinished": "2023-12-10 17:09:54.087",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Load CSV data from HDFS into a DataFrame\r\nval csvPath \u003d \"hdfs://namenode:9000/data/book5.csv\"\r\nval df5 \u003d spark.read.option(\"header\", \"true\").csv(csvPath)\r\n\r\n// Show the DataFrame schema and data\r\ndf5.printSchema()\r\ndf5.show()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 17:10:03.576",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- Source: string (nullable \u003d true)\n |-- Target: string (nullable \u003d true)\n |-- Type: string (nullable \u003d true)\n |-- weight: string (nullable \u003d true)\n |-- book: string (nullable \u003d true)\n\n+--------------------+--------------------+----------+------+----+\n|              Source|              Target|      Type|weight|book|\n+--------------------+--------------------+----------+------+----+\n|   Aegon-I-Targaryen|  Daenerys-Targaryen|undirected|     4|   5|\n|Aegon-Targaryen-(...|  Daenerys-Targaryen|undirected|    11|   5|\n|Aegon-Targaryen-(...|        Elia-Martell|undirected|     4|   5|\n|Aegon-Targaryen-(...|    Franklyn-Flowers|undirected|     3|   5|\n|Aegon-Targaryen-(...|              Haldon|undirected|    14|   5|\n|Aegon-Targaryen-(...|    Harry-Strickland|undirected|     9|   5|\n|Aegon-Targaryen-(...|      Jon-Connington|undirected|    16|   5|\n|Aegon-Targaryen-(...|              Lemore|undirected|    10|   5|\n|Aegon-Targaryen-(...|   Rhaegar-Targaryen|undirected|     9|   5|\n|Aegon-Targaryen-(...|Rhaenys-Targaryen...|undirected|     4|   5|\n|Aegon-Targaryen-(...|     Rolly-Duckfield|undirected|    11|   5|\n|Aegon-Targaryen-(...|    Tyrion-Lannister|undirected|    23|   5|\n|Aegon-Targaryen-(...|     Tywin-Lannister|undirected|     3|   5|\n|Aegon-Targaryen-(...|   Viserys-Targaryen|undirected|     3|   5|\n|Aegon-Targaryen-(...|              Yandry|undirected|     6|   5|\n|Aegon-Targaryen-(...|              Ysilla|undirected|     4|   5|\n|Aemon-Targaryen-(...|              Clydas|undirected|     7|   5|\n|Aemon-Targaryen-(...|               Gilly|undirected|     3|   5|\n|Aemon-Targaryen-(...|            Jon-Snow|undirected|    12|   5|\n|Aemon-Targaryen-(...|       Samwell-Tarly|undirected|    16|   5|\n+--------------------+--------------------+----------+------+----+\nonly showing top 20 rows\n\n\u001b[1m\u001b[34mcsvPath\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d hdfs://namenode:9000/data/book5.csv\n\u001b[1m\u001b[34mdf5\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [Source: string, Target: string ... 3 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d18"
+            },
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d19"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702228192391_237871115",
+      "id": "paragraph_1702228192391_237871115",
+      "dateCreated": "2023-12-10 17:09:52.392",
+      "dateStarted": "2023-12-10 17:10:03.627",
+      "dateFinished": "2023-12-10 17:10:05.177",
+      "status": "FINISHED"
+    },
+    {
+      "text": "// Show null values before filling\r\ndf5.filter(df5.columns.map(c \u003d\u003e col(c).isNull).reduce(_ || _)).show()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 17:10:16.181",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------+------+----+------+----+\n|Source|Target|Type|weight|book|\n+------+------+----+------+----+\n+------+------+----+------+----+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://87812fc1e3e4:4040/jobs/job?id\u003d20"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702228203612_1004640134",
+      "id": "paragraph_1702228203612_1004640134",
+      "dateCreated": "2023-12-10 17:10:03.612",
+      "dateStarted": "2023-12-10 17:10:16.213",
+      "dateFinished": "2023-12-10 17:10:17.666",
+      "status": "FINISHED"
+    },
+    {
+      "text": "val combinedDF \u003d dfFilled.union(df2).union(df3).union(df4).union(df5)",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 17:10:27.390",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mcombinedDF\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\u001b[0m \u003d [Source: string, Target: string ... 3 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702228216212_1317867397",
+      "id": "paragraph_1702228216212_1317867397",
+      "dateCreated": "2023-12-10 17:10:16.212",
+      "dateStarted": "2023-12-10 17:10:27.417",
+      "dateFinished": "2023-12-10 17:10:28.145",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\r\nsc.version\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 17:10:51.291",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mres13\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d 2.4.5\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702228227416_719155902",
+      "id": "paragraph_1702228227416_719155902",
+      "dateCreated": "2023-12-10 17:10:27.416",
+      "dateStarted": "2023-12-10 17:10:51.319",
+      "dateFinished": "2023-12-10 17:10:51.737",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\nMATCH (n)\nRETURN n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 17:11:16.579",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "name": "string",
+                      "age": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":0,\"data\":{\"name\":\"John Doe\",\"age\":\"30\"},\"label\":\"Person\"}],\"edges\":[],\"labels\":{\"Person\":\"#CCE341\"},\"types\":[],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702228251312_1905375723",
+      "id": "paragraph_1702228251312_1905375723",
+      "dateCreated": "2023-12-10 17:10:51.312",
+      "dateStarted": "2023-12-10 17:11:12.392",
+      "dateFinished": "2023-12-10 17:11:15.960",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\r\nval neo4jConnectorJar \u003d \"/neo4j-spark-connector-2.4.5-M2.jar\"\r\nspark.conf.set(\"spark.jars\", neo4jConnectorJar)\r\nval jars \u003d spark.sparkContext.getConf.get(\"spark.jars\")\r\nprintln(s\"Loaded JARs: $jars\")\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 17:32:32.192",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "java.util.NoSuchElementException: spark.jars\n  at org.apache.spark.SparkConf$$anonfun$get$1.apply(SparkConf.scala:246)\n  at org.apache.spark.SparkConf$$anonfun$get$1.apply(SparkConf.scala:246)\n  at scala.Option.getOrElse(Option.scala:121)\n  at org.apache.spark.SparkConf.get(SparkConf.scala:246)\n  ... 45 elided\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702228367291_1158022197",
+      "id": "paragraph_1702228367291_1158022197",
+      "dateCreated": "2023-12-10 17:12:47.291",
+      "dateStarted": "2023-12-10 17:32:32.263",
+      "dateFinished": "2023-12-10 17:32:33.104",
+      "status": "ERROR"
+    },
+    {
+      "text": "%spark\r\n// Use the Spark package manager to add the neo4j-spark-connector package\r\nspark.conf.set(\"spark.jars.packages\", \"neo4j-contrib:neo4j-spark-connector:2.4.0-M6\")\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 17:48:21.957",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702228440592_618253434",
+      "id": "paragraph_1702228440592_618253434",
+      "dateCreated": "2023-12-10 17:14:00.592",
+      "dateStarted": "2023-12-10 17:48:21.979",
+      "dateFinished": "2023-12-10 17:48:22.226",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\r\nimport org.apache.spark.sql.SparkSession\r\n\r\nval spark \u003d SparkSession.builder.appName(\"Neo4jExample\").getOrCreate()\r\n\r\nval neo4jConfig \u003d Map(\r\n  \"url\" -\u003e \"bolt://neo4j:7687\",\r\n  \"user\" -\u003e \"neo4j\",\r\n  \"password\" -\u003e \"bitnami1\"\r\n)\r\n\r\n// Use the SparkSession to interact with Neo4j\r\n// For example, spark.read.format(\"org.neo4j.spark.DataSource\").load()\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 17:48:53.667",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.SparkSession\n\u001b[1m\u001b[34mspark\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.SparkSession\u001b[0m \u003d org.apache.spark.sql.SparkSession@4785f485\n\u001b[1m\u001b[34mneo4jConfig\u001b[0m: \u001b[1m\u001b[32mscala.collection.immutable.Map[String,String]\u001b[0m \u003d Map(url -\u003e bolt://neo4j:7687, user -\u003e neo4j, password -\u003e bitnami1)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702230530261_1687538999",
+      "id": "paragraph_1702230530261_1687538999",
+      "dateCreated": "2023-12-10 17:48:50.262",
+      "dateStarted": "2023-12-10 17:48:53.695",
+      "dateFinished": "2023-12-10 17:48:54.531",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\r\nval neo4jJdbcDriverJar \u003d \"/zeppelin/notebook/neo4j-jdbc-driver-4.0.10.jar\"\r\nspark.conf.set(\"spark.executor.extraClassPath\", neo4jJdbcDriverJar)\r\nspark.conf.set(\"spark.driver.extraClassPath\", neo4jJdbcDriverJar)\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 17:56:56.051",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mneo4jJdbcDriverJar\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d /zeppelin/notebook/neo4j-jdbc-driver-4.0.10.jar\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702230556456_1872278549",
+      "id": "paragraph_1702230556456_1872278549",
+      "dateCreated": "2023-12-10 17:49:16.456",
+      "dateStarted": "2023-12-10 17:56:56.073",
+      "dateFinished": "2023-12-10 17:56:56.393",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\r\nimport org.apache.spark.sql.{SparkSession, DataFrame}\r\n\r\nval spark \u003d SparkSession.builder.appName(\"Neo4jExample\").getOrCreate()\r\n\r\n// Define Neo4j connection parameters\r\nval neo4jUrl \u003d \"jdbc:neo4j:bolt://neo4j:7687\"\r\nval neo4jUser \u003d \"neo4j\"\r\nval neo4jPassword \u003d \"bitnami1\"\r\n\r\n// Define Cypher query\r\nval cypherQuery \u003d \"MATCH (n) RETURN n\"\r\n\r\n// Load data from Neo4j into DataFrame\r\nval df: DataFrame \u003d spark.read\r\n  .format(\"jdbc\")\r\n  .option(\"url\", neo4jUrl)\r\n  .option(\"driver\", \"org.neo4j.jdbc.Driver\")\r\n  .option(\"dbtable\", s\"($cypherQuery) AS neo4jData\")\r\n  .option(\"user\", neo4jUser)\r\n  .option(\"password\", neo4jPassword)\r\n  .load()\r\n\r\n// Show the DataFrame\r\ndf.show()\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 17:58:00.466",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "java.lang.ClassNotFoundException: org.neo4j.jdbc.Driver\n  at scala.reflect.internal.util.AbstractFileClassLoader.findClass(AbstractFileClassLoader.scala:62)\n  at java.lang.ClassLoader.loadClass(ClassLoader.java:418)\n  at java.lang.ClassLoader.loadClass(ClassLoader.java:351)\n  at org.apache.spark.sql.execution.datasources.jdbc.DriverRegistry$.register(DriverRegistry.scala:45)\n  at org.apache.spark.sql.execution.datasources.jdbc.JDBCOptions$$anonfun$5.apply(JDBCOptions.scala:99)\n  at org.apache.spark.sql.execution.datasources.jdbc.JDBCOptions$$anonfun$5.apply(JDBCOptions.scala:99)\n  at scala.Option.foreach(Option.scala:257)\n  at org.apache.spark.sql.execution.datasources.jdbc.JDBCOptions.\u003cinit\u003e(JDBCOptions.scala:99)\n  at org.apache.spark.sql.execution.datasources.jdbc.JDBCOptions.\u003cinit\u003e(JDBCOptions.scala:35)\n  at org.apache.spark.sql.execution.datasources.jdbc.JdbcRelationProvider.createRelation(JdbcRelationProvider.scala:32)\n  at org.apache.spark.sql.execution.datasources.DataSource.resolveRelation(DataSource.scala:318)\n  at org.apache.spark.sql.DataFrameReader.loadV1Source(DataFrameReader.scala:223)\n  at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:211)\n  at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:167)\n  ... 45 elided\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702231074608_1482657957",
+      "id": "paragraph_1702231074608_1482657957",
+      "dateCreated": "2023-12-10 17:57:54.608",
+      "dateStarted": "2023-12-10 17:58:00.490",
+      "dateFinished": "2023-12-10 17:58:01.702",
+      "status": "ERROR"
+    },
+    {
+      "text": "import org.neo4j.spark.Neo4j\r\nimport org.apache.spark.sql.{DataFrame, SparkSession}\r\n\r\n// Create a Spark session\r\nval spark \u003d SparkSession.builder.appName(\"Neo4jExample\").getOrCreate()\r\n\r\n// Define the Neo4j connection settings\r\nval neo4jConfig \u003d Map(\"url\" -\u003e \"bolt://neo4j:7687\", \"user\" -\u003e \"neo4j\", \"password\" -\u003e \"bitnami1\")\r\n\r\n\r\n// Write the DataFrame to Neo4j\r\nNeo4jDataFrame.mergeEdgeList(spark, combinedDF, \"Source\", \"Target\", \"Type\", \"weight\", \"book\", \"KNOWS\", neo4jConfig)\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 17:12:03.814",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:25: \u001b[31merror: \u001b[0mobject neo4j is not a member of package org\n       import org.neo4j.spark.Neo4j\n                  ^\n\u003cconsole\u003e:38: \u001b[31merror: \u001b[0mnot found: value Neo4jDataFrame\n       Neo4jDataFrame.mergeEdgeList(spark, combinedDF, \"Source\", \"Target\", \"Type\", \"weight\", \"book\", \"KNOWS\", neo4jConfig)\n       ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702228272381_2068239475",
+      "id": "paragraph_1702228272381_2068239475",
+      "dateCreated": "2023-12-10 17:11:12.381",
+      "dateStarted": "2023-12-10 17:12:03.835",
+      "dateFinished": "2023-12-10 17:12:04.016",
+      "status": "ERROR"
+    },
+    {
+      "text": "%neo4j\nMATCH (n:Entity2) RETURN n AS entity",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-12 18:51:25.340",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "label": "string",
+                      "name": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/undefined"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "NETWORK",
+            "data": "{\"nodes\":[{\"id\":4346,\"data\":{\"name\":\"Aegon-I-Targaryen\"},\"label\":\"Entity2\"},{\"id\":4347,\"data\":{\"name\":\"Harren-Hoare\"},\"label\":\"Entity2\"},{\"id\":4348,\"data\":{\"name\":\"Nan\"},\"label\":\"Entity2\"},{\"id\":4349,\"data\":{\"name\":\"Rhaenys-Targaryen\"},\"label\":\"Entity2\"},{\"id\":4350,\"data\":{\"name\":\"Tyrion-Lannister\"},\"label\":\"Entity2\"},{\"id\":4351,\"data\":{\"name\":\"Visenya-Targaryen\"},\"label\":\"Entity2\"},{\"id\":4352,\"data\":{\"name\":\"Aegon-V-Targaryen\"},\"label\":\"Entity2\"},{\"id\":4353,\"data\":{\"name\":\"Aemon-Targaryen-(Maester-Aemon)\"},\"label\":\"Entity2\"},{\"id\":4354,\"data\":{\"name\":\"Daeron-II-Targaryen\"},\"label\":\"Entity2\"},{\"id\":4355,\"data\":{\"name\":\"Jeor-Mormont\"},\"label\":\"Entity2\"},{\"id\":4356,\"data\":{\"name\":\"Jon-Snow\"},\"label\":\"Entity2\"},{\"id\":4357,\"data\":{\"name\":\"Maekar-I-Targaryen\"},\"label\":\"Entity2\"},{\"id\":4358,\"data\":{\"name\":\"Samwell-Tarly\"},\"label\":\"Entity2\"},{\"id\":4359,\"data\":{\"name\":\"Aenys-Frey\"},\"label\":\"Entity2\"},{\"id\":4360,\"data\":{\"name\":\"Arya-Stark\"},\"label\":\"Entity2\"},{\"id\":4361,\"data\":{\"name\":\"Aeron-Greyjoy\"},\"label\":\"Entity2\"},{\"id\":4362,\"data\":{\"name\":\"Dagmer\"},\"label\":\"Entity2\"},{\"id\":4363,\"data\":{\"name\":\"Theon-Greyjoy\"},\"label\":\"Entity2\"},{\"id\":4364,\"data\":{\"name\":\"Aerys-I-Targaryen\"},\"label\":\"Entity2\"},{\"id\":4365,\"data\":{\"name\":\"Robert-Baratheon\"},\"label\":\"Entity2\"},{\"id\":4366,\"data\":{\"name\":\"Aerys-II-Targaryen\"},\"label\":\"Entity2\"},{\"id\":4367,\"data\":{\"name\":\"Eddard-Stark\"},\"label\":\"Entity2\"},{\"id\":4368,\"data\":{\"name\":\"Jaime-Lannister\"},\"label\":\"Entity2\"},{\"id\":4369,\"data\":{\"name\":\"Rhaegar-Targaryen\"},\"label\":\"Entity2\"},{\"id\":4370,\"data\":{\"name\":\"Aggar\"},\"label\":\"Entity2\"},{\"id\":4371,\"data\":{\"name\":\"Gariss\"},\"label\":\"Entity2\"},{\"id\":4372,\"data\":{\"name\":\"Gelmarr\"},\"label\":\"Entity2\"},{\"id\":4373,\"data\":{\"name\":\"Gynir\"},\"label\":\"Entity2\"},{\"id\":4374,\"data\":{\"name\":\"Ramsay-Snow\"},\"label\":\"Entity2\"},{\"id\":4375,\"data\":{\"name\":\"Aggo\"},\"label\":\"Entity2\"},{\"id\":4376,\"data\":{\"name\":\"Belwas\"},\"label\":\"Entity2\"},{\"id\":4377,\"data\":{\"name\":\"Daenerys-Targaryen\"},\"label\":\"Entity2\"},{\"id\":4378,\"data\":{\"name\":\"Jhogo\"},\"label\":\"Entity2\"},{\"id\":4379,\"data\":{\"name\":\"Jorah-Mormont\"},\"label\":\"Entity2\"},{\"id\":4380,\"data\":{\"name\":\"Rakharo\"},\"label\":\"Entity2\"},{\"id\":4381,\"data\":{\"name\":\"Alayaya\"},\"label\":\"Entity2\"},{\"id\":4382,\"data\":{\"name\":\"Dancy\"},\"label\":\"Entity2\"},{\"id\":4383,\"data\":{\"name\":\"Alebelly\"},\"label\":\"Entity2\"},{\"id\":4384,\"data\":{\"name\":\"Bran-Stark\"},\"label\":\"Entity2\"},{\"id\":4385,\"data\":{\"name\":\"Hayhead\"},\"label\":\"Entity2\"},{\"id\":4386,\"data\":{\"name\":\"Jojen-Reed\"},\"label\":\"Entity2\"},{\"id\":4387,\"data\":{\"name\":\"Mikken\"},\"label\":\"Entity2\"},{\"id\":4388,\"data\":{\"name\":\"Alester-Florent\"},\"label\":\"Entity2\"},{\"id\":4389,\"data\":{\"name\":\"Cortnay-Penrose\"},\"label\":\"Entity2\"},{\"id\":4390,\"data\":{\"name\":\"Davos-Seaworth\"},\"label\":\"Entity2\"},{\"id\":4391,\"data\":{\"name\":\"Renly-Baratheon\"},\"label\":\"Entity2\"},{\"id\":4392,\"data\":{\"name\":\"Stannis-Baratheon\"},\"label\":\"Entity2\"},{\"id\":4393,\"data\":{\"name\":\"Allar-Deem\"},\"label\":\"Entity2\"},{\"id\":4394,\"data\":{\"name\":\"Janos-Slynt\"},\"label\":\"Entity2\"},{\"id\":4395,\"data\":{\"name\":\"Allard-Seaworth\"},\"label\":\"Entity2\"},{\"id\":4396,\"data\":{\"name\":\"Marya-Seaworth\"},\"label\":\"Entity2\"},{\"id\":4397,\"data\":{\"name\":\"Alliser-Thorne\"},\"label\":\"Entity2\"},{\"id\":4398,\"data\":{\"name\":\"Joffrey-Baratheon\"},\"label\":\"Entity2\"},{\"id\":4399,\"data\":{\"name\":\"Amabel\"},\"label\":\"Entity2\"},{\"id\":4400,\"data\":{\"name\":\"Harra\"},\"label\":\"Entity2\"},{\"id\":4401,\"data\":{\"name\":\"Amory-Lorch\"},\"label\":\"Entity2\"},{\"id\":4402,\"data\":{\"name\":\"Cersei-Lannister\"},\"label\":\"Entity2\"},{\"id\":4403,\"data\":{\"name\":\"Chiswyck\"},\"label\":\"Entity2\"},{\"id\":4404,\"data\":{\"name\":\"Dunsen\"},\"label\":\"Entity2\"},{\"id\":4405,\"data\":{\"name\":\"Gendry\"},\"label\":\"Entity2\"},{\"id\":4406,\"data\":{\"name\":\"Gregor-Clegane\"},\"label\":\"Entity2\"},{\"id\":4407,\"data\":{\"name\":\"Hot-Pie\"},\"label\":\"Entity2\"},{\"id\":4408,\"data\":{\"name\":\"Ilyn-Payne\"},\"label\":\"Entity2\"},{\"id\":4409,\"data\":{\"name\":\"Meryn-Trant\"},\"label\":\"Entity2\"},{\"id\":4410,\"data\":{\"name\":\"Polliver\"},\"label\":\"Entity2\"},{\"id\":4411,\"data\":{\"name\":\"Rafford\"},\"label\":\"Entity2\"},{\"id\":4412,\"data\":{\"name\":\"Roose-Bolton\"},\"label\":\"Entity2\"},{\"id\":4413,\"data\":{\"name\":\"Sandor-Clegane\"},\"label\":\"Entity2\"},{\"id\":4414,\"data\":{\"name\":\"Tickler\"},\"label\":\"Entity2\"},{\"id\":4415,\"data\":{\"name\":\"Tywin-Lannister\"},\"label\":\"Entity2\"},{\"id\":4416,\"data\":{\"name\":\"Vargo-Hoat\"},\"label\":\"Entity2\"},{\"id\":4417,\"data\":{\"name\":\"Yoren\"},\"label\":\"Entity2\"},{\"id\":4418,\"data\":{\"name\":\"Ardrian-Celtigar\"},\"label\":\"Entity2\"},{\"id\":4419,\"data\":{\"name\":\"Monford-Velaryon\"},\"label\":\"Entity2\"},{\"id\":4420,\"data\":{\"name\":\"Aron-Santagar\"},\"label\":\"Entity2\"},{\"id\":4421,\"data\":{\"name\":\"Arwyn-Oakheart\"},\"label\":\"Entity2\"},{\"id\":4422,\"data\":{\"name\":\"Randyll-Tarly\"},\"label\":\"Entity2\"},{\"id\":4423,\"data\":{\"name\":\"Beric-Dondarrion\"},\"label\":\"Entity2\"},{\"id\":4424,\"data\":{\"name\":\"Biter\"},\"label\":\"Entity2\"},{\"id\":4425,\"data\":{\"name\":\"Dobber\"},\"label\":\"Entity2\"},{\"id\":4426,\"data\":{\"name\":\"Jaqen-Hghar\"},\"label\":\"Entity2\"},{\"id\":4427,\"data\":{\"name\":\"Koss\"},\"label\":\"Entity2\"},{\"id\":4428,\"data\":{\"name\":\"Lommy-Greenhands\"},\"label\":\"Entity2\"},{\"id\":4429,\"data\":{\"name\":\"Praed\"},\"label\":\"Entity2\"},{\"id\":4430,\"data\":{\"name\":\"Rickon-Stark\"},\"label\":\"Entity2\"},{\"id\":4431,\"data\":{\"name\":\"Robb-Stark\"},\"label\":\"Entity2\"},{\"id\":4432,\"data\":{\"name\":\"Rorge\"},\"label\":\"Entity2\"},{\"id\":4433,\"data\":{\"name\":\"Sansa-Stark\"},\"label\":\"Entity2\"},{\"id\":4434,\"data\":{\"name\":\"Syrio-Forel\"},\"label\":\"Entity2\"},{\"id\":4435,\"data\":{\"name\":\"Weasel\"},\"label\":\"Entity2\"},{\"id\":4436,\"data\":{\"name\":\"Weese\"},\"label\":\"Entity2\"},{\"id\":4437,\"data\":{\"name\":\"Woth\"},\"label\":\"Entity2\"},{\"id\":4438,\"data\":{\"name\":\"Arys-Oakheart\"},\"label\":\"Entity2\"},{\"id\":4439,\"data\":{\"name\":\"Myrcella-Baratheon\"},\"label\":\"Entity2\"},{\"id\":4440,\"data\":{\"name\":\"Asha-Greyjoy\"},\"label\":\"Entity2\"},{\"id\":4441,\"data\":{\"name\":\"Balon-Greyjoy\"},\"label\":\"Entity2\"},{\"id\":4442,\"data\":{\"name\":\"Wex-Pyke\"},\"label\":\"Entity2\"},{\"id\":4443,\"data\":{\"name\":\"Axell-Florent\"},\"label\":\"Entity2\"},{\"id\":4444,\"data\":{\"name\":\"Selyse-Florent\"},\"label\":\"Entity2\"},{\"id\":4445,\"data\":{\"name\":\"Bael-the-Bard\"},\"label\":\"Entity2\"},{\"id\":4446,\"data\":{\"name\":\"Ygritte\"},\"label\":\"Entity2\"},{\"id\":4447,\"data\":{\"name\":\"Ballabar\"},\"label\":\"Entity2\"},{\"id\":4448,\"data\":{\"name\":\"Podrick-Payne\"},\"label\":\"Entity2\"},{\"id\":4449,\"data\":{\"name\":\"Catelyn-Stark\"},\"label\":\"Entity2\"},{\"id\":4450,\"data\":{\"name\":\"Victarion-Greyjoy\"},\"label\":\"Entity2\"},{\"id\":4451,\"data\":{\"name\":\"Balon-Swann\"},\"label\":\"Entity2\"},{\"id\":4452,\"data\":{\"name\":\"Mandon-Moore\"},\"label\":\"Entity2\"},{\"id\":4453,\"data\":{\"name\":\"Osmund-Kettleblack\"},\"label\":\"Entity2\"},{\"id\":4454,\"data\":{\"name\":\"Barristan-Selmy\"},\"label\":\"Entity2\"},{\"id\":4455,\"data\":{\"name\":\"Varys\"},\"label\":\"Entity2\"},{\"id\":4456,\"data\":{\"name\":\"Benfred-Tallhart\"},\"label\":\"Entity2\"},{\"id\":4457,\"data\":{\"name\":\"Helman-Tallhart\"},\"label\":\"Entity2\"},{\"id\":4458,\"data\":{\"name\":\"Leobald-Tallhart\"},\"label\":\"Entity2\"},{\"id\":4459,\"data\":{\"name\":\"Stygg\"},\"label\":\"Entity2\"},{\"id\":4460,\"data\":{\"name\":\"Benjen-Stark\"},\"label\":\"Entity2\"},{\"id\":4461,\"data\":{\"name\":\"Thoros-of-Myr\"},\"label\":\"Entity2\"},{\"id\":4462,\"data\":{\"name\":\"Beth-Cassel\"},\"label\":\"Entity2\"},{\"id\":4463,\"data\":{\"name\":\"Rodrik-Cassel\"},\"label\":\"Entity2\"},{\"id\":4464,\"data\":{\"name\":\"Boros-Blount\"},\"label\":\"Entity2\"},{\"id\":4465,\"data\":{\"name\":\"Gyles-Rosby\"},\"label\":\"Entity2\"},{\"id\":4466,\"data\":{\"name\":\"Tanda-Stokeworth\"},\"label\":\"Entity2\"},{\"id\":4467,\"data\":{\"name\":\"Tommen-Baratheon\"},\"label\":\"Entity2\"},{\"id\":4468,\"data\":{\"name\":\"Chayle\"},\"label\":\"Entity2\"},{\"id\":4469,\"data\":{\"name\":\"Cley-Cerwyn\"},\"label\":\"Entity2\"},{\"id\":4470,\"data\":{\"name\":\"Donella-Hornwood\"},\"label\":\"Entity2\"},{\"id\":4471,\"data\":{\"name\":\"Hodor\"},\"label\":\"Entity2\"},{\"id\":4472,\"data\":{\"name\":\"Howland-Reed\"},\"label\":\"Entity2\"},{\"id\":4473,\"data\":{\"name\":\"Luwin\"},\"label\":\"Entity2\"},{\"id\":4474,\"data\":{\"name\":\"Meera-Reed\"},\"label\":\"Entity2\"},{\"id\":4475,\"data\":{\"name\":\"Osha\"},\"label\":\"Entity2\"},{\"id\":4476,\"data\":{\"name\":\"Poxy-Tym\"},\"label\":\"Entity2\"},{\"id\":4477,\"data\":{\"name\":\"Reek\"},\"label\":\"Entity2\"},{\"id\":4478,\"data\":{\"name\":\"Stafford-Lannister\"},\"label\":\"Entity2\"},{\"id\":4479,\"data\":{\"name\":\"Walder-Frey-(son-of-Jammos)\"},\"label\":\"Entity2\"},{\"id\":4480,\"data\":{\"name\":\"Walder-Frey-(son-of-Merrett)\"},\"label\":\"Entity2\"},{\"id\":4481,\"data\":{\"name\":\"Wyman-Manderly\"},\"label\":\"Entity2\"},{\"id\":4482,\"data\":{\"name\":\"Brienne-of-Tarth\"},\"label\":\"Entity2\"},{\"id\":4483,\"data\":{\"name\":\"Edmure-Tully\"},\"label\":\"Entity2\"},{\"id\":4484,\"data\":{\"name\":\"Emmon-Cuy\"},\"label\":\"Entity2\"},{\"id\":4485,\"data\":{\"name\":\"Robar-Royce\"},\"label\":\"Entity2\"},{\"id\":4486,\"data\":{\"name\":\"Selwyn-Tarth\"},\"label\":\"Entity2\"},{\"id\":4487,\"data\":{\"name\":\"Vyman\"},\"label\":\"Entity2\"},{\"id\":4488,\"data\":{\"name\":\"Bronn\"},\"label\":\"Entity2\"},{\"id\":4489,\"data\":{\"name\":\"Jacelyn-Bywater\"},\"label\":\"Entity2\"},{\"id\":4490,\"data\":{\"name\":\"Timett\"},\"label\":\"Entity2\"},{\"id\":4491,\"data\":{\"name\":\"Bryce-Caron\"},\"label\":\"Entity2\"},{\"id\":4492,\"data\":{\"name\":\"Eldon-Estermont\"},\"label\":\"Entity2\"},{\"id\":4493,\"data\":{\"name\":\"Guyard-Morrigen\"},\"label\":\"Entity2\"},{\"id\":4494,\"data\":{\"name\":\"Brynden-Tully\"},\"label\":\"Entity2\"},{\"id\":4495,\"data\":{\"name\":\"Captain-Myraham\"},\"label\":\"Entity2\"},{\"id\":4496,\"data\":{\"name\":\"Captain-Myraham-Daughter\"},\"label\":\"Entity2\"},{\"id\":4497,\"data\":{\"name\":\"Cleos-Frey\"},\"label\":\"Entity2\"},{\"id\":4498,\"data\":{\"name\":\"Colen-of-Greenpools\"},\"label\":\"Entity2\"},{\"id\":4499,\"data\":{\"name\":\"Desmond-Grell\"},\"label\":\"Entity2\"},{\"id\":4500,\"data\":{\"name\":\"Hallis-Mollen\"},\"label\":\"Entity2\"},{\"id\":4501,\"data\":{\"name\":\"Hoster-Tully\"},\"label\":\"Entity2\"},{\"id\":4502,\"data\":{\"name\":\"Loras-Tyrell\"},\"label\":\"Entity2\"},{\"id\":4503,\"data\":{\"name\":\"Lysa-Arryn\"},\"label\":\"Entity2\"},{\"id\":4504,\"data\":{\"name\":\"Margaery-Tyrell\"},\"label\":\"Entity2\"},{\"id\":4505,\"data\":{\"name\":\"Mathis-Rowan\"},\"label\":\"Entity2\"},{\"id\":4506,\"data\":{\"name\":\"Utherydes-Wayn\"},\"label\":\"Entity2\"},{\"id\":4507,\"data\":{\"name\":\"Wendel-Manderly\"},\"label\":\"Entity2\"},{\"id\":4508,\"data\":{\"name\":\"Lancel-Lannister\"},\"label\":\"Entity2\"},{\"id\":4509,\"data\":{\"name\":\"Osfryd-Kettleblack\"},\"label\":\"Entity2\"},{\"id\":4510,\"data\":{\"name\":\"Osney-Kettleblack\"},\"label\":\"Entity2\"},{\"id\":4511,\"data\":{\"name\":\"Petyr-Baelish\"},\"label\":\"Entity2\"},{\"id\":4512,\"data\":{\"name\":\"Preston-Greenfield\"},\"label\":\"Entity2\"},{\"id\":4513,\"data\":{\"name\":\"Pycelle\"},\"label\":\"Entity2\"},{\"id\":4514,\"data\":{\"name\":\"Shae\"},\"label\":\"Entity2\"},{\"id\":4515,\"data\":{\"name\":\"Vylarr\"},\"label\":\"Entity2\"},{\"id\":4516,\"data\":{\"name\":\"Chataya\"},\"label\":\"Entity2\"},{\"id\":4517,\"data\":{\"name\":\"Chella\"},\"label\":\"Entity2\"},{\"id\":4518,\"data\":{\"name\":\"Chett\"},\"label\":\"Entity2\"},{\"id\":4519,\"data\":{\"name\":\"Craster\"},\"label\":\"Entity2\"},{\"id\":4520,\"data\":{\"name\":\"Dywen\"},\"label\":\"Entity2\"},{\"id\":4521,\"data\":{\"name\":\"Eddison-Tollett\"},\"label\":\"Entity2\"},{\"id\":4522,\"data\":{\"name\":\"Mance-Rayder\"},\"label\":\"Entity2\"},{\"id\":4523,\"data\":{\"name\":\"Thoren-Smallwood\"},\"label\":\"Entity2\"},{\"id\":4524,\"data\":{\"name\":\"Cressen\"},\"label\":\"Entity2\"},{\"id\":4525,\"data\":{\"name\":\"Melisandre\"},\"label\":\"Entity2\"},{\"id\":4526,\"data\":{\"name\":\"Patchface\"},\"label\":\"Entity2\"},{\"id\":4527,\"data\":{\"name\":\"Pylos\"},\"label\":\"Entity2\"},{\"id\":4528,\"data\":{\"name\":\"Shireen-Baratheon\"},\"label\":\"Entity2\"},{\"id\":4529,\"data\":{\"name\":\"Cutjack\"},\"label\":\"Entity2\"},{\"id\":4530,\"data\":{\"name\":\"Kurz\"},\"label\":\"Entity2\"},{\"id\":4531,\"data\":{\"name\":\"Tarber\"},\"label\":\"Entity2\"},{\"id\":4532,\"data\":{\"name\":\"Doreah\"},\"label\":\"Entity2\"},{\"id\":4533,\"data\":{\"name\":\"Drogo\"},\"label\":\"Entity2\"},{\"id\":4534,\"data\":{\"name\":\"Irri\"},\"label\":\"Entity2\"},{\"id\":4535,\"data\":{\"name\":\"Jhiqui\"},\"label\":\"Entity2\"},{\"id\":4536,\"data\":{\"name\":\"Lynesse-Hightower\"},\"label\":\"Entity2\"},{\"id\":4537,\"data\":{\"name\":\"Mirri-Maz-Duur\"},\"label\":\"Entity2\"},{\"id\":4538,\"data\":{\"name\":\"Pono\"},\"label\":\"Entity2\"},{\"id\":4539,\"data\":{\"name\":\"Pyat-Pree\"},\"label\":\"Entity2\"},{\"id\":4540,\"data\":{\"name\":\"Quaithe\"},\"label\":\"Entity2\"},{\"id\":4541,\"data\":{\"name\":\"Viserys-Targaryen\"},\"label\":\"Entity2\"},{\"id\":4542,\"data\":{\"name\":\"Xaro-Xhoan-Daxos\"},\"label\":\"Entity2\"},{\"id\":4543,\"data\":{\"name\":\"Dalbridge\"},\"label\":\"Entity2\"},{\"id\":4544,\"data\":{\"name\":\"Ebben\"},\"label\":\"Entity2\"},{\"id\":4545,\"data\":{\"name\":\"Qhorin-Halfhand\"},\"label\":\"Entity2\"},{\"id\":4546,\"data\":{\"name\":\"Devan-Seaworth\"},\"label\":\"Entity2\"},{\"id\":4547,\"data\":{\"name\":\"Imry-Florent\"},\"label\":\"Entity2\"},{\"id\":4548,\"data\":{\"name\":\"Matthos-Seaworth\"},\"label\":\"Entity2\"},{\"id\":4549,\"data\":{\"name\":\"Salladhor-Saan\"},\"label\":\"Entity2\"},{\"id\":4550,\"data\":{\"name\":\"Dolf\"},\"label\":\"Entity2\"},{\"id\":4551,\"data\":{\"name\":\"Shagga\"},\"label\":\"Entity2\"},{\"id\":4552,\"data\":{\"name\":\"Mors-Umber\"},\"label\":\"Entity2\"},{\"id\":4553,\"data\":{\"name\":\"Dontos-Hollard\"},\"label\":\"Entity2\"},{\"id\":4554,\"data\":{\"name\":\"Moon-Boy\"},\"label\":\"Entity2\"},{\"id\":4555,\"data\":{\"name\":\"Doran-Martell\"},\"label\":\"Entity2\"},{\"id\":4556,\"data\":{\"name\":\"Drennan\"},\"label\":\"Entity2\"},{\"id\":4557,\"data\":{\"name\":\"Squint\"},\"label\":\"Entity2\"},{\"id\":4558,\"data\":{\"name\":\"Grenn\"},\"label\":\"Entity2\"},{\"id\":4559,\"data\":{\"name\":\"Stonesnake\"},\"label\":\"Entity2\"},{\"id\":4560,\"data\":{\"name\":\"Maron-Greyjoy\"},\"label\":\"Entity2\"},{\"id\":4561,\"data\":{\"name\":\"Steffon-Varner\"},\"label\":\"Entity2\"},{\"id\":4562,\"data\":{\"name\":\"Euron-Greyjoy\"},\"label\":\"Entity2\"},{\"id\":4563,\"data\":{\"name\":\"Farlen\"},\"label\":\"Entity2\"},{\"id\":4564,\"data\":{\"name\":\"Florian-the-Fool\"},\"label\":\"Entity2\"},{\"id\":4565,\"data\":{\"name\":\"Jonquil\"},\"label\":\"Entity2\"},{\"id\":4566,\"data\":{\"name\":\"Murch\"},\"label\":\"Entity2\"},{\"id\":4567,\"data\":{\"name\":\"Garlan-Tyrell\"},\"label\":\"Entity2\"},{\"id\":4568,\"data\":{\"name\":\"Lollys-Stokeworth\"},\"label\":\"Entity2\"},{\"id\":4569,\"data\":{\"name\":\"Hake\"},\"label\":\"Entity2\"},{\"id\":4570,\"data\":{\"name\":\"Hallyne\"},\"label\":\"Entity2\"},{\"id\":4571,\"data\":{\"name\":\"Halys-Hornwood\"},\"label\":\"Entity2\"},{\"id\":4572,\"data\":{\"name\":\"High-Septon-(fat_one)\"},\"label\":\"Entity2\"},{\"id\":4573,\"data\":{\"name\":\"High-Septon-(Tyrions)\"},\"label\":\"Entity2\"},{\"id\":4574,\"data\":{\"name\":\"Hobber-Redwyne\"},\"label\":\"Entity2\"},{\"id\":4575,\"data\":{\"name\":\"Horas-Redwyne\"},\"label\":\"Entity2\"},{\"id\":4576,\"data\":{\"name\":\"Mebble\"},\"label\":\"Entity2\"},{\"id\":4577,\"data\":{\"name\":\"Tysha\"},\"label\":\"Entity2\"},{\"id\":4578,\"data\":{\"name\":\"Jaremy-Rykker\"},\"label\":\"Entity2\"},{\"id\":4579,\"data\":{\"name\":\"Jarman-Buckwell\"},\"label\":\"Entity2\"},{\"id\":4580,\"data\":{\"name\":\"Jason-Mallister\"},\"label\":\"Entity2\"},{\"id\":4581,\"data\":{\"name\":\"Ottyn-Wythers\"},\"label\":\"Entity2\"},{\"id\":4582,\"data\":{\"name\":\"Mace-Tyrell\"},\"label\":\"Entity2\"},{\"id\":4583,\"data\":{\"name\":\"Jon-Fossoway\"},\"label\":\"Entity2\"},{\"id\":4584,\"data\":{\"name\":\"Lark\"},\"label\":\"Entity2\"},{\"id\":4585,\"data\":{\"name\":\"Rattleshirt\"},\"label\":\"Entity2\"},{\"id\":4586,\"data\":{\"name\":\"Jon-Umber-(Greatjon)\"},\"label\":\"Entity2\"},{\"id\":4587,\"data\":{\"name\":\"Kyra\"},\"label\":\"Entity2\"},{\"id\":4588,\"data\":{\"name\":\"Lorent-Caswell\"},\"label\":\"Entity2\"},{\"id\":4589,\"data\":{\"name\":\"Lorren\"},\"label\":\"Entity2\"},{\"id\":4590,\"data\":{\"name\":\"Urzen\"},\"label\":\"Entity2\"},{\"id\":4591,\"data\":{\"name\":\"Paxter-Redwyne\"},\"label\":\"Entity2\"},{\"id\":4592,\"data\":{\"name\":\"Martyn-Rivers\"},\"label\":\"Entity2\"},{\"id\":4593,\"data\":{\"name\":\"Robert-Arryn\"},\"label\":\"Entity2\"},{\"id\":4594,\"data\":{\"name\":\"Trystane-Martell\"},\"label\":\"Entity2\"},{\"id\":4595,\"data\":{\"name\":\"Olyvar-Frey\"},\"label\":\"Entity2\"},{\"id\":4596,\"data\":{\"name\":\"Palla\"},\"label\":\"Entity2\"},{\"id\":4597,\"data\":{\"name\":\"Perwyn-Frey\"},\"label\":\"Entity2\"},{\"id\":4598,\"data\":{\"name\":\"Qyburn\"},\"label\":\"Entity2\"},{\"id\":4599,\"data\":{\"name\":\"Steffon-Baratheon\"},\"label\":\"Entity2\"},{\"id\":4600,\"data\":{\"name\":\"Rickard-Karstark\"},\"label\":\"Entity2\"},{\"id\":4601,\"data\":{\"name\":\"Walder-Frey\"},\"label\":\"Entity2\"},{\"id\":4602,\"data\":{\"name\":\"Robett-Glover\"},\"label\":\"Entity2\"},{\"id\":4603,\"data\":{\"name\":\"Shadd\"},\"label\":\"Entity2\"},{\"id\":4604,\"data\":{\"name\":\"Werlag\"},\"label\":\"Entity2\"},{\"id\":5740,\"data\":{\"name\":\"Aegon-Targaryen-(son-of-Rhaegar)\"},\"label\":\"Entity2\"},{\"id\":5741,\"data\":{\"name\":\"Elia-Martell\"},\"label\":\"Entity2\"},{\"id\":5742,\"data\":{\"name\":\"Franklyn-Flowers\"},\"label\":\"Entity2\"},{\"id\":5743,\"data\":{\"name\":\"Haldon\"},\"label\":\"Entity2\"},{\"id\":5744,\"data\":{\"name\":\"Harry-Strickland\"},\"label\":\"Entity2\"},{\"id\":5745,\"data\":{\"name\":\"Jon-Connington\"},\"label\":\"Entity2\"},{\"id\":5746,\"data\":{\"name\":\"Lemore\"},\"label\":\"Entity2\"},{\"id\":5747,\"data\":{\"name\":\"Rhaenys-Targaryen-(daughter-of-Rhaegar)\"},\"label\":\"Entity2\"},{\"id\":5748,\"data\":{\"name\":\"Rolly-Duckfield\"},\"label\":\"Entity2\"},{\"id\":5749,\"data\":{\"name\":\"Yandry\"},\"label\":\"Entity2\"},{\"id\":5750,\"data\":{\"name\":\"Ysilla\"},\"label\":\"Entity2\"},{\"id\":5751,\"data\":{\"name\":\"Clydas\"},\"label\":\"Entity2\"},{\"id\":5752,\"data\":{\"name\":\"Gilly\"},\"label\":\"Entity2\"},{\"id\":5753,\"data\":{\"name\":\"Hosteen-Frey\"},\"label\":\"Entity2\"},{\"id\":5754,\"data\":{\"name\":\"Daario-Naharis\"},\"label\":\"Entity2\"},{\"id\":5755,\"data\":{\"name\":\"Grey-Worm\"},\"label\":\"Entity2\"},{\"id\":5756,\"data\":{\"name\":\"Alys-Karstark\"},\"label\":\"Entity2\"},{\"id\":5757,\"data\":{\"name\":\"Sigorn\"},\"label\":\"Entity2\"},{\"id\":5758,\"data\":{\"name\":\"Alysane-Mormont\"},\"label\":\"Entity2\"},{\"id\":5759,\"data\":{\"name\":\"Justin-Massey\"},\"label\":\"Entity2\"},{\"id\":5760,\"data\":{\"name\":\"Archibald-Yronwood\"},\"label\":\"Entity2\"},{\"id\":5761,\"data\":{\"name\":\"Cletus-Yronwood\"},\"label\":\"Entity2\"},{\"id\":5762,\"data\":{\"name\":\"Gerris-Drinkwater\"},\"label\":\"Entity2\"},{\"id\":5763,\"data\":{\"name\":\"Quentyn-Martell\"},\"label\":\"Entity2\"},{\"id\":5764,\"data\":{\"name\":\"Tattered-Prince\"},\"label\":\"Entity2\"},{\"id\":5765,\"data\":{\"name\":\"Areo-Hotah\"},\"label\":\"Entity2\"},{\"id\":5766,\"data\":{\"name\":\"Arianne-Martell\"},\"label\":\"Entity2\"},{\"id\":5767,\"data\":{\"name\":\"Ellaria-Sand\"},\"label\":\"Entity2\"},{\"id\":5768,\"data\":{\"name\":\"Obara-Sand\"},\"label\":\"Entity2\"},{\"id\":5769,\"data\":{\"name\":\"Arnolf-Karstark\"},\"label\":\"Entity2\"},{\"id\":5770,\"data\":{\"name\":\"Arthor-Karstark\"},\"label\":\"Entity2\"},{\"id\":5771,\"data\":{\"name\":\"Arron\"},\"label\":\"Entity2\"},{\"id\":5772,\"data\":{\"name\":\"Emrick\"},\"label\":\"Entity2\"},{\"id\":5773,\"data\":{\"name\":\"Hareth-(Moles-Town)\"},\"label\":\"Entity2\"},{\"id\":5774,\"data\":{\"name\":\"Satin\"},\"label\":\"Entity2\"},{\"id\":5775,\"data\":{\"name\":\"Brusco\"},\"label\":\"Entity2\"},{\"id\":5776,\"data\":{\"name\":\"Jeyne-Poole\"},\"label\":\"Entity2\"},{\"id\":5777,\"data\":{\"name\":\"Kindly-Man\"},\"label\":\"Entity2\"},{\"id\":5778,\"data\":{\"name\":\"Waif\"},\"label\":\"Entity2\"},{\"id\":5779,\"data\":{\"name\":\"Gerold-Dayne\"},\"label\":\"Entity2\"},{\"id\":5780,\"data\":{\"name\":\"Clayton-Suggs\"},\"label\":\"Entity2\"},{\"id\":5781,\"data\":{\"name\":\"Galbart-Glover\"},\"label\":\"Entity2\"},{\"id\":5782,\"data\":{\"name\":\"Godry-Farring\"},\"label\":\"Entity2\"},{\"id\":5783,\"data\":{\"name\":\"Grimtongue\"},\"label\":\"Entity2\"},{\"id\":5784,\"data\":{\"name\":\"Hagen\"},\"label\":\"Entity2\"},{\"id\":5785,\"data\":{\"name\":\"Qarl-the-Maid\"},\"label\":\"Entity2\"},{\"id\":5786,\"data\":{\"name\":\"Rolfe-the-Dwarf\"},\"label\":\"Entity2\"},{\"id\":5787,\"data\":{\"name\":\"Sybelle-Glover\"},\"label\":\"Entity2\"},{\"id\":5788,\"data\":{\"name\":\"Torgon-Greyiron\"},\"label\":\"Entity2\"},{\"id\":5789,\"data\":{\"name\":\"Tristifer-Botley\"},\"label\":\"Entity2\"},{\"id\":5790,\"data\":{\"name\":\"Tycho-Nestoris\"},\"label\":\"Entity2\"},{\"id\":5791,\"data\":{\"name\":\"Ashara-Dayne\"},\"label\":\"Entity2\"},{\"id\":5792,\"data\":{\"name\":\"Azor-Ahai\"},\"label\":\"Entity2\"},{\"id\":5793,\"data\":{\"name\":\"Barbrey-Dustin\"},\"label\":\"Entity2\"},{\"id\":5794,\"data\":{\"name\":\"Roger-Ryswell\"},\"label\":\"Entity2\"},{\"id\":5795,\"data\":{\"name\":\"Ben-Plumm\"},\"label\":\"Entity2\"},{\"id\":5796,\"data\":{\"name\":\"Bloodbeard\"},\"label\":\"Entity2\"},{\"id\":5797,\"data\":{\"name\":\"Galazza-Galare\"},\"label\":\"Entity2\"},{\"id\":5798,\"data\":{\"name\":\"Grazhar\"},\"label\":\"Entity2\"},{\"id\":5799,\"data\":{\"name\":\"Groleo\"},\"label\":\"Entity2\"},{\"id\":5800,\"data\":{\"name\":\"Hizdahr-zo-Loraq\"},\"label\":\"Entity2\"},{\"id\":5801,\"data\":{\"name\":\"Khrazz\"},\"label\":\"Entity2\"},{\"id\":5802,\"data\":{\"name\":\"Larraq\"},\"label\":\"Entity2\"},{\"id\":5803,\"data\":{\"name\":\"Missandei\"},\"label\":\"Entity2\"},{\"id\":5804,\"data\":{\"name\":\"Reznak-mo-Reznak\"},\"label\":\"Entity2\"},{\"id\":5805,\"data\":{\"name\":\"Skahaz-mo-Kandaq\"},\"label\":\"Entity2\"},{\"id\":5806,\"data\":{\"name\":\"Steelskin\"},\"label\":\"Entity2\"},{\"id\":5807,\"data\":{\"name\":\"Widower\"},\"label\":\"Entity2\"},{\"id\":5808,\"data\":{\"name\":\"Barsena\"},\"label\":\"Entity2\"},{\"id\":5809,\"data\":{\"name\":\"Bartimus\"},\"label\":\"Entity2\"},{\"id\":5810,\"data\":{\"name\":\"Belaquo\"},\"label\":\"Entity2\"},{\"id\":5811,\"data\":{\"name\":\"Goghor-the-Giant\"},\"label\":\"Entity2\"},{\"id\":5812,\"data\":{\"name\":\"Spotted-Cat\"},\"label\":\"Entity2\"},{\"id\":5813,\"data\":{\"name\":\"Ben-Bones\"},\"label\":\"Entity2\"},{\"id\":5814,\"data\":{\"name\":\"Kasporio\"},\"label\":\"Entity2\"},{\"id\":5815,\"data\":{\"name\":\"Penny\"},\"label\":\"Entity2\"},{\"id\":5816,\"data\":{\"name\":\"Tybero-Istarion\"},\"label\":\"Entity2\"},{\"id\":5817,\"data\":{\"name\":\"Benerro\"},\"label\":\"Entity2\"},{\"id\":5818,\"data\":{\"name\":\"Moqorro\"},\"label\":\"Entity2\"},{\"id\":5819,\"data\":{\"name\":\"Benethon-Scales\"},\"label\":\"Entity2\"},{\"id\":5820,\"data\":{\"name\":\"Narbert-Grandison\"},\"label\":\"Entity2\"},{\"id\":5821,\"data\":{\"name\":\"Black-Balaq\"},\"label\":\"Entity2\"},{\"id\":5822,\"data\":{\"name\":\"Bowen-Marsh\"},\"label\":\"Entity2\"},{\"id\":5823,\"data\":{\"name\":\"Cellador\"},\"label\":\"Entity2\"},{\"id\":5824,\"data\":{\"name\":\"Othell-Yarwyck\"},\"label\":\"Entity2\"},{\"id\":5825,\"data\":{\"name\":\"Tormund\"},\"label\":\"Entity2\"},{\"id\":5826,\"data\":{\"name\":\"Wick-Whittlestick\"},\"label\":\"Entity2\"},{\"id\":5827,\"data\":{\"name\":\"Brynden-Rivers\"},\"label\":\"Entity2\"},{\"id\":5828,\"data\":{\"name\":\"Coldhands\"},\"label\":\"Entity2\"},{\"id\":5829,\"data\":{\"name\":\"Leaf\"},\"label\":\"Entity2\"},{\"id\":5830,\"data\":{\"name\":\"Brandon-Norrey\"},\"label\":\"Entity2\"},{\"id\":5831,\"data\":{\"name\":\"Torghen-Flint\"},\"label\":\"Entity2\"},{\"id\":5832,\"data\":{\"name\":\"Brea\"},\"label\":\"Entity2\"},{\"id\":5833,\"data\":{\"name\":\"Brus-Buckler\"},\"label\":\"Entity2\"},{\"id\":5834,\"data\":{\"name\":\"Malegorn\"},\"label\":\"Entity2\"},{\"id\":5835,\"data\":{\"name\":\"Bump\"},\"label\":\"Entity2\"},{\"id\":5836,\"data\":{\"name\":\"Varamyr\"},\"label\":\"Entity2\"},{\"id\":5837,\"data\":{\"name\":\"Caggo\"},\"label\":\"Entity2\"},{\"id\":5838,\"data\":{\"name\":\"Lucifer-Long\"},\"label\":\"Entity2\"},{\"id\":5839,\"data\":{\"name\":\"Meris\"},\"label\":\"Entity2\"},{\"id\":5840,\"data\":{\"name\":\"Caleotte\"},\"label\":\"Entity2\"},{\"id\":5841,\"data\":{\"name\":\"Camarron\"},\"label\":\"Entity2\"},{\"id\":5842,\"data\":{\"name\":\"High-Sparrow\"},\"label\":\"Entity2\"},{\"id\":5843,\"data\":{\"name\":\"Kevan-Lannister\"},\"label\":\"Entity2\"},{\"id\":5844,\"data\":{\"name\":\"Moelle\"},\"label\":\"Entity2\"},{\"id\":5845,\"data\":{\"name\":\"Robert-Strong\"},\"label\":\"Entity2\"},{\"id\":5846,\"data\":{\"name\":\"Scolera\"},\"label\":\"Entity2\"},{\"id\":5847,\"data\":{\"name\":\"Unella\"},\"label\":\"Entity2\"},{\"id\":5848,\"data\":{\"name\":\"Cleon\"},\"label\":\"Entity2\"},{\"id\":5849,\"data\":{\"name\":\"Kedry\"},\"label\":\"Entity2\"},{\"id\":5850,\"data\":{\"name\":\"Mully\"},\"label\":\"Entity2\"},{\"id\":5851,\"data\":{\"name\":\"Corliss-Penny\"},\"label\":\"Entity2\"},{\"id\":5852,\"data\":{\"name\":\"Cotter-Pyke\"},\"label\":\"Entity2\"},{\"id\":5853,\"data\":{\"name\":\"Denys-Mallister\"},\"label\":\"Entity2\"},{\"id\":5854,\"data\":{\"name\":\"Cromm\"},\"label\":\"Entity2\"},{\"id\":5855,\"data\":{\"name\":\"Hero\"},\"label\":\"Entity2\"},{\"id\":5856,\"data\":{\"name\":\"Eroeh\"},\"label\":\"Entity2\"},{\"id\":5857,\"data\":{\"name\":\"Ezzara\"},\"label\":\"Entity2\"},{\"id\":5858,\"data\":{\"name\":\"Ghael\"},\"label\":\"Entity2\"},{\"id\":5859,\"data\":{\"name\":\"Illyrio-Mopatis\"},\"label\":\"Entity2\"},{\"id\":5860,\"data\":{\"name\":\"Lysono-Maar\"},\"label\":\"Entity2\"},{\"id\":5861,\"data\":{\"name\":\"Marselen\"},\"label\":\"Entity2\"},{\"id\":5862,\"data\":{\"name\":\"Mezzara\"},\"label\":\"Entity2\"},{\"id\":5863,\"data\":{\"name\":\"Miklaz\"},\"label\":\"Entity2\"},{\"id\":5864,\"data\":{\"name\":\"Qavo-Nogarys\"},\"label\":\"Entity2\"},{\"id\":5865,\"data\":{\"name\":\"Qezza\"},\"label\":\"Entity2\"},{\"id\":5866,\"data\":{\"name\":\"Symon-Stripeback\"},\"label\":\"Entity2\"},{\"id\":5867,\"data\":{\"name\":\"Yurkhaz-zo-Yunzak\"},\"label\":\"Entity2\"},{\"id\":5868,\"data\":{\"name\":\"Dalla\"},\"label\":\"Entity2\"},{\"id\":5869,\"data\":{\"name\":\"Val\"},\"label\":\"Entity2\"},{\"id\":5870,\"data\":{\"name\":\"Damon-Dance-for-Me\"},\"label\":\"Entity2\"},{\"id\":5871,\"data\":{\"name\":\"Grunt\"},\"label\":\"Entity2\"},{\"id\":5872,\"data\":{\"name\":\"Skinner\"},\"label\":\"Entity2\"},{\"id\":5873,\"data\":{\"name\":\"Sour-Alyn\"},\"label\":\"Entity2\"},{\"id\":5874,\"data\":{\"name\":\"Garth-(Wolfs-Den)\"},\"label\":\"Entity2\"},{\"id\":5875,\"data\":{\"name\":\"Godric-Borrell\"},\"label\":\"Entity2\"},{\"id\":5876,\"data\":{\"name\":\"Leona-Woolfield\"},\"label\":\"Entity2\"},{\"id\":5877,\"data\":{\"name\":\"Marlon-Manderly\"},\"label\":\"Entity2\"},{\"id\":5878,\"data\":{\"name\":\"Sybell-Spicer\"},\"label\":\"Entity2\"},{\"id\":5879,\"data\":{\"name\":\"Denzo-Dhan\"},\"label\":\"Entity2\"},{\"id\":5880,\"data\":{\"name\":\"Dick-Straw\"},\"label\":\"Entity2\"},{\"id\":5881,\"data\":{\"name\":\"Hugh-Hungerford\"},\"label\":\"Entity2\"},{\"id\":5882,\"data\":{\"name\":\"Donal-Noye\"},\"label\":\"Entity2\"},{\"id\":5883,\"data\":{\"name\":\"Nymeria-Sand\"},\"label\":\"Entity2\"},{\"id\":5884,\"data\":{\"name\":\"Oberyn-Martell\"},\"label\":\"Entity2\"},{\"id\":5885,\"data\":{\"name\":\"Draqaz\"},\"label\":\"Entity2\"},{\"id\":5886,\"data\":{\"name\":\"Dryn\"},\"label\":\"Entity2\"},{\"id\":5887,\"data\":{\"name\":\"Willam-Dustin\"},\"label\":\"Entity2\"},{\"id\":5888,\"data\":{\"name\":\"Emmett\"},\"label\":\"Entity2\"},{\"id\":5889,\"data\":{\"name\":\"Hobb\"},\"label\":\"Entity2\"},{\"id\":5890,\"data\":{\"name\":\"Hop-Robin\"},\"label\":\"Entity2\"},{\"id\":5891,\"data\":{\"name\":\"Frenya\"},\"label\":\"Entity2\"},{\"id\":5892,\"data\":{\"name\":\"Holly\"},\"label\":\"Entity2\"},{\"id\":5893,\"data\":{\"name\":\"Fulk\"},\"label\":\"Entity2\"},{\"id\":5894,\"data\":{\"name\":\"Garth-Greyfeather\"},\"label\":\"Entity2\"},{\"id\":5895,\"data\":{\"name\":\"Hairy-Hal\"},\"label\":\"Entity2\"},{\"id\":5896,\"data\":{\"name\":\"Jack-Bulwer\"},\"label\":\"Entity2\"},{\"id\":5897,\"data\":{\"name\":\"Gerrick-Kingsblood\"},\"label\":\"Entity2\"},{\"id\":5898,\"data\":{\"name\":\"Raymun-Redbeard\"},\"label\":\"Entity2\"},{\"id\":5899,\"data\":{\"name\":\"Pypar\"},\"label\":\"Entity2\"},{\"id\":5900,\"data\":{\"name\":\"Todder\"},\"label\":\"Entity2\"},{\"id\":5901,\"data\":{\"name\":\"Haggon\"},\"label\":\"Entity2\"},{\"id\":5902,\"data\":{\"name\":\"Leathers\"},\"label\":\"Entity2\"},{\"id\":5903,\"data\":{\"name\":\"Rory\"},\"label\":\"Entity2\"},{\"id\":5904,\"data\":{\"name\":\"Harl\"},\"label\":\"Entity2\"},{\"id\":5905,\"data\":{\"name\":\"Myles-Toyne\"},\"label\":\"Entity2\"},{\"id\":5906,\"data\":{\"name\":\"Harwood-Stout\"},\"label\":\"Entity2\"},{\"id\":5907,\"data\":{\"name\":\"Harys-Swyft\"},\"label\":\"Entity2\"},{\"id\":5908,\"data\":{\"name\":\"Marghaz-zo-Loraq\"},\"label\":\"Entity2\"},{\"id\":5909,\"data\":{\"name\":\"Owen\"},\"label\":\"Entity2\"},{\"id\":5910,\"data\":{\"name\":\"Rowan\"},\"label\":\"Entity2\"},{\"id\":5911,\"data\":{\"name\":\"Hoster-Blackwood\"},\"label\":\"Entity2\"},{\"id\":5912,\"data\":{\"name\":\"Hother-Umber\"},\"label\":\"Entity2\"},{\"id\":5913,\"data\":{\"name\":\"Jonos-Bracken\"},\"label\":\"Entity2\"},{\"id\":5914,\"data\":{\"name\":\"Josmyn-Peckledon\"},\"label\":\"Entity2\"},{\"id\":5915,\"data\":{\"name\":\"Tytos-Blackwood\"},\"label\":\"Entity2\"},{\"id\":5916,\"data\":{\"name\":\"Jared-Frey\"},\"label\":\"Entity2\"},{\"id\":5917,\"data\":{\"name\":\"Rhaegar-Frey\"},\"label\":\"Entity2\"},{\"id\":5918,\"data\":{\"name\":\"Squirrel\"},\"label\":\"Entity2\"},{\"id\":5919,\"data\":{\"name\":\"Nyessos-Vhassar\"},\"label\":\"Entity2\"},{\"id\":5920,\"data\":{\"name\":\"Patrek-of-Kings-Mountain\"},\"label\":\"Entity2\"},{\"id\":5921,\"data\":{\"name\":\"Soren-Shieldbreaker\"},\"label\":\"Entity2\"},{\"id\":5922,\"data\":{\"name\":\"Tom-Barleycorn\"},\"label\":\"Entity2\"},{\"id\":5923,\"data\":{\"name\":\"Toregg\"},\"label\":\"Entity2\"},{\"id\":5924,\"data\":{\"name\":\"Ulmer\"},\"label\":\"Entity2\"},{\"id\":5925,\"data\":{\"name\":\"Weeper\"},\"label\":\"Entity2\"},{\"id\":5926,\"data\":{\"name\":\"Wun-Weg-Wun-Dar-Wun\"},\"label\":\"Entity2\"},{\"id\":5927,\"data\":{\"name\":\"Nurse\"},\"label\":\"Entity2\"},{\"id\":5928,\"data\":{\"name\":\"Joramun\"},\"label\":\"Entity2\"},{\"id\":5929,\"data\":{\"name\":\"Richard-Horpe\"},\"label\":\"Entity2\"},{\"id\":5930,\"data\":{\"name\":\"Kerwin\"},\"label\":\"Entity2\"},{\"id\":5931,\"data\":{\"name\":\"Ronnet-Connington\"},\"label\":\"Entity2\"},{\"id\":5932,\"data\":{\"name\":\"Longwater-Pyke\"},\"label\":\"Entity2\"},{\"id\":5933,\"data\":{\"name\":\"Luton\"},\"label\":\"Entity2\"},{\"id\":5934,\"data\":{\"name\":\"Lyanna-Mormont\"},\"label\":\"Entity2\"},{\"id\":5935,\"data\":{\"name\":\"Lyanna-Stark\"},\"label\":\"Entity2\"},{\"id\":5936,\"data\":{\"name\":\"Maege-Mormont\"},\"label\":\"Entity2\"},{\"id\":5937,\"data\":{\"name\":\"Malaquo-Maegyr\"},\"label\":\"Entity2\"},{\"id\":5938,\"data\":{\"name\":\"Rodrik-Sparr\"},\"label\":\"Entity2\"},{\"id\":5939,\"data\":{\"name\":\"Morgo\"},\"label\":\"Entity2\"},{\"id\":5940,\"data\":{\"name\":\"Yezzan-zo-Qaggaz\"},\"label\":\"Entity2\"},{\"id\":5941,\"data\":{\"name\":\"Tyene-Sand\"},\"label\":\"Entity2\"},{\"id\":5942,\"data\":{\"name\":\"Old-Bill-Bone\"},\"label\":\"Entity2\"},{\"id\":5943,\"data\":{\"name\":\"Sweets\"},\"label\":\"Entity2\"},{\"id\":5944,\"data\":{\"name\":\"Ralf-(Limper)\"},\"label\":\"Entity2\"},{\"id\":5945,\"data\":{\"name\":\"Yellow-Dick\"},\"label\":\"Entity2\"},{\"id\":5946,\"data\":{\"name\":\"Walda-Frey-(daughter-of-Merrett)\"},\"label\":\"Entity2\"},{\"id\":5947,\"data\":{\"name\":\"Roose-Ryswell\"},\"label\":\"Entity2\"},{\"id\":5948,\"data\":{\"name\":\"Scar\"},\"label\":\"Entity2\"},{\"id\":5949,\"data\":{\"name\":\"Shrouded-Lord\"},\"label\":\"Entity2\"},{\"id\":5950,\"data\":{\"name\":\"Theomore\"},\"label\":\"Entity2\"},{\"id\":5951,\"data\":{\"name\":\"William-Foxglove\"},\"label\":\"Entity2\"},{\"id\":5952,\"data\":{\"name\":\"Willow-Witch-eye\"},\"label\":\"Entity2\"},{\"id\":5953,\"data\":{\"name\":\"Thistle\"},\"label\":\"Entity2\"},{\"id\":5954,\"data\":{\"name\":\"Wylis-Manderly\"},\"label\":\"Entity2\"},{\"id\":5955,\"data\":{\"name\":\"Wulfe\"},\"label\":\"Entity2\"}],\"edges\":[],\"labels\":{\"Person\":\"#807D51\",\"Entity\":\"#52B891\",\"Actors\":\"#05F58E\",\"GOT\":\"#343EB1\",\"GOTActors\":\"#E64E3C\",\"Entity2\":\"#9E91AB\",\"Entity3\":\"#F9D91D\",\"Entity4\":\"#A3773A\",\"Entity5\":\"#986D70\",\"GroupedEntity\":\"#737473\"},\"types\":[\"undirected\",\"Undirected\",\"BELONGS_TO\",\"KNOWS\"],\"directed\":true}"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702228323835_1164076763",
+      "id": "paragraph_1702228323835_1164076763",
+      "dateCreated": "2023-12-10 17:12:03.835",
+      "dateStarted": "2023-12-12 18:51:20.811",
+      "dateFinished": "2023-12-12 18:51:24.867",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%neo4j\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-12 18:51:20.810",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702407080810_1847359718",
+      "id": "paragraph_1702407080810_1847359718",
+      "dateCreated": "2023-12-12 18:51:20.810",
+      "status": "READY"
+    }
+  ],
+  "name": "test",
+  "id": "2JKVYFNR4",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

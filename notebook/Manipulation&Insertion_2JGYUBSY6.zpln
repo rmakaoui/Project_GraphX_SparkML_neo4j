@@ -1,0 +1,153 @@
+{
+  "paragraphs": [
+    {
+      "text": "%pyspark \n\nfrom pyspark.sql import SparkSession\nfrom pyspark.sql.functions import col, trim, lower\n\n# Create a Spark session\nspark \u003d SparkSession.builder.appName(\"DataCleaning\").config(\"spark.driver.extraClassPath\", \"path/to/your/hadoop/home/lib/*\").getOrCreate()\n\n# Assuming book1, book2, book3, book4, and book5 are PySpark DataFrames\n# Replace the placeholders with your actual data or loading mechanisms.\n\n# Load or create your DataFrames\nbook1 \u003d spark.read.format(\"csv\").load(\"/zeppelin/notebook/book1.csv\", header\u003dTrue)\nbook2 \u003d spark.read.format(\"csv\").load(\"/zeppelin/notebook/book2.csv\", header\u003dTrue)\nbook3 \u003d spark.read.format(\"csv\").load(\"/zeppelin/notebook/book3.csv\", header\u003dTrue)\nbook4 \u003d spark.read.format(\"csv\").load(\"/zeppelin/notebook/book4.csv\", header\u003dTrue)\nbook5 \u003d spark.read.format(\"csv\").load(\"/zeppelin/notebook/book5.csv\", header\u003dTrue)\n\n# Concatenate the DataFrames vertically\nconcatenated_df \u003d book1.union(book2).union(book3).union(book4).union(book5)\n\n# Display the schema and the first few rows of the concatenated DataFrame\nconcatenated_df.printSchema()\nconcatenated_df.show()\n\n# Data Cleaning Steps\n\n# 1. Remove leading and trailing whitespaces from string columns\nconcatenated_df \u003d concatenated_df.withColumn(\"Source\", trim(col(\"Source\").cast(\"string\")))\nconcatenated_df \u003d concatenated_df.withColumn(\"Target\", trim(col(\"Target\").cast(\"string\")))\n\n# 2. Handle outliers or incorrect values in the \"weight\" column\n# For example, filter out rows where weight is negative\nconcatenated_df \u003d concatenated_df.filter(col(\"weight\") \u003e\u003d 0)\n\n# 3. Standardize or clean up categorical values\n# For example, convert all names to lowercase for consistency\nconcatenated_df \u003d concatenated_df.withColumn(\"Source\", lower(col(\"Source\").cast(\"string\")))\nconcatenated_df \u003d concatenated_df.withColumn(\"Target\", lower(col(\"Target\").cast(\"string\")))\nconcatenated_df \u003d concatenated_df.na.drop(subset\u003d[\"Source\", \"Target\", \"weight\"])\nconcatenated_df \u003d concatenated_df.filter(col(\"Source\").isNotNull() \u0026 col(\"Target\").isNotNull())\n\n# 4. Drop unnecessary columns\n# If there are columns that are not needed for analysis, drop them\nconcatenated_df.show(5)\nconcatenated_df \u003d concatenated_df.na.drop()\nconcatenated_df.printSchema()\n\n# Save the cleaned and concatenated DataFrame to a single CSV file\nconcatenated_df.coalesce(1).write.mode(\"overwrite\").csv(\"/zeppelin/notebook/resultUnion.csv\", header\u003dTrue)\n# Load the cleaned DataFrame\ncleaned_df \u003d spark.read.format(\"csv\").load(\"/zeppelin/notebook/resultUnion.csv\", header\u003dTrue)\ncleaned_df.show(10)\n# Load the cleaned DataFrame",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-18 18:08:36.271",
+      "progress": 100,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- Source: string (nullable \u003d true)\n |-- Target: string (nullable \u003d true)\n |-- Type: string (nullable \u003d true)\n |-- weight: string (nullable \u003d true)\n |-- book: string (nullable \u003d true)\n\n+--------------------+------------------+----------+------+----+\n|              Source|            Target|      Type|weight|book|\n+--------------------+------------------+----------+------+----+\n|      Addam-Marbrand|   Jaime-Lannister|Undirected|     3|   1|\n|      Addam-Marbrand|   Tywin-Lannister|Undirected|     6|   1|\n|   Aegon-I-Targaryen|Daenerys-Targaryen|Undirected|     5|   1|\n|   Aegon-I-Targaryen|      Eddard-Stark|Undirected|     4|   1|\n|Aemon-Targaryen-(...|    Alliser-Thorne|Undirected|     4|   1|\n|Aemon-Targaryen-(...|       Bowen-Marsh|Undirected|     4|   1|\n|Aemon-Targaryen-(...|             Chett|Undirected|     9|   1|\n|Aemon-Targaryen-(...|            Clydas|Undirected|     5|   1|\n|Aemon-Targaryen-(...|      Jeor-Mormont|Undirected|    13|   1|\n|Aemon-Targaryen-(...|          Jon-Snow|Undirected|    34|   1|\n|Aemon-Targaryen-(...|     Samwell-Tarly|Undirected|     5|   1|\n|  Aerys-II-Targaryen|     Brandon-Stark|Undirected|     4|   1|\n|  Aerys-II-Targaryen|      Eddard-Stark|Undirected|    10|   1|\n|  Aerys-II-Targaryen|  Gerold-Hightower|Undirected|     3|   1|\n|  Aerys-II-Targaryen|   Jaime-Lannister|Undirected|     5|   1|\n|  Aerys-II-Targaryen|         Jon-Arryn|Undirected|     3|   1|\n|  Aerys-II-Targaryen|  Robert-Baratheon|Undirected|    12|   1|\n|                Aggo|Daenerys-Targaryen|Undirected|    11|   1|\n|                Aggo|             Drogo|Undirected|     6|   1|\n|                Aggo|             Jhogo|Undirected|     4|   1|\n+--------------------+------------------+----------+------+----+\nonly showing top 20 rows\n\n+--------------------+------------------+----------+------+----+\n|              Source|            Target|      Type|weight|book|\n+--------------------+------------------+----------+------+----+\n|      addam-marbrand|   jaime-lannister|Undirected|     3|   1|\n|      addam-marbrand|   tywin-lannister|Undirected|     6|   1|\n|   aegon-i-targaryen|daenerys-targaryen|Undirected|     5|   1|\n|   aegon-i-targaryen|      eddard-stark|Undirected|     4|   1|\n|aemon-targaryen-(...|    alliser-thorne|Undirected|     4|   1|\n+--------------------+------------------+----------+------+----+\nonly showing top 5 rows\n\nroot\n |-- Source: string (nullable \u003d true)\n |-- Target: string (nullable \u003d true)\n |-- Type: string (nullable \u003d true)\n |-- weight: string (nullable \u003d true)\n |-- book: string (nullable \u003d true)\n\n+--------------------+------------------+----------+------+----+\n|              Source|            Target|      Type|weight|book|\n+--------------------+------------------+----------+------+----+\n|      addam-marbrand|   jaime-lannister|Undirected|     3|   1|\n|      addam-marbrand|   tywin-lannister|Undirected|     6|   1|\n|   aegon-i-targaryen|daenerys-targaryen|Undirected|     5|   1|\n|   aegon-i-targaryen|      eddard-stark|Undirected|     4|   1|\n|aemon-targaryen-(...|    alliser-thorne|Undirected|     4|   1|\n|aemon-targaryen-(...|       bowen-marsh|Undirected|     4|   1|\n|aemon-targaryen-(...|             chett|Undirected|     9|   1|\n|aemon-targaryen-(...|            clydas|Undirected|     5|   1|\n|aemon-targaryen-(...|      jeor-mormont|Undirected|    13|   1|\n|aemon-targaryen-(...|          jon-snow|Undirected|    34|   1|\n+--------------------+------------------+----------+------+----+\nonly showing top 10 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d0"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d2"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d3"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d4"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d5"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d6"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d7"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d8"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d9"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702838762439_1381590913",
+      "id": "paragraph_1702838762439_1381590913",
+      "dateCreated": "2023-12-17 18:46:02.439",
+      "dateStarted": "2023-12-18 18:08:36.341",
+      "dateFinished": "2023-12-18 18:09:27.899",
+      "status": "FINISHED"
+    },
+    {
+      "text": "import org.neo4j.driver._\nimport org.neo4j.driver.Values\nimport scala.io.Source\n\nval uri \u003d \"bolt://neo4j:7687\"\nval user \u003d \"neo4j\"\nval password \u003d \"bitnami1\"\n\nval driver \u003d GraphDatabase.driver(uri, AuthTokens.basic(user, password))\nval session \u003d driver.session()\n\n// Use HDFS file path\nval csvFile \u003d \"/zeppelin/notebook/resultUnion.csv/part-00000-fa647f61-612d-40ed-81b5-1c8049caa127-c000.csv\"\nval lines \u003d Source.fromFile(csvFile).getLines().toList\n\n// Extract header and data\nval header \u003d lines.head.split(\",\")\nval data \u003d lines.tail.map(_.split(\",\"))\n\n// Insert data into Neo4j with a different graph structure\ndata.foreach { row \u003d\u003e\n  // Check if the row has enough elements\n  if (row.length \u003e\u003d 5) {\n    val cypherQuery \u003d\n      s\"\"\"\n         |MERGE (source:Node1 {name: \u0027${row(0)}\u0027})\n         |MERGE (target:Node1 {name: \u0027${row(1)}\u0027})\n         |MERGE (source)-[r:${row(2)} {weight: ${row(3).toInt}, book: ${row(4).toInt}}]-\u003e(target)\n       \"\"\".stripMargin\n\n    session.run(cypherQuery)\n  } else {\n    println(s\"Skipping row: ${row.mkString(\", \")} - Insufficient columns\")\n  }\n}\n\n// Close the session and driver when done\nsession.close()\ndriver.close()",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-18 18:13:13.092",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.neo4j.driver._\nimport org.neo4j.driver.Values\nimport scala.io.Source\n\u001b[1m\u001b[34muri\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d bolt://neo4j:7687\n\u001b[1m\u001b[34muser\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d neo4j\n\u001b[1m\u001b[34mpassword\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d bitnami1\n\u001b[1m\u001b[34mdriver\u001b[0m: \u001b[1m\u001b[32morg.neo4j.driver.Driver\u001b[0m \u003d org.neo4j.driver.internal.InternalDriver@60ffc672\n\u001b[1m\u001b[34msession\u001b[0m: \u001b[1m\u001b[32morg.neo4j.driver.Session\u001b[0m \u003d org.neo4j.driver.internal.InternalSession@272af2a8\n\u001b[1m\u001b[34mcsvFile\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d /zeppelin/notebook/resultUnion.csv/part-00000-fa647f61-612d-40ed-81b5-1c8049caa127-c000.csv\n\u001b[1m\u001b[34mlines\u001b[0m: \u001b[1m\u001b[32mList[String]\u001b[0m \u003d List(Source,Target,Type,weight,book, addam-marbrand,jaime-lannister,Undirected,3,1, addam-marbrand,tywin-lannister,Undirected,6,1, aegon-i-targaryen,da..."
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702842443807_620010097",
+      "id": "paragraph_1702842443807_620010097",
+      "dateCreated": "2023-12-17 19:47:23.808",
+      "dateStarted": "2023-12-18 18:11:18.769",
+      "dateFinished": "2023-12-18 18:12:48.446",
+      "status": "FINISHED"
+    },
+    {
+      "user": "anonymous",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702917936322_675132996",
+      "id": "paragraph_1702917936322_675132996",
+      "dateCreated": "2023-12-18 16:45:36.323",
+      "status": "READY"
+    }
+  ],
+  "name": "Manipulation\u0026Insertion",
+  "id": "2JGYUBSY6",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

@@ -1,0 +1,115 @@
+{
+  "paragraphs": [
+    {
+      "text": "import org.apache.spark.sql.{SaveMode, SparkSession}\r\n\r\n// Create Spark session\r\nval spark \u003d SparkSession.builder\r\n  .appName(\"Neo4jExample\")\r\n  .master(\"local[*]\")\r\n  .config(\"spark.neo4j.bolt.url\", \"bolt://neo4j:7687\")\r\n  .config(\"spark.neo4j.bolt.user\", \"neo4j\")\r\n  .config(\"spark.neo4j.bolt.password\", \"bitnami1\")\r\n  .getOrCreate()\r\n\r\n// Sample data\r\nval data \u003d Seq(\r\n  (\"John Doe\", 32),\r\n  (\"Jane Doe\", 42)\r\n)\r\n\r\n// Define schema\r\nval schema \u003d List(\r\n  \"name\",\r\n  \"age\"\r\n)\r\n\r\n// Create a DataFrame\r\nval df \u003d spark.createDataFrame(data).toDF(schema: _*)\r\n\r\n// Write data to Neo4j\r\ndf.write\r\n  .format(\"org.neo4j.spark.DataSource\")\r\n  .mode(SaveMode.Overwrite)  // You can use SaveMode.Append if you want to add to existing data\r\n  .option(\"url\", \"bolt://neo4j:7687\")\r\n  .option(\"authentication.basic.username\", \"neo4j\")\r\n  .option(\"authentication.basic.password\", \"bitnami1\")\r\n  .option(\"labels\", \":Person\")  // Specify the node label\r\n  .option(\"relationship\", \"KNOWS\")  // Specify the relationship type if writing relationships\r\n  .option(\"create.relationship.properties\", \"false\")  // Set to true if you want to create relationship properties\r\n  .save()\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 20:03:38.909",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "java.lang.NoClassDefFoundError: org/apache/spark/sql/connector/catalog/TableProvider\n  at java.lang.ClassLoader.defineClass1(Native Method)\n  at java.lang.ClassLoader.defineClass(ClassLoader.java:756)\n  at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)\n  at java.net.URLClassLoader.defineClass(URLClassLoader.java:468)\n  at java.net.URLClassLoader.access$100(URLClassLoader.java:74)\n  at java.net.URLClassLoader$1.run(URLClassLoader.java:369)\n  at java.net.URLClassLoader$1.run(URLClassLoader.java:363)\n  at java.security.AccessController.doPrivileged(Native Method)\n  at java.net.URLClassLoader.findClass(URLClassLoader.java:362)\n  at java.lang.ClassLoader.loadClass(ClassLoader.java:418)\n  at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:352)\n  at java.lang.ClassLoader.loadClass(ClassLoader.java:405)\n  at java.lang.ClassLoader.loadClass(ClassLoader.java:405)\n  at java.lang.ClassLoader.loadClass(ClassLoader.java:405)\n  at java.lang.ClassLoader.loadClass(ClassLoader.java:351)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$19.apply(DataSource.scala:634)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$19.apply(DataSource.scala:634)\n  at scala.util.Try$.apply(Try.scala:192)\n  at org.apache.spark.sql.execution.datasources.DataSource$.lookupDataSource(DataSource.scala:634)\n  at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:245)\n  ... 45 elided\nCaused by: java.lang.ClassNotFoundException: org.apache.spark.sql.connector.catalog.TableProvider\n  at java.net.URLClassLoader.findClass(URLClassLoader.java:382)\n  at java.lang.ClassLoader.loadClass(ClassLoader.java:418)\n  at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:352)\n  at java.lang.ClassLoader.loadClass(ClassLoader.java:351)\n  ... 65 more\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702232519150_845193143",
+      "id": "paragraph_1702232519150_845193143",
+      "dateCreated": "2023-12-10 18:21:59.150",
+      "dateStarted": "2023-12-10 20:03:38.930",
+      "dateFinished": "2023-12-10 20:03:56.759",
+      "status": "ERROR"
+    },
+    {
+      "text": "%spark\r\nimport org.neo4j.spark._",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 18:24:38.204",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.neo4j.spark._\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702232565741_758787629",
+      "id": "paragraph_1702232565741_758787629",
+      "dateCreated": "2023-12-10 18:22:45.741",
+      "dateStarted": "2023-12-10 18:24:38.227",
+      "dateFinished": "2023-12-10 18:24:38.621",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-10 18:24:38.226",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702232678225_1177344019",
+      "id": "paragraph_1702232678225_1177344019",
+      "dateCreated": "2023-12-10 18:24:38.226",
+      "status": "READY"
+    }
+  ],
+  "name": "Untitled Note 3",
+  "id": "2JKTS1KPR",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

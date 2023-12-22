@@ -1,0 +1,10 @@
+Source,Target,weight,prediction
+dalla,gilly,6.0,0
+dalla,gilly,4.0,0
+dalla,jon-snow,6.0,0
+dalla,mance-rayder,10.0,0
+dalla,mance-rayder,5.0,0
+dalla,melisandre,3.0,0
+dalla,stannis-baratheon,5.0,0
+dalla,val,7.0,0
+dalla,val,5.0,0

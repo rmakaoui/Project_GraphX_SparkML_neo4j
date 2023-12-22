@@ -1,0 +1,677 @@
+{
+  "paragraphs": [
+    {
+      "text": "g%spark.pyspark\n\nfrom pyspark.sql import SparkSession\n\nspark \u003d SparkSession.builder.master(\"local[1]\") \\\n    .appName(\"Neo4jConnection\")\\\n    .getOrCreate()\nquery \u003d \"\"\"\nMATCH (source)-[relation]-\u003e(target)\nWHERE (source:Node1 OR target:Node1)\nRETURN source.name as Source, target.name as Target, type(relation) as Type, relation.weight as weight, relation.book as book\n\"\"\"\n\ndata \u003dspark.read.format(\"org.neo4j.spark.DataSource\") \\\n    .option(\"url\", \"bolt://neo4j:7687\") \\\n    .option(\"authentication.type\", \"basic\") \\\n    .option(\"authentication.basic.username\", \"neo4j\") \\\n    .option(\"authentication.basic.password\", \"bitnami1\") \\\n    .option(\"query\", query) \\\n    .option(\"partitions\", \"1\")\\\n    .load()\\",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-19 20:12:25.632",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702837324138_1174029564",
+      "id": "paragraph_1702837324138_1174029564",
+      "dateCreated": "2023-12-17 18:22:04.138",
+      "dateStarted": "2023-12-19 19:24:23.574",
+      "dateFinished": "2023-12-19 19:24:30.188",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark.pyspark\n# Vérification des données récupérées depuis Neo4j\ndata.show()\ndata.printSchema()\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-19 19:24:50.576",
+      "progress": 100,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+------------------+----------+------+----+\n|              Source|            Target|      Type|weight|book|\n+--------------------+------------------+----------+------+----+\n|      addam-marbrand|   jaime-lannister|Undirected|     3|   1|\n|      addam-marbrand|   tywin-lannister|Undirected|     6|   1|\n|   aegon-i-targaryen|daenerys-targaryen|Undirected|     5|   1|\n|   aegon-i-targaryen|      eddard-stark|Undirected|     4|   1|\n|aemon-targaryen-(...|    alliser-thorne|Undirected|     4|   1|\n|aemon-targaryen-(...|       bowen-marsh|Undirected|     4|   1|\n|aemon-targaryen-(...|             chett|Undirected|     9|   1|\n|aemon-targaryen-(...|            clydas|Undirected|     5|   1|\n|aemon-targaryen-(...|      jeor-mormont|Undirected|    13|   1|\n|aemon-targaryen-(...|          jon-snow|Undirected|    34|   1|\n|aemon-targaryen-(...|     samwell-tarly|Undirected|     5|   1|\n|  aerys-ii-targaryen|     brandon-stark|Undirected|     4|   1|\n|  aerys-ii-targaryen|      eddard-stark|Undirected|    10|   1|\n|  aerys-ii-targaryen|  gerold-hightower|Undirected|     3|   1|\n|  aerys-ii-targaryen|   jaime-lannister|Undirected|     5|   1|\n|  aerys-ii-targaryen|         jon-arryn|Undirected|     3|   1|\n|  aerys-ii-targaryen|  robert-baratheon|Undirected|    12|   1|\n|                aggo|daenerys-targaryen|Undirected|    11|   1|\n|                aggo|             drogo|Undirected|     6|   1|\n|                aggo|             jhogo|Undirected|     4|   1|\n+--------------------+------------------+----------+------+----+\nonly showing top 20 rows\n\nroot\n |-- Source: string (nullable \u003d true)\n |-- Target: string (nullable \u003d true)\n |-- Type: string (nullable \u003d true)\n |-- weight: long (nullable \u003d true)\n |-- book: long (nullable \u003d true)\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d0"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702837360593_155945300",
+      "id": "paragraph_1702837360593_155945300",
+      "dateCreated": "2023-12-17 18:22:40.593",
+      "dateStarted": "2023-12-19 19:24:50.613",
+      "dateFinished": "2023-12-19 19:24:54.191",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark.pyspark\nfrom pyspark.sql import SparkSession\nfrom pyspark.sql.functions import col, lit, count, when\nimport pandas as pd\nimport networkx as nx\n\n# Initialize Spark session\nspark \u003d SparkSession.builder.master(\"local[1]\") \\\n    .appName(\"Neo4jConnection\")\\\n    .getOrCreate()\n\n# Define your Neo4j query to fetch data\nquery \u003d \"\"\"\nMATCH (source)-[relation]-\u003e(target)\nWHERE (source:Node1 OR target:Node1)\nRETURN source.name as Source, target.name as Target, type(relation) as Type, relation.weight as weight, relation.book as book\n\"\"\"\n\n# Load data from Neo4j into a Spark DataFrame\ndata \u003d spark.read.format(\"org.neo4j.spark.DataSource\") \\\n    .option(\"url\", \"bolt://neo4j:7687\") \\\n    .option(\"authentication.type\", \"basic\") \\\n    .option(\"authentication.basic.username\", \"neo4j\") \\\n    .option(\"authentication.basic.password\", \"bitnami1\") \\\n    .option(\"query\", query) \\\n    .option(\"partitions\", \"1\")\\\n    .load()\n    \n\n# Add a column for similarity based on the weight of the relationship\ndata \u003d data.withColumn(\"Similarity_Weight\", when(col(\"weight\") \u003e 5, lit(\"High\"))\n                       .when((col(\"weight\") \u003c\u003d 5) \u0026 (col(\"weight\") \u003e 3), lit(\"Medium\"))\n                       .otherwise(lit(\"Low\")))\n\n# Calculate Degree for each node (Source and Target)\ndegrees_source \u003d data.groupBy(\"Source\").agg(count(\"Target\").alias(\"Source_Degree\"))\ndegrees_target \u003d data.groupBy(\"Target\").agg(count(\"Source\").alias(\"Target_Degree\"))\n\n# Join degree with the main DataFrame\ndata \u003d data.join(degrees_source, \"Source\", \"left\").join(degrees_target, \"Target\", \"left\")\n\n\n# Export Spark DataFrame to Pandas\npandas_data \u003d data.toPandas()\n\n# Create a graph using NetworkX from Source and Target columns\ngraph \u003d nx.from_pandas_edgelist(pandas_data, \u0027Source\u0027, \u0027Target\u0027, create_using\u003dnx.Graph())\n\n# Calculate different centrality measures\ndegree_centrality \u003d nx.degree_centrality(graph)\nweighted_degree \u003d dict(graph.degree(weight\u003d\u0027weight\u0027))\neigenvector_centrality \u003d nx.eigenvector_centrality_numpy(graph, weight\u003d\u0027weight\u0027)\npagerank \u003d nx.pagerank(graph, weight\u003d\u0027weight\u0027)\nbetweenness_centrality \u003d nx.betweenness_centrality(graph, weight\u003d\u0027weight\u0027)\n\n# Create Pandas DataFrames for each centrality measure\ndegree_df \u003d pd.DataFrame(list(degree_centrality.items()), columns\u003d[\u0027Node\u0027, \u0027Degree_Centrality\u0027])\nweighted_degree_df \u003d pd.DataFrame(list(weighted_degree.items()), columns\u003d[\u0027Node\u0027, \u0027Weighted_Degree\u0027])\neigenvector_df \u003d pd.DataFrame(list(eigenvector_centrality.items()), columns\u003d[\u0027Node\u0027, \u0027Eigenvector_Centrality\u0027])\npagerank_df \u003d pd.DataFrame(list(pagerank.items()), columns\u003d[\u0027Node\u0027, \u0027PageRank\u0027])\nbetweenness_df \u003d pd.DataFrame(list(betweenness_centrality.items()), columns\u003d[\u0027Node\u0027, \u0027Betweenness_Centrality\u0027])\n\n# Convert Pandas DataFrames to Spark DataFrames\ndegree_spark_df \u003d spark.createDataFrame(degree_df)\nweighted_degree_spark_df \u003d spark.createDataFrame(weighted_degree_df)\neigenvector_spark_df \u003d spark.createDataFrame(eigenvector_df)\npagerank_spark_df \u003d spark.createDataFrame(pagerank_df)\nbetweenness_spark_df \u003d spark.createDataFrame(betweenness_df)\n\n# Join the centrality measures with the original DataFrame\ndata \u003d data.join(degree_spark_df, data.Source \u003d\u003d degree_spark_df.Node, \"left\").drop(\"Node\")\ndata \u003d data.join(weighted_degree_spark_df, data.Source \u003d\u003d weighted_degree_spark_df.Node, \"left\").drop(\"Node\")\ndata \u003d data.join(eigenvector_spark_df, data.Source \u003d\u003d eigenvector_spark_df.Node, \"left\").drop(\"Node\")\ndata \u003d data.join(pagerank_spark_df, data.Source \u003d\u003d pagerank_spark_df.Node, \"left\").drop(\"Node\")\ndata \u003d data.join(betweenness_spark_df, data.Source \u003d\u003d betweenness_spark_df.Node, \"left\").drop(\"Node\")\n\n# Fill null values with 0 in case some nodes don\u0027t have centrality measures\ndata \u003d data.fillna(0)\n\n# Display the final DataFrame with centrality features added\ndata.show()\ndata.printSchema()\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-19 19:24:57.722",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------------------+---------------+----------+------+----+-----------------+-------------+-------------+--------------------+---------------+----------------------+--------------------+----------------------+\n|            Target|         Source|      Type|weight|book|Similarity_Weight|Source_Degree|Target_Degree|   Degree_Centrality|Weighted_Degree|Eigenvector_Centrality|            PageRank|Betweenness_Centrality|\n+------------------+---------------+----------+------+----+-----------------+-------------+-------------+--------------------+---------------+----------------------+--------------------+----------------------+\n|          gretchel|        colemon|undirected|     5|   4|           Medium|            5|            1|0.007547169811320755|              6|  0.014396674729097114|0.001020322720295135|  1.147492172372695...|\n|             maddy|        colemon|undirected|     5|   4|           Medium|            5|            2|0.007547169811320755|              6|  0.014396674729097114|0.001020322720295135|  1.147492172372695...|\n|     petyr-baelish|        colemon|undirected|     6|   4|             High|            5|           43|0.007547169811320755|              6|  0.014396674729097114|0.001020322720295135|  1.147492172372695...|\n|      robert-arryn|        colemon|undirected|     7|   4|             High|            5|           19|0.007547169811320755|              6|  0.014396674729097114|0.001020322720295135|  1.147492172372695...|\n|       vardis-egen|        colemon|Undirected|     4|   1|           Medium|            5|            6|0.007547169811320755|              6|  0.014396674729097114|0.001020322720295135|  1.147492172372695...|\n|             murch|         gariss|Undirected|     5|   2|           Medium|            1|            1|0.002515723270440...|              2|  5.807591103638332E-5|0.001060539254437...|  0.002515723270440...|\n|melara-hetherspoon|          maggy|undirected|     3|   4|              Low|            1|            4|0.002515723270440...|              2|  0.008828625689492614| 5.16362182620101E-4|                   0.0|\n| narbert-grandison|benethon-scales|undirected|     3|   5|              Low|            2|            4|0.002515723270440...|              2|  0.001209935220879...|4.990805667795787E-4|                   0.0|\n|    selyse-florent|benethon-scales|undirected|     4|   5|           Medium|            2|           19|0.002515723270440...|              2|  0.001209935220879...|4.990805667795787E-4|                   0.0|\n|              dirk|        craster|Undirected|     6|   3|             High|           21|            1|0.018867924528301886|             15|  0.013378575325244044|0.002525087193158...|  0.003894449146905064|\n|             dywen|        craster|Undirected|     7|   2|             High|           21|            3|0.018867924528301886|             15|  0.013378575325244044|0.002525087193158...|  0.003894449146905064|\n|   eddison-tollett|        craster|Undirected|     3|   2|              Low|           21|            9|0.018867924528301886|             15|  0.013378575325244044|0.002525087193158...|  0.003894449146905064|\n|   eddison-tollett|        craster|Undirected|     3|   3|              Low|           21|            9|0.018867924528301886|             15|  0.013378575325244044|0.002525087193158...|  0.003894449146905064|\n|             gilly|        craster|Undirected|    16|   3|             High|           21|            9|0.018867924528301886|             15|  0.013378575325244044|0.002525087193158...|  0.003894449146905064|\n|             gilly|        craster|undirected|     8|   4|             High|           21|            9|0.018867924528301886|             15|  0.013378575325244044|0.002525087193158...|  0.003894449146905064|\n|             grenn|        craster|Undirected|     3|   3|              Low|           21|            7|0.018867924528301886|             15|  0.013378575325244044|0.002525087193158...|  0.003894449146905064|\n|      jeor-mormont|        craster|Undirected|    19|   2|             High|           21|           27|0.018867924528301886|             15|  0.013378575325244044|0.002525087193158...|  0.003894449146905064|\n|      jeor-mormont|        craster|Undirected|     8|   3|             High|           21|           27|0.018867924528301886|             15|  0.013378575325244044|0.002525087193158...|  0.003894449146905064|\n|      jeor-mormont|        craster|undirected|     3|   4|              Low|           21|           27|0.018867924528301886|             15|  0.013378575325244044|0.002525087193158...|  0.003894449146905064|\n|        jojen-reed|        craster|Undirected|     3|   3|              Low|           21|            9|0.018867924528301886|             15|  0.013378575325244044|0.002525087193158...|  0.003894449146905064|\n+------------------+---------------+----------+------+----+-----------------+-------------+-------------+--------------------+---------------+----------------------+--------------------+----------------------+\nonly showing top 20 rows\n\nroot\n |-- Target: string (nullable \u003d true)\n |-- Source: string (nullable \u003d true)\n |-- Type: string (nullable \u003d true)\n |-- weight: long (nullable \u003d true)\n |-- book: long (nullable \u003d true)\n |-- Similarity_Weight: string (nullable \u003d false)\n |-- Source_Degree: long (nullable \u003d true)\n |-- Target_Degree: long (nullable \u003d true)\n |-- Degree_Centrality: double (nullable \u003d false)\n |-- Weighted_Degree: long (nullable \u003d true)\n |-- Eigenvector_Centrality: double (nullable \u003d false)\n |-- PageRank: double (nullable \u003d false)\n |-- Betweenness_Centrality: double (nullable \u003d false)\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d1"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d2"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d3"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1703008884646_2063224730",
+      "id": "paragraph_1703008884646_2063224730",
+      "dateCreated": "2023-12-19 18:01:24.646",
+      "dateStarted": "2023-12-19 19:24:57.755",
+      "dateFinished": "2023-12-19 19:25:29.751",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark.pyspark\nfrom pyspark.ml.feature import VectorAssembler\nfrom pyspark.ml.regression import LinearRegression\nfrom pyspark.ml import Pipeline\nfrom pyspark.sql import SparkSession\n\n# Initialise Spark session\nspark \u003d SparkSession.builder.master(\"local[1]\") \\\n    .appName(\"Predict_Degree_Centrality\")\\\n    .getOrCreate()\n\n# Assume \u0027data\u0027 contient votre DataFrame avec toutes les caractéristiques nécessaires, y compris \u0027Degree_Centrality\u0027\n\n# Liste des colonnes utilisées comme caractéristiques pour la prédiction de Degree_Centrality\nfeature_columns \u003d [\u0027weight\u0027, \u0027book\u0027, \u0027Source_Degree\u0027, \u0027Target_Degree\u0027, \u0027Weighted_Degree\u0027,\n                   \u0027Eigenvector_Centrality\u0027, \u0027PageRank\u0027, \u0027Betweenness_Centrality\u0027]\n\n# Utiliser VectorAssembler pour assembler toutes les colonnes de features en une seule colonne\nassembler \u003d VectorAssembler(inputCols\u003dfeature_columns, outputCol\u003d\u0027features\u0027)\n\n# Créer un objet LinearRegression\nlr \u003d LinearRegression(featuresCol\u003d\u0027features\u0027, labelCol\u003d\u0027Degree_Centrality\u0027)\n\n# Créer un pipeline pour assembler les étapes de prétraitement et le modèle\npipeline \u003d Pipeline(stages\u003d[assembler, lr])\n\n# Diviser les données en ensembles d\u0027entraînement et de test (80% pour l\u0027entraînement et 20% pour les tests)\ntrain_data, test_data \u003d data.randomSplit([0.8, 0.2], seed\u003d12345)\n\n# Entraîner le modèle sur les données d\u0027entraînement\nmodel \u003d pipeline.fit(train_data)\n\n# Faire des prédictions sur les données de test\npredictions \u003d model.transform(test_data)\n\n# Afficher les prédictions et les valeurs réelles\npredictions.select(\u0027Degree_Centrality\u0027, \u0027prediction\u0027, *feature_columns).show()\n\nfrom pyspark.ml.evaluation import RegressionEvaluator\n\n# Calculer la MSE\nevaluator \u003d RegressionEvaluator(labelCol\u003d\"Degree_Centrality\", predictionCol\u003d\"prediction\", metricName\u003d\"mse\")\nmse \u003d evaluator.evaluate(predictions)\nprint(\"Mean Squared Error (MSE) on test data \u003d {:.4f}\".format(mse))\n\n# Calculer la RMSE\nrmse \u003d evaluator.evaluate(predictions, {evaluator.metricName: \"rmse\"})\nprint(\"Root Mean Squared Error (RMSE) on test data \u003d {:.4f}\".format(rmse))\n\n# Calculer R² (Coefficient de détermination)\nr2 \u003d evaluator.evaluate(predictions, {evaluator.metricName: \"r2\"})\nprint(\"R-squared (R²) on test data \u003d {:.4f}\".format(r2))\n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-19 18:58:46.741",
+      "progress": 83,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+--------------------+------+----+-------------+-------------+---------------+----------------------+--------------------+----------------------+\n|   Degree_Centrality|          prediction|weight|book|Source_Degree|Target_Degree|Weighted_Degree|Eigenvector_Centrality|            PageRank|Betweenness_Centrality|\n+--------------------+--------------------+------+----+-------------+-------------+---------------+----------------------+--------------------+----------------------+\n|0.007547169811320755|0.007547169811320...|     7|   4|            5|           19|              6|   0.01439667472909714|0.001020322720295135|  1.147492172372695...|\n|0.018867924528301886|0.018867924528301147|     8|   4|           21|            9|             15|  0.013378575325244044|0.002525087193158...|  0.003894449146905064|\n|0.012578616352201257|0.012578616352201097|     3|   1|            9|           98|             10|  0.036162700053220545|0.001473004418379...|  3.475448911599839E-4|\n|0.018867924528301886| 0.01886792452830109|    32|   3|           21|           66|             15|  0.013378575325244044|0.002525087193158...|  0.003894449146905064|\n|0.007547169811320755|0.007547169811320695|     3|   3|            3|            1|              6|  0.008617798266236135|0.001190758191296...|  0.002589043870249...|\n|0.012578616352201257|0.012578616352201337|     5|   3|            9|            5|             10|  0.036162700053220545|0.001473004418379...|  3.475448911599839E-4|\n|0.018867924528301886|0.018867924528301085|     3|   3|           21|           14|             15|  0.013378575325244044|0.002525087193158...|  0.003894449146905064|\n| 0.03522012578616352| 0.03522012578616424|     8|   2|           23|          195|             28|   0.12110155136394019|0.003534652914421839|  0.001442737094176...|\n| 0.03522012578616352|0.035220125786164305|     3|   4|           23|          195|             28|   0.12110155136394019|0.003534652914421839|  0.001442737094176...|\n|0.006289308176100628|0.006289308176099712|     4|   3|            5|            3|              5|  0.003531688809073...|8.632889054466047E-4|                   0.0|\n|0.006289308176100628|0.006289308176099708|     3|   3|            5|            3|              5|  0.003531688809073...|8.632889054466047E-4|                   0.0|\n|0.010062893081761006|0.010062893081761446|     7|   4|            7|            2|              8|  0.002925499665538...|0.001820680638346...|   0.01419929600902241|\n|0.010062893081761006|0.010062893081761434|     3|   4|            7|            2|              8|  0.002925499665538...|0.001820680638346...|   0.01419929600902241|\n|0.010062893081761006|0.010062893081761446|     7|   4|            7|            2|              8|  0.002925499665538...|0.001820680638346...|   0.01419929600902241|\n|0.010062893081761006|0.010062893081761446|     8|   4|            7|            4|              8|  0.002925499665538...|0.001820680638346...|   0.01419929600902241|\n|0.027672955974842765| 0.02767295597484282|     3|   2|           21|           88|             22|   0.07536337573523062|0.003121256485498768|  0.020188669694938672|\n|0.010062893081761006|0.010062893081761346|     8|   4|            7|           66|              8|  0.002925499665538...|0.001820680638346...|   0.01419929600902241|\n|0.045283018867924525|0.045283018867924206|     8|   3|           15|          118|             36|    0.1228598209546548|0.004664752725028302|  0.008828078736469736|\n|0.027672955974842765| 0.02767295597484284|     6|   1|           21|           56|             22|   0.07536337573523062|0.003121256485498768|  0.020188669694938672|\n|0.027672955974842765| 0.02767295597484301|     8|   5|           21|           56|             22|   0.07536337573523062|0.003121256485498768|  0.020188669694938672|\n+--------------------+--------------------+------+----+-------------+-------------+---------------+----------------------+--------------------+----------------------+\nonly showing top 20 rows\n\nMean Squared Error (MSE) on test data \u003d 0.0000\nRoot Mean Squared Error (RMSE) on test data \u003d 0.0000\nR-squared (R²) on test data \u003d 1.0000\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d63"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d64"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d65"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d66"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d67"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d68"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d69"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d70"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d71"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d72"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1703010042875_748857838",
+      "id": "paragraph_1703010042875_748857838",
+      "dateCreated": "2023-12-19 18:20:42.875",
+      "dateStarted": "2023-12-19 18:58:46.845",
+      "dateFinished": "2023-12-19 18:59:21.417",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark.pyspark\nfrom pyspark.ml.regression import DecisionTreeRegressor\nfrom pyspark.ml import Pipeline\nfrom pyspark.ml.feature import VectorAssembler\nfrom pyspark.ml.evaluation import RegressionEvaluator\n\n# Créer un VectorAssembler pour assembler les colonnes de features\nfeature_columns \u003d [\u0027Source_Degree\u0027, \u0027Target_Degree\u0027, \u0027Degree_Centrality\u0027, \u0027Weighted_Degree\u0027,\n                   \u0027Eigenvector_Centrality\u0027, \u0027Betweenness_Centrality\u0027, \u0027weight\u0027]\nassembler \u003d VectorAssembler(inputCols\u003dfeature_columns, outputCol\u003d\u0027features\u0027)\n\n# Créer un modèle DecisionTreeRegressor\ndt \u003d DecisionTreeRegressor(featuresCol\u003d\u0027features\u0027, labelCol\u003d\u0027PageRank\u0027)\n\n# Créer un pipeline\npipeline \u003d Pipeline(stages\u003d[assembler, dt])\n\n# Diviser les données en ensembles d\u0027entraînement et de test\ntrain_data, test_data \u003d data.randomSplit([0.8, 0.2], seed\u003d12345)\n\n# Entraîner le modèle\nmodel \u003d pipeline.fit(train_data)\n\n# Faire des prédictions sur les données de test\npredictions \u003d model.transform(test_data)\n\n# Afficher les prédictions et les valeurs réelles\npredictions.select(\u0027PageRank\u0027, \u0027prediction\u0027, *feature_columns).show()\n\n# Calculer des métriques d\u0027évaluation pour le modèle\n\nevaluator \u003d RegressionEvaluator(labelCol\u003d\"PageRank\", predictionCol\u003d\"prediction\", metricName\u003d\"rmse\")\nmse \u003d evaluator.evaluate(predictions)\nprint(\"Mean Squared Error (MSE) on test data \u003d {:.4f}\".format(mse))\nrmse \u003d evaluator.evaluate(predictions)\nprint(\"Root Mean Squared Error (RMSE) on test data \u003d {:.4f}\".format(rmse))\n\nr2 \u003d evaluator.evaluate(predictions, {evaluator.metricName: \"r2\"})\nprint(\"R-squared (R²) on test data \u003d {:.4f}\".format(r2))\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-19 19:02:59.170",
+      "progress": 90,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+--------------------+-------------+-------------+--------------------+---------------+----------------------+----------------------+------+\n|            PageRank|          prediction|Source_Degree|Target_Degree|   Degree_Centrality|Weighted_Degree|Eigenvector_Centrality|Betweenness_Centrality|weight|\n+--------------------+--------------------+-------------+-------------+--------------------+---------------+----------------------+----------------------+------+\n|0.001020322720295135|0.001160135446517...|            5|           19|0.007547169811320755|              6|   0.01439667472909714|  1.147492172372695...|     7|\n|0.002525087193158...|0.002425692646489608|           21|            9|0.018867924528301886|             15|  0.013378575325244044|  0.003894449146905064|     8|\n|0.001473004418379...|0.001434971445018...|            9|           98|0.012578616352201257|             10|  0.036162700053220545|  3.475448911599839E-4|     3|\n|0.002525087193158...|0.002425692646489608|           21|           66|0.018867924528301886|             15|  0.013378575325244044|  0.003894449146905064|    32|\n|0.001190758191296...|0.001160135446517...|            3|            1|0.007547169811320755|              6|  0.008617798266236135|  0.002589043870249...|     3|\n|0.001473004418379...|0.001434971445018...|            9|            5|0.012578616352201257|             10|  0.036162700053220545|  3.475448911599839E-4|     5|\n|0.002525087193158...|0.002425692646489608|           21|           14|0.018867924528301886|             15|  0.013378575325244044|  0.003894449146905064|     3|\n|0.003534652914421839|0.003984734485183...|           23|          195| 0.03522012578616352|             28|   0.12110155136394019|  0.001442737094176...|     8|\n|0.003534652914421839|0.003984734485183...|           23|          195| 0.03522012578616352|             28|   0.12110155136394019|  0.001442737094176...|     3|\n|8.632889054466047E-4|5.234784795198266E-4|            5|            3|0.006289308176100628|              5|  0.003531688809073...|                   0.0|     4|\n|8.632889054466047E-4|5.234784795198266E-4|            5|            3|0.006289308176100628|              5|  0.003531688809073...|                   0.0|     3|\n|0.001820680638346...|0.001434971445018...|            7|            2|0.010062893081761006|              8|  0.002925499665538...|   0.01419929600902241|     7|\n|0.001820680638346...|0.001434971445018...|            7|            2|0.010062893081761006|              8|  0.002925499665538...|   0.01419929600902241|     3|\n|0.001820680638346...|0.001434971445018...|            7|            2|0.010062893081761006|              8|  0.002925499665538...|   0.01419929600902241|     7|\n|0.001820680638346...|0.001434971445018...|            7|            4|0.010062893081761006|              8|  0.002925499665538...|   0.01419929600902241|     8|\n|0.003121256485498768|0.003178016931933...|           21|           88|0.027672955974842765|             22|   0.07536337573523062|  0.020188669694938672|     3|\n|0.001820680638346...|0.001434971445018...|            7|           66|0.010062893081761006|              8|  0.002925499665538...|   0.01419929600902241|     8|\n|0.004664752725028302|0.004844674123526213|           15|          118|0.045283018867924525|             36|    0.1228598209546548|  0.008828078736469736|     8|\n|0.003121256485498768|0.003178016931933...|           21|           56|0.027672955974842765|             22|   0.07536337573523062|  0.020188669694938672|     6|\n|0.003121256485498768|0.003178016931933...|           21|           56|0.027672955974842765|             22|   0.07536337573523062|  0.020188669694938672|     8|\n+--------------------+--------------------+-------------+-------------+--------------------+---------------+----------------------+----------------------+------+\nonly showing top 20 rows\n\nMean Squared Error (MSE) on test data \u003d 0.0002\nRoot Mean Squared Error (RMSE) on test data \u003d 0.0002\nR-squared (R²) on test data \u003d 0.9984\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d85"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d86"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d87"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d88"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d89"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d90"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d91"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d92"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d93"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d94"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d95"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d96"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d97"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1703010559234_1714775652",
+      "id": "paragraph_1703010559234_1714775652",
+      "dateCreated": "2023-12-19 18:29:19.234",
+      "dateStarted": "2023-12-19 19:02:59.204",
+      "dateFinished": "2023-12-19 19:03:37.082",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark.pyspark\nfrom pyspark.ml.regression import RandomForestRegressor\nfrom pyspark.ml import Pipeline\nfrom pyspark.ml.feature import VectorAssembler\nfrom pyspark.sql import SparkSession\n\n# Initialise Spark session\nspark \u003d SparkSession.builder.master(\"local[1]\") \\\n    .appName(\"Betweenness_Prediction_RF\")\\\n    .getOrCreate()\n\n# Assume \u0027data\u0027 contains your prepared DataFrame with all the features and target variable \u0027Betweenness_Centrality\u0027\n\n# Utiliser VectorAssembler pour assembler toutes les colonnes de features en une seule colonne\nfeature_columns \u003d [\u0027Source_Degree\u0027, \u0027Target_Degree\u0027, \u0027Degree_Centrality\u0027, \u0027Weighted_Degree\u0027,\n                   \u0027Eigenvector_Centrality\u0027, \u0027PageRank\u0027, \u0027weight\u0027]  # Ajoutez \u0027weight\u0027 comme feature\nassembler \u003d VectorAssembler(inputCols\u003dfeature_columns, outputCol\u003d\u0027features\u0027)\n\n# Créer un objet RandomForestRegressor\nrf \u003d RandomForestRegressor(featuresCol\u003d\u0027features\u0027, labelCol\u003d\u0027Betweenness_Centrality\u0027)\n\n# Créer un pipeline pour assembler les étapes de prétraitement et le modèle\npipeline \u003d Pipeline(stages\u003d[assembler, rf])\n\n# Diviser les données en ensembles d\u0027entraînement et de test (80% pour l\u0027entraînement et 20% pour les tests)\ntrain_data, test_data \u003d data.randomSplit([0.8, 0.2], seed\u003d12345)\n\n# Entraîner le modèle sur les données d\u0027entraînement\nmodel \u003d pipeline.fit(train_data)\n\n# Faire des prédictions sur les données de test\npredictions \u003d model.transform(test_data)\n\n# Afficher les prédictions et les valeurs réelles\npredictions.select(\u0027Betweenness_Centrality\u0027, \u0027prediction\u0027, *feature_columns).show()\n\nfrom pyspark.ml.evaluation import RegressionEvaluator\n\n# Calculer la MSE\nevaluator \u003d RegressionEvaluator(labelCol\u003d\"Betweenness_Centrality\", predictionCol\u003d\"prediction\", metricName\u003d\"mse\")\nmse \u003d evaluator.evaluate(predictions)\nprint(\"Mean Squared Error (MSE) on test data \u003d {:.4f}\".format(mse))\n\n# Calculer la RMSE\nrmse \u003d evaluator.evaluate(predictions, {evaluator.metricName: \"rmse\"})\nprint(\"Root Mean Squared Error (RMSE) on test data \u003d {:.4f}\".format(rmse))\n\n# Calculer R² (Coefficient de détermination)\nr2 \u003d evaluator.evaluate(predictions, {evaluator.metricName: \"r2\"})\nprint(\"R-squared (R²) on test data \u003d {:.4f}\".format(r2))\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-19 19:18:11.102",
+      "progress": 80,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+----------------------+--------------------+-------------+-------------+--------------------+---------------+----------------------+--------------------+------+\n|Betweenness_Centrality|          prediction|Source_Degree|Target_Degree|   Degree_Centrality|Weighted_Degree|Eigenvector_Centrality|            PageRank|weight|\n+----------------------+--------------------+-------------+-------------+--------------------+---------------+----------------------+--------------------+------+\n|  1.147492172372695...| 7.59971962848845E-4|            5|           19|0.007547169811320755|              6|   0.01439667472909714|0.001020322720295135|     7|\n|  0.003894449146905064|0.003155416356103...|           21|            9|0.018867924528301886|             15|  0.013378575325244044|0.002525087193158...|     8|\n|  3.475448911599839E-4|9.250218555919745E-4|            9|           98|0.012578616352201257|             10|  0.036162700053220545|0.001473004418379...|     3|\n|  0.003894449146905064|0.003155416356103...|           21|           66|0.018867924528301886|             15|  0.013378575325244044|0.002525087193158...|    32|\n|  0.002589043870249...|8.548209687138108E-4|            3|            1|0.007547169811320755|              6|  0.008617798266236135|0.001190758191296...|     3|\n|  3.475448911599839E-4|9.250218555919745E-4|            9|            5|0.012578616352201257|             10|  0.036162700053220545|0.001473004418379...|     5|\n|  0.003894449146905064|0.003155416356103...|           21|           14|0.018867924528301886|             15|  0.013378575325244044|0.002525087193158...|     3|\n|  0.001442737094176...|  0.0060483234820715|           23|          195| 0.03522012578616352|             28|   0.12110155136394019|0.003534652914421839|     8|\n|  0.001442737094176...|  0.0060483234820715|           23|          195| 0.03522012578616352|             28|   0.12110155136394019|0.003534652914421839|     3|\n|                   0.0| 7.59971962848845E-4|            5|            3|0.006289308176100628|              5|  0.003531688809073...|8.632889054466047E-4|     4|\n|                   0.0| 7.59971962848845E-4|            5|            3|0.006289308176100628|              5|  0.003531688809073...|8.632889054466047E-4|     3|\n|   0.01419929600902241|9.119201073283366E-4|            7|            2|0.010062893081761006|              8|  0.002925499665538...|0.001820680638346...|     7|\n|   0.01419929600902241|9.119201073283366E-4|            7|            2|0.010062893081761006|              8|  0.002925499665538...|0.001820680638346...|     3|\n|   0.01419929600902241|9.119201073283366E-4|            7|            2|0.010062893081761006|              8|  0.002925499665538...|0.001820680638346...|     7|\n|   0.01419929600902241|9.119201073283366E-4|            7|            4|0.010062893081761006|              8|  0.002925499665538...|0.001820680638346...|     8|\n|  0.020188669694938672|0.009648978660123955|           21|           88|0.027672955974842765|             22|   0.07536337573523062|0.003121256485498768|     3|\n|   0.01419929600902241|9.119201073283366E-4|            7|           66|0.010062893081761006|              8|  0.002925499665538...|0.001820680638346...|     8|\n|  0.008828078736469736| 0.00933602067144764|           15|          118|0.045283018867924525|             36|    0.1228598209546548|0.004664752725028302|     8|\n|  0.020188669694938672|0.009648978660123955|           21|           56|0.027672955974842765|             22|   0.07536337573523062|0.003121256485498768|     6|\n|  0.020188669694938672|0.009648978660123955|           21|           56|0.027672955974842765|             22|   0.07536337573523062|0.003121256485498768|     8|\n+----------------------+--------------------+-------------+-------------+--------------------+---------------+----------------------+--------------------+------+\nonly showing top 20 rows\n\nMean Squared Error (MSE) on test data \u003d 0.0000\nRoot Mean Squared Error (RMSE) on test data \u003d 0.0029\nR-squared (R²) on test data \u003d 0.9958\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d158"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d159"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d160"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d161"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d162"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d163"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d164"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d165"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d166"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d167"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d168"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d169"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d170"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d171"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702837406597_1432573979",
+      "id": "paragraph_1702837406597_1432573979",
+      "dateCreated": "2023-12-17 18:23:26.597",
+      "dateStarted": "2023-12-19 19:18:11.137",
+      "dateFinished": "2023-12-19 19:19:01.742",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark.pyspark\nfrom pyspark.ml.feature import VectorAssembler\nfrom pyspark.ml.regression import RandomForestRegressor\nfrom pyspark.ml import Pipeline\nfrom pyspark.sql import SparkSession\n\n# Initialise Spark session\nspark \u003d SparkSession.builder.master(\"local[1]\") \\\n    .appName(\"Predict_Weighted_Degree_RF\")\\\n    .getOrCreate()\n\n# Assume \u0027data\u0027 contains your prepared DataFrame with all the features and target variable \u0027Weighted_Degree\u0027\n\n# Utiliser VectorAssembler pour assembler toutes les colonnes de features en une seule colonne\nfeature_columns \u003d [\u0027Source_Degree\u0027, \u0027Target_Degree\u0027, \u0027Degree_Centrality\u0027, \u0027weight\u0027, \u0027Eigenvector_Centrality\u0027, \u0027PageRank\u0027, \u0027Betweenness_Centrality\u0027]\nassembler \u003d VectorAssembler(inputCols\u003dfeature_columns, outputCol\u003d\u0027features\u0027)\n\n# Créer un objet RandomForestRegressor\nrf \u003d RandomForestRegressor(featuresCol\u003d\u0027features\u0027, labelCol\u003d\u0027Weighted_Degree\u0027)\n\n# Créer un pipeline pour assembler les étapes de prétraitement et le modèle\npipeline \u003d Pipeline(stages\u003d[assembler, rf])\n\n# Diviser les données en ensembles d\u0027entraînement et de test (80% pour l\u0027entraînement et 20% pour les tests)\ntrain_data, test_data \u003d data.randomSplit([0.8, 0.2], seed\u003d12345)\n\n# Entraîner le modèle sur les données d\u0027entraînement\nmodel \u003d pipeline.fit(train_data)\n\n# Faire des prédictions sur les données de test\npredictions \u003d model.transform(test_data)\n\n# Afficher les prédictions et les valeurs réelles\npredictions.select(\u0027Weighted_Degree\u0027, \u0027prediction\u0027, *feature_columns).show()\n\n\nfrom pyspark.ml.evaluation import RegressionEvaluator\n\n# Calculer la MSE\nevaluator \u003d RegressionEvaluator(labelCol\u003d\"Weighted_Degree\", predictionCol\u003d\"prediction\", metricName\u003d\"mse\")\nmse \u003d evaluator.evaluate(predictions)\nprint(\"Mean Squared Error (MSE) on test data \u003d {:.4f}\".format(mse))\n\n# Calculer la RMSE\nrmse \u003d evaluator.evaluate(predictions, {evaluator.metricName: \"rmse\"})\nprint(\"Root Mean Squared Error (RMSE) on test data \u003d {:.4f}\".format(rmse))\n\n# Calculer R² (Coefficient de détermination)\nr2 \u003d evaluator.evaluate(predictions, {evaluator.metricName: \"r2\"})\nprint(\"R-squared (R²) on test data \u003d {:.4f}\".format(r2))\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-19 19:39:59.326",
+      "progress": 89,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---------------+------------------+-------------+-------------+--------------------+------+----------------------+--------------------+----------------------+\n|Weighted_Degree|        prediction|Source_Degree|Target_Degree|   Degree_Centrality|weight|Eigenvector_Centrality|            PageRank|Betweenness_Centrality|\n+---------------+------------------+-------------+-------------+--------------------+------+----------------------+--------------------+----------------------+\n|              6| 6.030636191608099|            5|           19|0.007547169811320755|     7|  0.014396674729097114|0.001020322720295135|  1.147492172372695...|\n|             15| 15.14306052676994|           21|            9|0.018867924528301886|     8|  0.013378575325244044|0.002525087193158...|  0.003894449146905064|\n|             10| 9.195151632722043|            9|           98|0.012578616352201257|     3|   0.03616270005322048|0.001473004418379...|  3.475448911599839E-4|\n|             15| 15.14306052676994|           21|           66|0.018867924528301886|    32|  0.013378575325244044|0.002525087193158...|  0.003894449146905064|\n|              6| 6.322240717691403|            3|            1|0.007547169811320755|     3|  0.008617798266236121|0.001190758191296...|  0.002589043870249...|\n|             10| 9.195151632722043|            9|            5|0.012578616352201257|     5|   0.03616270005322048|0.001473004418379...|  3.475448911599839E-4|\n|             15| 15.14306052676994|           21|           14|0.018867924528301886|     3|  0.013378575325244044|0.002525087193158...|  0.003894449146905064|\n|             28|27.071408453140116|           23|          195| 0.03522012578616352|     8|   0.12110155136394017|0.003534652914421839|  0.001442737094176...|\n|             28|27.071408453140116|           23|          195| 0.03522012578616352|     3|   0.12110155136394017|0.003534652914421839|  0.001442737094176...|\n|              5| 4.399844492212945|            5|            3|0.006289308176100628|     4|   0.00353168880907368|8.632889054466047E-4|                   0.0|\n|              5| 4.399844492212945|            5|            3|0.006289308176100628|     3|   0.00353168880907368|8.632889054466047E-4|                   0.0|\n|              8| 9.619050484224852|            7|            2|0.010062893081761006|     7|  0.002925499665538...|0.001820680638346...|   0.01419929600902241|\n|              8| 9.619050484224852|            7|            2|0.010062893081761006|     3|  0.002925499665538...|0.001820680638346...|   0.01419929600902241|\n|              8| 9.619050484224852|            7|            2|0.010062893081761006|     7|  0.002925499665538...|0.001820680638346...|   0.01419929600902241|\n|              8| 9.619050484224852|            7|            4|0.010062893081761006|     8|  0.002925499665538...|0.001820680638346...|   0.01419929600902241|\n|             22|21.556906122606314|           21|           88|0.027672955974842765|     3|   0.07536337573523062|0.003121256485498768|  0.020188669694938672|\n|              8| 9.619050484224852|            7|           66|0.010062893081761006|     8|  0.002925499665538...|0.001820680638346...|   0.01419929600902241|\n|             36|34.012059016330376|           15|          118|0.045283018867924525|     8|   0.12285982095465486|0.004664752725028302|  0.008828078736469736|\n|             22|21.556906122606314|           21|           56|0.027672955974842765|     6|   0.07536337573523062|0.003121256485498768|  0.020188669694938672|\n|             22|21.556906122606314|           21|           56|0.027672955974842765|     8|   0.07536337573523062|0.003121256485498768|  0.020188669694938672|\n+---------------+------------------+-------------+-------------+--------------------+------+----------------------+--------------------+----------------------+\nonly showing top 20 rows\n\nMean Squared Error (MSE) on test data \u003d 0.5610\nRoot Mean Squared Error (RMSE) on test data \u003d 0.7490\nR-squared (R²) on test data \u003d 0.9995\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d146"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d147"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d148"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d149"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d150"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d151"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d152"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d153"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d154"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d155"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d156"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d157"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d158"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d159"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1703014293153_1904572723",
+      "id": "paragraph_1703014293153_1904572723",
+      "dateCreated": "2023-12-19 19:31:33.154",
+      "dateStarted": "2023-12-19 19:39:59.358",
+      "dateFinished": "2023-12-19 19:41:16.602",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\r\n\r\nfrom pyspark.sql import SparkSession\r\nfrom pyspark.ml.clustering import KMeans\r\nfrom pyspark.ml.feature import VectorAssembler\r\nfrom pyspark.sql.functions import col\r\n\r\n# Initialise Spark session\r\nspark \u003d SparkSession.builder.master(\"local[1]\").appName(\"Weight_Clustering\").getOrCreate()\r\n\r\n# Convertir la colonne \"weight\" en type numérique (double)\r\ndata \u003d data.withColumn(\"weight\", col(\"weight\").cast(\"double\"))\r\n\r\n# Supprimer les lignes avec des valeurs nulles dans la colonne \u0027weight\u0027\r\ndata \u003d data.dropna(subset\u003d[\"weight\"])\r\n\r\n# Assembler les caractéristiques en un vecteur, en traitant les valeurs nulles\r\nassembler \u003d VectorAssembler(inputCols\u003d[\"weight\"], outputCol\u003d\"features\", handleInvalid\u003d\"keep\")\r\nassembled_df \u003d assembler.transform(data)\r\n\r\n# Créer le modèle K-Means avec k\u003d3 clusters\r\nkmeans \u003d KMeans(featuresCol\u003d\"features\", k\u003d3)\r\n\r\n# Entraîner le modèle K-Means\r\nkmeans_model \u003d kmeans.fit(assembled_df)\r\n\r\n# Faire des prédictions sur les données\r\npredictions \u003d kmeans_model.transform(assembled_df)\r\n\r\n# Afficher les données d\u0027origine et les prédictions du K-Means\r\nresult \u003d predictions.select(\"Source\", \"Target\", \"weight\", \"prediction\")\r\nresult.show(100)\r\n\r\nresult.coalesce(1).write.csv(\u0027/zeppelin/notebook/result4.csv\u0027, header\u003dTrue)\r\n\r\n\r\n# Enregistrer les résultats au format CSV\r\n\r\n\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-19 20:27:48.048",
+      "progress": 97,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------------------+------------------+------+----------+\n|            Source|            Target|weight|prediction|\n+------------------+------------------+------+----------+\n|           colemon|          gretchel|   5.0|         0|\n|           colemon|             maddy|   5.0|         0|\n|           colemon|     petyr-baelish|   6.0|         0|\n|           colemon|      robert-arryn|   7.0|         0|\n|           colemon|       vardis-egen|   4.0|         0|\n|            gariss|             murch|   5.0|         0|\n|             maggy|melara-hetherspoon|   3.0|         0|\n|   benethon-scales| narbert-grandison|   3.0|         0|\n|   benethon-scales|    selyse-florent|   4.0|         0|\n|           craster|              dirk|   6.0|         0|\n|           craster|             dywen|   7.0|         0|\n|           craster|   eddison-tollett|   3.0|         0|\n|           craster|   eddison-tollett|   3.0|         0|\n|           craster|             gilly|  16.0|         0|\n|           craster|             gilly|   8.0|         0|\n|           craster|             grenn|   3.0|         0|\n|           craster|      jeor-mormont|  19.0|         2|\n|           craster|      jeor-mormont|   8.0|         0|\n|           craster|      jeor-mormont|   3.0|         0|\n|           craster|        jojen-reed|   3.0|         0|\n|           craster|          jon-snow|  26.0|         2|\n|           craster|          jon-snow|   7.0|         0|\n|           craster|          jon-snow|   3.0|         0|\n|           craster|      mance-rayder|   4.0|         0|\n|           craster|      mance-rayder|   6.0|         0|\n|           craster|     samwell-tarly|  10.0|         0|\n|           craster|     samwell-tarly|  32.0|         2|\n|           craster|     samwell-tarly|   6.0|         0|\n|           craster|  thoren-smallwood|   4.0|         0|\n|           craster|           tormund|   3.0|         0|\n|      hoster-tully|   jaime-lannister|   4.0|         0|\n|      hoster-tully|       lothar-frey|   5.0|         0|\n|      hoster-tully|        lysa-arryn|   3.0|         0|\n|      hoster-tully|        lysa-arryn|   6.0|         0|\n|      hoster-tully|        robb-stark|   4.0|         0|\n|      hoster-tully|  robert-baratheon|   3.0|         0|\n|      hoster-tully|             tansy|   5.0|         0|\n|      hoster-tully|             vyman|   3.0|         0|\n|      hoster-tully|             vyman|   4.0|         0|\n|              lark|     samwell-tarly|   3.0|         0|\n|              lark|        small-paul|   8.0|         0|\n|              lark|          softfoot|   3.0|         0|\n|      loras-tyrell|       mace-tyrell|   3.0|         0|\n|      loras-tyrell|       mace-tyrell|   6.0|         0|\n|      loras-tyrell|   margaery-tyrell|  10.0|         0|\n|      loras-tyrell|   margaery-tyrell|  21.0|         2|\n|      loras-tyrell|    olenna-redwyne|   5.0|         0|\n|      loras-tyrell|osmund-kettleblack|   4.0|         0|\n|      loras-tyrell|osmund-kettleblack|  13.0|         0|\n|      loras-tyrell|     petyr-baelish|   5.0|         0|\n|      loras-tyrell|   renly-baratheon|   5.0|         0|\n|      loras-tyrell|   renly-baratheon|  14.0|         0|\n|      loras-tyrell|   renly-baratheon|   8.0|         0|\n|      loras-tyrell|  robert-baratheon|   4.0|         0|\n|      loras-tyrell|  robert-baratheon|   3.0|         0|\n|      loras-tyrell|     rodrik-cassel|   3.0|         0|\n|      loras-tyrell|    sandor-clegane|   4.0|         0|\n|      loras-tyrell|       sansa-stark|  14.0|         0|\n|      loras-tyrell|       sansa-stark|  13.0|         0|\n|      loras-tyrell| stannis-baratheon|   4.0|         0|\n|      loras-tyrell|  tommen-baratheon|  13.0|         0|\n|      loras-tyrell|  tyrion-lannister|   8.0|         0|\n|      loras-tyrell|  tyrion-lannister|  10.0|         0|\n|      loras-tyrell|  tyrion-lannister|   3.0|         0|\n|      loras-tyrell|     willas-tyrell|   4.0|         0|\n|         hyle-hunt|          meribald|   9.0|         0|\n|         hyle-hunt|     podrick-payne|  19.0|         2|\n|         hyle-hunt|     randyll-tarly|   5.0|         0|\n|         hyle-hunt|    sandor-clegane|   3.0|         0|\n|         hyle-hunt|       sansa-stark|   3.0|         0|\n|           alleras|             armen|   5.0|         0|\n|           alleras|        leo-tyrell|   7.0|         0|\n|           alleras|            marwyn|   3.0|         0|\n|           alleras|         mollander|   7.0|         0|\n|           alleras|     pate-(novice)|   8.0|         0|\n|           alleras|             roone|   6.0|         0|\n|           alleras|     samwell-tarly|   8.0|         0|\n|           bedwyck|           craster|   4.0|         0|\n|           bedwyck|             dywen|   3.0|         0|\n|           bedwyck|   eddison-tollett|   4.0|         0|\n|           bedwyck|             grenn|   4.0|         0|\n|           bedwyck|     samwell-tarly|   3.0|         0|\n|             errok|             grigg|   7.0|         0|\n|             errok|          jon-snow|   4.0|         0|\n|             errok|              styr|   3.0|         0|\n|myrcella-baratheon|        robb-stark|   3.0|         0|\n|myrcella-baratheon|      robert-arryn|   4.0|         0|\n|myrcella-baratheon|  robert-baratheon|   3.0|         0|\n|myrcella-baratheon|    sandor-clegane|   4.0|         0|\n|myrcella-baratheon|       sansa-stark|   8.0|         0|\n|myrcella-baratheon|       sansa-stark|   6.0|         0|\n|myrcella-baratheon|       sansa-stark|   4.0|         0|\n|myrcella-baratheon| stannis-baratheon|   3.0|         0|\n|myrcella-baratheon|    sylva-santagar|   4.0|         0|\n|myrcella-baratheon|  tommen-baratheon|   6.0|         0|\n|myrcella-baratheon|  tommen-baratheon|  12.0|         0|\n|myrcella-baratheon|  tommen-baratheon|   7.0|         0|\n|myrcella-baratheon|  tommen-baratheon|   3.0|         0|\n|myrcella-baratheon|  tommen-baratheon|   8.0|         0|\n|myrcella-baratheon|  trystane-martell|   4.0|         0|\n+------------------+------------------+------+----------+\nonly showing top 100 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d275"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d276"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d277"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d278"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d279"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d280"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d281"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d282"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d283"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d284"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d285"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d286"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d287"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d288"
+            },
+            {
+              "jobUrl": "http://c1bac0e12732:4040/jobs/job?id\u003d289"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702846621790_866524416",
+      "id": "paragraph_1702846621790_866524416",
+      "dateCreated": "2023-12-17 20:57:01.790",
+      "dateStarted": "2023-12-19 20:27:48.080",
+      "dateFinished": "2023-12-19 20:28:17.807",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%python\r\nimport pandas as pd\r\nimport matplotlib.pyplot as plt\r\n\r\n# Load the saved CSV file into a Pandas DataFrame\r\nresult_pandas \u003d pd.read_csv(\u0027/zeppelin/notebook/result3.csv/part-00000-fbb41e2a-e96e-4507-aeea-28e1a1717cae-c000.csv\u0027)\r\n\r\n# Extract relevant columns for visualization\r\nx \u003d result_pandas[\u0027weight\u0027]\r\ny \u003d result_pandas[\u0027prediction\u0027]\r\n\r\n# Plotting the scatter plot\r\nplt.figure(figsize\u003d(8, 6))\r\nplt.scatter(x, y, c\u003dy, cmap\u003d\u0027viridis\u0027, edgecolors\u003d\u0027k\u0027)\r\nplt.title(\u0027K-Means Clustering\u0027)\r\nplt.xlabel(\u0027Weight\u0027)\r\nplt.ylabel(\u0027Cluster\u0027)\r\nplt.colorbar(label\u003d\u0027Cluster\u0027)\r\nplt.grid(True)\r\nplt.show()\r\nz.show(plt)\r\n\r\n\r\n\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-19 20:02:21.187",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv style\u003d\u0027width:auto;height:auto\u0027\u003e\u003cimg src\u003ddata:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAJYCAYAAACadoJwAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjQuMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy/MnkTPAAAACXBIWXMAAA9hAAAPYQGoP6dpAAB4t0lEQVR4nO3deXxU1fnH8e/NngAJhCWLhLDIFkDEsAVkEwkGQSgiVCuigJaCVkjdUlGW/hSpCgFBkApGVCBVBLRiIVTCIhEFA1oXKoqCMRFBIEDIOvf3R8zoMAnLMDOZIZ/363V9MWfOPXPu4wTuk+eeew3TNE0BAAAAgBv4VPcEAAAAANQcJCAAAAAA3IYEBAAAAIDbkIAAAAAAcBsSEAAAAABuQwICAAAAwG1IQAAAAAC4DQkIAAAAALchAQEAAADgNiQgAAAAANyGBAQAAACA25CAAAAAAHAbEhAAAAAAbkMCAgAAAMBtSEAAAAAAuA0JCAAAAAC3IQEBAAAA4DYkIAAAAADchgQEAAAAgNuQgAAAAABwGxIQAAAAAG5DAgIAAADAbUhAAAAAALgNCQgAAAAAtyEBAQAAAOA2JCAAAAAA3IYEBAAAAIDbkIAAAAAAcBsSEAAAAABuQwICAAAAwG1IQAAAAAC4DQkIAAAAALchAQEAAADgNiQgAAAAANyGBAQAAACA25CAAAAAAHAbEhAAAAAAbkMCAgAAAMBtSEAAAAAAuA0JCAAAAAC3IQEBAAAA4DYkIAAAAADchgQEAAAAgNuQgAAAAABwGxIQAAAAAG5DAgIAAADAbUhAAAAAALgNCQgAAAAAtyEBAQAAAOA2JCAAAAAA3IYEBAAAAIDbkIAAuChpaWkyDEO7du2yaT9y5Ig6d+6s2rVrKyMjo9J9v/32WxmGIcMwNH369Er7jB071trncmCxWPTKK6/o+uuvV4MGDeTv769GjRpp8ODBevvtt2WxWCT9Gpu0tDSXzOOHH37Q9OnTtWfPHpeMX/G9+Pbbb10yPgDg8kECAuCSff/99+rVq5e++eYbbdq0SQMGDDhn/zp16igtLc168l3h1KlTev311xUaGurK6bpNYWGhBg0apDFjxqhRo0ZatGiR3nvvPS1evFjR0dG65ZZb9Pbbb7tlLj/88INmzJjhsgTkxhtvVFZWlqKiolwyPgDg8uFX3RMA4N2++uorXX/99SopKdGWLVvUoUOH8+4zatQovfjii/rPf/5jk6ykp6errKxMw4YN06uvvurKabtFcnKyNmzYoJdffll33HGHzXvDhw/Xgw8+qDNnzlTT7JzjzJkzCgoKUsOGDdWwYcPqng4AwAtQAQHgsD179ujaa6+Vn5+ftm/ffkHJhyS1bt1aPXr00LJly2zaly1bpuHDhyssLKzS/dLT05WQkKBatWqpdu3aGjhwoLKzs2367Nq1S7///e/VtGlTBQcHq2nTprr11lv13Xff2fSruGRo8+bN+tOf/qQGDRqofv36Gj58uH744Qebvu+995769u2r+vXrKzg4WE2aNNHNN9+sgoKCKo8xLy9PL774ogYOHGiXfFRo2bKlrrrqqirHuPPOO9W0aVO79unTp9tdovb666+rW7duCgsLU0hIiJo3b66xY8dKkjIzM9WlSxdJ0l133VXpZXC7du3STTfdpPDwcAUFBalTp0765z//WWnMNm7cqLFjx6phw4YKCQlRUVFRpZdg9e3bV+3bt9dHH32kXr16Wef11FNP2VW/PvvsMyUmJiokJEQNGzbUpEmT9M4778gwDGVmZlYZIwCA9yEBAeCQ7du3q2/fvmrUqJG2b9+u5s2bX9T+48aN09q1a3Xs2DFJ0r59+7Rjxw6NGzeu0v5PPvmkbr31VsXFxemf//ynXnnlFZ08eVK9evXS559/bu337bffqnXr1kpNTdWGDRs0e/Zs5ebmqkuXLjpy5IjduOPHj5e/v79WrFihv//978rMzNTtt99uM96NN96ogIAALVu2TP/+97/11FNPqVatWiouLq7y+DZv3qySkhINGzbsouLiiKysLI0aNUrNmzfXqlWr9M477+jxxx9XaWmpJOmaa67RSy+9JEmaOnWqsrKylJWVpfHjx1vn2rNnTx0/flyLFy/WunXrdPXVV2vUqFGVrkkZO3as/P399corr+iNN96Qv79/lXPLy8vTH/7wB91+++166623lJSUpJSUFJsKV25urvr06aN9+/Zp0aJFWr58uU6ePKl7773XiVECAHgMEwAuwksvvWRKMiWZYWFh5uHDhy943wMHDpiSzKeffto8efKkWbt2bXPBggWmaZrmgw8+aDZr1sy0WCzmpEmTzN/+9XTw4EHTz8/PvO+++2zGO3nypBkZGWmOHDmyys8sLS01T506ZdaqVcucN2+e3XFMnDjRpv/f//53U5KZm5trmqZpvvHGG6Ykc8+ePRd8nKZpmk899ZQpyfz3v/99Qf0rYvPSSy9Z28aMGWPGxsba9Z02bZpNfJ555hlTknn8+PEqx//oo4/sxq/Qpk0bs1OnTmZJSYlN++DBg82oqCizrKzMNM1fY3bHHXfYjVHx3oEDB6xtffr0MSWZO3futOkbFxdnDhw40Pr6wQcfNA3DMD/77DObfgMHDjQlmZs3b67yuAAA3ocKCACH3HTTTTpx4oQmT56ssrIym/dKS0ttNtM07favXbu2brnlFi1btkylpaVavny59fKgs23YsEGlpaW64447bMYNCgpSnz59bC7ROXXqlB5++GFdeeWV8vPzk5+fn2rXrq3Tp0/riy++qPQ4fqvikqiKS7auvvpqBQQE6J577tHLL7+sb7755qJj5WoVl1eNHDlS//znP5WTk3PB++7fv19ffvml/vCHP0iy/X83aNAg5ebmat++fTb73HzzzRc8fmRkpLp27WrTdtVVV9lcErdlyxa1b99ecXFxNv1uvfXWC/4cAID3IAEB4JDHHntMjz/+uFasWKHbb7/dJgnx9/e32V5++eVKxxg3bpw+/vhjPfHEE/rpp5905513Vtrvxx9/lFR+on322Onp6TaXVt12221asGCBxo8frw0bNujDDz/URx99pIYNG1a64Lt+/fo2rwMDAyXJ2rdFixbatGmTGjVqpEmTJqlFixZq0aKF5s2bd874NGnSRJJ04MCBc/Zzht69e2vt2rXWJK1x48Zq3769Vq5ced59K2L7wAMP2MV24sSJkmR36drF3Onq7PhK5TH+7f+Lo0ePKiIiwq5fZW0AAO/HXbAAOGzGjBkyDEMzZsyQxWLRa6+9Jj8/P3300Uc2/Zo1a1bp/j179lTr1q01c+ZMDRgwQDExMZX2a9CggSTpjTfeUGxsbJXzOXHihP71r39p2rRpeuSRR6ztRUVF+vnnny/28Kx69eqlXr16qaysTLt27dJzzz2nyZMnKyIiQr///e8r3adfv37y9/fX2rVrNWHCBIc+NygoSEVFRXbtla1lGTp0qIYOHaqioiJ98MEHmjVrlm677TY1bdpUCQkJVX5GRWxTUlI0fPjwSvu0bt3a5rWzn9FSv359ayL0W3l5eU79HACAZyABAXBJpk+fLh8fH02bNk2maWrFihXq3LnzBe8/depUvfHGG5o0aVKVfQYOHCg/Pz99/fXX57z8xzAMmaZprWJUePHFF+0uE3OEr6+vunXrpjZt2ui1117Txx9/XGUCEhkZqfHjx1sXVVd2J6yvv/5ap0+frvJOWE2bNtXhw4f1448/WqsBxcXF2rBhQ5VzDAwMVJ8+fVS3bl1t2LBB2dnZSkhIsKvsVGjdurVatmypvXv36sknn7ygODhbnz599Mwzz+jzzz+3uQxr1apV1TIfAIBrkYAAuGSPP/64fHx89Nhjj8k0Ta1cuVJ+fhf218vtt99uc9epyjRt2lQzZ87Uo48+qm+++UY33HCD6tWrpx9//FEffvihatWqpRkzZig0NFS9e/fW008/rQYNGqhp06basmWLli5dqrp16zp0bIsXL9Z7772nG2+8UU2aNFFhYaH19sHXX3/9OfedM2eOvvnmG915553asGGDfve73ykiIkJHjhxRRkaGXnrpJa1atarKBGTUqFF6/PHH9fvf/14PPvigCgsLNX/+fLtk6vHHH9f333+v/v37q3Hjxjp+/LjmzZsnf39/9enTR1L5pWTBwcF67bXX1LZtW9WuXVvR0dGKjo7WCy+8oKSkJA0cOFB33nmnrrjiCv3888/64osv9PHHH+v11193KHYXavLkyVq2bJmSkpI0c+ZMRUREaMWKFfryyy8lST4+XC0MAJcT/lYH4BRTp07VE088oTfeeEOjRo1SSUmJU8dPSUnRG2+8of/9738aM2aMBg4cqIceekjfffedevfube23YsUK9evXTw899JCGDx+uXbt2KSMjo8pni5zP1VdfrdLSUk2bNk1JSUkaPXq0fvrpJ7311ltKTEw8575BQUF65513lJaWpry8PP3xj3/Uddddpz/+8Y/69ttvtWzZMg0ZMqTK/Zs1a6Z169bp+PHjGjFihB588EHdcsstdtWUbt26KS8vTw8//LASExN1zz33KDg4WO+9957atWsnSQoJCdGyZct09OhRJSYmqkuXLlqyZImk8svFPvzwQ9WtW1eTJ0/W9ddfrz/96U/atGnTeZMsZ4iOjtaWLVvUqlUrTZgwQX/4wx8UEBCgmTNnSpLDySMAwDMZZmW3pwEAoJrdc889WrlypY4ePaqAgIDqng4AwEm4BAsAUO1mzpyp6OhoNW/eXKdOndK//vUvvfjii5o6dSrJBwBcZkhAAADV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MwUFBSk+Pl7btm2r7il5lOnTp8swDJstMjLS+r5pmpo+fbqio6MVHBysvn376rPPPqvGGVefrVu3asiQIYqOjpZhGFq7dq3N+xcSq6KiIt13331q0KCBatWqpZtuuknff/+9G4/C/c4XtzvvvNPuO9i9e3ebPjUxbrNmzVKXLl1Up04dNWrUSMOGDdO+ffts+vCds3chceM7Z2/RokW66qqrrA8WTEhI0Lvvvmt9n+8a4FokIJeR9PR0TZ48WY8++qiys7PVq1cvJSUl2dzuDlK7du2Um5tr3T799FPre3//+981Z84cLViwQB999JEiIyM1YMAAnTx5shpnXD1Onz6tjh07asGCBZW+fyGxmjx5stasWaNVq1Zp+/btOnXqlAYPHqyysjJ3HYbbnS9uknTDDTfYfAfXr19v835NjNuWLVs0adIkffDBB8rIyFBpaakSExN1+vRpax++c/YuJG4S37mzNW7cWE899ZR27dqlXbt26brrrtPQoUOtSQbfNcDFTFw2unbtak6YMMGmrU2bNuYjjzxSTTPyPNOmTTM7duxY6XsWi8WMjIw0n3rqKWtbYWGhGRYWZi5evNhNM/RMksw1a9ZYX19IrI4fP276+/ubq1atsvbJyckxfXx8zH//+99um3t1OjtupmmaY8aMMYcOHVrlPsSt3OHDh01J5pYtW0zT5Dt3oc6Om2nynbtQ9erVM1988UW+a4AbUAG5TBQXF2v37t1KTEy0aU9MTNSOHTuqaVae6auvvlJ0dLSaNWum3//+9/rmm28kSQcOHFBeXp5NDAMDA9WnTx9ieJYLidXu3btVUlJi0yc6Olrt27ev8fHMzMxUo0aN1KpVK9199906fPiw9T3iVu7EiROSpPDwcEl85y7U2XGrwHeuamVlZVq1apVOnz6thIQEvmuAG5CAXCaOHDmisrIyRURE2LRHREQoLy+vmmblebp166bly5drw4YN+sc//qG8vDz16NFDR48etcaJGJ7fhcQqLy9PAQEBqlevXpV9aqKkpCS99tpreu+99/Tss8/qo48+0nXXXaeioiJJxE0qv/4+OTlZ1157rdq3by+J79yFqCxuEt+5qnz66aeqXbu2AgMDNWHCBK1Zs0ZxcXF81wA38KvuCcC5DMOweW2apl1bTZaUlGT9c4cOHZSQkKAWLVro5Zdfti7KJIYXzpFY1fR4jho1yvrn9u3bq3PnzoqNjdU777yj4cOHV7lfTYrbvffeq08++UTbt2+3e4/vXNWqihvfucq1bt1ae/bs0fHjx7V69WqNGTNGW7Zssb7Pdw1wHSogl4kGDRrI19fX7jcvhw8ftvstDn5Vq1YtdejQQV999ZX1bljE8PwuJFaRkZEqLi7WsWPHquwDKSoqSrGxsfrqq68kEbf77rtPb731ljZv3qzGjRtb2/nOnVtVcasM37lyAQEBuvLKK9W5c2fNmjVLHTt21Lx58/iuAW5AAnKZCAgIUHx8vDIyMmzaMzIy1KNHj2qalecrKirSF198oaioKDVr1kyRkZE2MSwuLtaWLVuI4VkuJFbx8fHy9/e36ZObm6v//ve/xPM3jh49qkOHDikqKkpSzY2baZq699579eabb+q9995Ts2bNbN7nO1e588WtMnznKmeapoqKiviuAe5QDQvf4SKrVq0y/f39zaVLl5qff/65OXnyZLNWrVrmt99+W91T8xh/+ctfzMzMTPObb74xP/jgA3Pw4MFmnTp1rDF66qmnzLCwMPPNN980P/30U/PWW281o6KizPz8/GqeufudPHnSzM7ONrOzs01J5pw5c8zs7Gzzu+++M03zwmI1YcIEs3HjxuamTZvMjz/+2LzuuuvMjh07mqWlpdV1WC53rridPHnS/Mtf/mLu2LHDPHDggLl582YzISHBvOKKK2p83P70pz+ZYWFhZmZmppmbm2vdCgoKrH34ztk7X9z4zlUuJSXF3Lp1q3ngwAHzk08+Mf/617+aPj4+5saNG03T5LsGuBoJyGVm4cKFZmxsrBkQEGBec801NrdihGmOGjXKjIqKMv39/c3o6Ghz+PDh5meffWZ932KxmNOmTTMjIyPNwMBAs3fv3uann35ajTOuPps3bzYl2W1jxowxTfPCYnXmzBnz3nvvNcPDw83g4GBz8ODB5sGDB6vhaNznXHErKCgwExMTzYYNG5r+/v5mkyZNzDFjxtjFpCbGrbKYSTJfeuklax++c/bOFze+c5UbO3as9d/Khg0bmv3797cmH6bJdw1wNcM0TdN99RYAAAAANRlrQAAAAAC4DQkIAAAAALchAQEAAADgNiQgAAAAANyGBAQAAACA25CAAAAAAHAbEhAAAAAAbkMCAgAulJaWprp1617UPnfeeaeGDRvmkvkAAFDdSEAA4BeLFy9WnTp1VFpaam07deqU/P391atXL5u+27Ztk2EY+t///nfOMUeNGnXePo5o2rSpUlNTnT4uAACuRgICAL/o16+fTp06pV27dlnbtm3bpsjISH300UcqKCiwtmdmZio6OlqtWrU655jBwcFq1KiRy+YMAIC3IQEBgF+0bt1a0dHRyszMtLZlZmZq6NChatGihXbs2GHT3q9fPxUXF+uhhx7SFVdcoVq1aqlbt242+1d2Cdb//d//qVGjRqpTp47Gjx+vRx55RFdffbXdfJ555hlFRUWpfv36mjRpkkpKSiRJffv21XfffacpU6bIMAwZhuHMMAAA4FIkIADwG3379tXmzZutrzdv3qy+ffuqT58+1vbi4mJlZWWpX79+uuuuu/T+++9r1apV+uSTT3TLLbfohhtu0FdffVXp+K+99pqeeOIJzZ49W7t371aTJk20aNEiu36bN2/W119/rc2bN+vll19WWlqa0tLSJElvvvmmGjdurJkzZyo3N1e5ubnODwQAAC5CAgIAv9G3b1+9//77Ki0t1cmTJ5Wdna3evXurT58+1srGBx98oDNnzqhv375auXKlXn/9dfXq1UstWrTQAw88oGuvvVYvvfRSpeM/99xzGjdunO666y61atVKjz/+uDp06GDXr169elqwYIHatGmjwYMH68Ybb9R//vMfSVJ4eLh8fX1Vp04dRUZGKjIy0mXxAADA2UhAAOA3+vXrp9OnT+ujjz7Stm3b1KpVKzVq1Eh9+vTRRx99pNOnTyszM1NNmjTRxx9/LNM01apVK9WuXdu6bdmyRV9//XWl4+/bt09du3a1aTv7tSS1a9dOvr6+1tdRUVE6fPiwcw8WAIBq4FfdEwAAT3LllVeqcePG2rx5s44dO6Y+ffpIkiIjI9WsWTO9//772rx5s6677jpZLBb5+vpq9+7dNsmCJNWuXbvKzzh7zYZpmnZ9/P397faxWCyOHhYAAB6DCggAnKVfv37KzMxUZmam+vbta23v06ePNmzYoA8++ED9+vVTp06dVFZWpsOHD+vKK6+02aq6LKp169b68MMPbdp+e9etCxUQEKCysrKL3g8AgOpGAgIAZ+nXr5+2b9+uPXv2WCsgUnkC8o9//EOFhYXq16+fWrVqpT/84Q+644479Oabb+rAgQP66KOPNHv2bK1fv77Sse+77z4tXbpUL7/8sr766iv93//9nz755JOLvpNV06ZNtXXrVuXk5OjIkSOXdLwAALgTCQgAnKVfv346c+aMrrzySkVERFjb+/Tpo5MnT6pFixaKiYmRJL300ku644479Je//EWtW7fWTTfdpJ07d1rfP9sf/vAHpaSk6IEHHtA111yjAwcO6M4771RQUNBFzXHmzJn69ttv1aJFCzVs2NDxgwUAwM0Ms7KLjwEAbjNgwABFRkbqlVdeqe6pAADgcixCBwA3Kigo0OLFizVw4ED5+vpq5cqV2rRpkzIyMqp7agAAuAUVEABwozNnzmjIkCH6+OOPVVRUpNatW2vq1KkaPnx4dU8NAAC3IAEBAAAA4DYsQgcAAADgNiQgAAAAANyGBAQAAACA25CAAAAAAHAbEhAAAAAAbkMCAgAAAMBtSEAAAAAAuA0JCAAAAAC3IQEBAAAA4DYkIAAAAADchgQEAAAAgNuQgAAAAABwGxIQAAAAAG5DAgIAAADAbUhAAAAAALgNCQgAAAAAtyEBAQAAAOA2JCAAAAAA3IYEBAAAAIDbkIAAAAAAcBsSEAAAAABuQwICAAAAwG3+H7ULfwicElayAAAAAElFTkSuQmCC style\u003d\u0027width\u003dauto;height:auto\u0027\u003e\u003cdiv\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702926110432_986204350",
+      "id": "paragraph_1702926110432_986204350",
+      "dateCreated": "2023-12-18 19:01:50.432",
+      "dateStarted": "2023-12-19 20:02:02.804",
+      "dateFinished": "2023-12-19 20:02:03.760",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-18 19:22:09.884",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702927329883_330417982",
+      "id": "paragraph_1702927329883_330417982",
+      "dateCreated": "2023-12-18 19:22:09.884",
+      "status": "READY"
+    }
+  ],
+  "name": "sparkML",
+  "id": "2JKB92WA5",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.10.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

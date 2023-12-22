@@ -1,0 +1,14 @@
+Source,Target,weight,prediction
+aegon-frey-(son-of-stevron),catelyn-stark,4.0,0
+aegon-frey-(son-of-stevron),robb-stark,5.0,0
+aegon-frey-(son-of-stevron),stevron-frey,3.0,0
+aegon-frey-(son-of-stevron),walder-frey,6.0,0
+hoster-blackwood,jaime-lannister,4.0,0
+pypar,rast,4.0,0
+pypar,samwell-tarly,11.0,0
+pypar,samwell-tarly,15.0,0
+pypar,samwell-tarly,3.0,0
+pypar,satin,4.0,0
+pypar,todder,8.0,0
+pypar,todder,4.0,0
+tion-frey,willem-lannister,6.0,0

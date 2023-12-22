@@ -1,0 +1,9 @@
+Source,Target,weight,prediction
+anders-yronwood,oberyn-martell,3.0,0
+anders-yronwood,quentyn-martell,4.0,0
+samwell-tarly,small-paul,19.0,2
+samwell-tarly,stannis-baratheon,18.0,0
+samwell-tarly,stannis-baratheon,11.0,0
+samwell-tarly,stannis-baratheon,8.0,0
+samwell-tarly,theobald,7.0,0
+samwell-tarly,xhondo,18.0,0

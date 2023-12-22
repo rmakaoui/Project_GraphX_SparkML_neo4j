@@ -1,0 +1,10 @@
+Source,Target,weight,prediction
+dalbridge,ebben,4.0,0
+dalbridge,jon-snow,4.0,0
+dalbridge,qhorin-halfhand,5.0,0
+guyard-morrigen,renly-baratheon,7.0,0
+high-septon-(fat_one),joffrey-baratheon,4.0,0
+high-septon-(fat_one),tyrion-lannister,4.0,0
+horas-redwyne,joffrey-baratheon,3.0,0
+jared-frey,rhaegar-frey,3.0,0
+rodrik-sparr,victarion-greyjoy,7.0,0

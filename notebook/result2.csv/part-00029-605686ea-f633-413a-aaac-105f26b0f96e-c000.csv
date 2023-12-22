@@ -1,0 +1,15 @@
+Source,Target,weight,prediction
+cutjack,gendry,3.0,0
+cutjack,kurz,4.0,0
+cutjack,tarber,3.0,0
+denys-mallister,eddison-tollett,3.0,0
+denys-mallister,janos-slynt,3.0,0
+denys-mallister,jon-snow,4.0,0
+denys-mallister,othell-yarwyck,4.0,0
+denys-mallister,pypar,4.0,0
+denys-mallister,samwell-tarly,14.0,0
+galazza-galare,grazhar,4.0,0
+galazza-galare,hizdahr-zo-loraq,12.0,0
+galazza-galare,reznak-mo-reznak,5.0,0
+galazza-galare,skahaz-mo-kandaq,12.0,0
+lyanna-mormont,stannis-baratheon,3.0,0

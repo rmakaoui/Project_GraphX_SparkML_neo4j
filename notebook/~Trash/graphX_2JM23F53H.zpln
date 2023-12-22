@@ -1,0 +1,292 @@
+{
+  "paragraphs": [
+    {
+      "text": "import org.apache.spark._\r\nimport org.apache.spark.graphx._\r\nimport org.apache.spark.rdd.RDD",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-14 17:51:03.072",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark._\nimport org.apache.spark.graphx._\nimport org.apache.spark.rdd.RDD\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702576007012_1150353753",
+      "id": "paragraph_1702576007012_1150353753",
+      "dateCreated": "2023-12-14 17:46:47.012",
+      "dateStarted": "2023-12-14 17:51:03.164",
+      "dateFinished": "2023-12-14 17:51:04.557",
+      "status": "FINISHED"
+    },
+    {
+      "text": "import org.apache.spark.sql.{SaveMode, SparkSession}\r\n\r\n// Configuration pour la connexion à Neo4j\r\nval neo4jUrl \u003d \"bolt://neo4j:7687\"\r\nval neo4jUser \u003d \"neo4j\"\r\nval neo4jPassword \u003d \"bitnami1\"\r\n\r\nval spark \u003d SparkSession.builder().getOrCreate()\r\n\r\nval df \u003d (spark.read.format(\"org.neo4j.spark.DataSource\")\r\n  .option(\"url\", \"bolt://neo4j:7687\")\r\n  .option(\"authentication.basic.username\", neo4jUser)\r\n  .option(\"authentication.basic.password\", neo4jPassword)\r\n  .option(\"query\", \"MATCH (source)-[relation]-\u003e(target) where relation.book IS NOT NULL and relation.weight IS NOT NULL RETURN source.name AS Source, target.name AS Target, TYPE(relation) AS Type, relation.weight AS Weight, relation.book AS Book\")\r\n  .load())\r\n df.show()\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-14 18:17:48.647",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+------------------+----------+------+----+\n|              Source|            Target|      Type|Weight|Book|\n+--------------------+------------------+----------+------+----+\n|      Addam-Marbrand|   Jaime-Lannister|Undirected|     3|   1|\n|      Addam-Marbrand|   Tywin-Lannister|Undirected|     6|   1|\n|   Aegon-I-Targaryen|Daenerys-Targaryen|Undirected|     5|   1|\n|   Aegon-I-Targaryen|      Eddard-Stark|Undirected|     4|   1|\n|Aemon-Targaryen-(...|    Alliser-Thorne|Undirected|     4|   1|\n|Aemon-Targaryen-(...|       Bowen-Marsh|Undirected|     4|   1|\n|Aemon-Targaryen-(...|             Chett|Undirected|     9|   1|\n|Aemon-Targaryen-(...|            Clydas|Undirected|     5|   1|\n|Aemon-Targaryen-(...|      Jeor-Mormont|Undirected|    13|   1|\n|Aemon-Targaryen-(...|          Jon-Snow|Undirected|    34|   1|\n|Aemon-Targaryen-(...|     Samwell-Tarly|Undirected|     5|   1|\n|  Aerys-II-Targaryen|     Brandon-Stark|Undirected|     4|   1|\n|  Aerys-II-Targaryen|      Eddard-Stark|Undirected|    10|   1|\n|  Aerys-II-Targaryen|  Gerold-Hightower|Undirected|     3|   1|\n|  Aerys-II-Targaryen|   Jaime-Lannister|Undirected|     5|   1|\n|  Aerys-II-Targaryen|         Jon-Arryn|Undirected|     3|   1|\n|  Aerys-II-Targaryen|  Robert-Baratheon|Undirected|    12|   1|\n|                Aggo|Daenerys-Targaryen|Undirected|    11|   1|\n|                Aggo|             Drogo|Undirected|     6|   1|\n|                Aggo|             Jhogo|Undirected|     4|   1|\n+--------------------+------------------+----------+------+----+\nonly showing top 20 rows\n\nimport org.apache.spark.sql.{SaveMode, SparkSession}\n\u001b[1m\u001b[34mneo4jUrl\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d bolt://neo4j:7687\n\u001b[1m\u001b[34mneo4jUser\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d neo4j\n\u001b[1m\u001b[34mneo4jPassword\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d bitnami1\n\u001b[1m\u001b[34mspark\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.SparkSession\u001b[0m \u003d org.apache.spark.sql.SparkSession@2aba149e\n\u001b[1m\u001b[34mdf\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [Source: string, Target: string ... 3 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://0f827b631105:4040/jobs/job?id\u003d0"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702577185846_377560735",
+      "id": "paragraph_1702577185846_377560735",
+      "dateCreated": "2023-12-14 18:06:25.846",
+      "dateStarted": "2023-12-14 18:17:48.683",
+      "dateFinished": "2023-12-14 18:17:59.274",
+      "status": "FINISHED"
+    },
+    {
+      "text": "import org.apache.spark.sql.SparkSession\r\nimport org.graphframes.GraphFrame\r\n\r\nval bookDF \u003d df.select(\"Source\", \"Target\", \"Weight\")\r\n\r\n  // Create a GraphFrame for the current book\r\nval G_book \u003d GraphFrame(bookDF, bookDF)\r\n\r\n  // Merge the current book with the previous ones\r\nval mergedGraph \u003d books.reduce(_ union _).union(G_book)\r\n\r\n  // Deduplicate edges based on Source and Target columns\r\nval finalGraph \u003d mergedGraph.dropDuplicates(Seq(\"Source\", \"Target\"))\r\n\r\n// Display the final vertices and edges\r\nval finalVertices \u003d books.reduce(_ union _).vertices\r\nval finalEdges \u003d books.reduce(_ union _).edges\r\n\r\nfinalVertices.show()\r\nfinalEdges.show()\r\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-14 18:18:02.286",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:41: \u001b[31merror: \u001b[0mobject graphframes is not a member of package org\n       import org.graphframes.GraphFrame\n                  ^\n\u003cconsole\u003e:46: \u001b[31merror: \u001b[0mnot found: value GraphFrame\n       val G_book \u003d GraphFrame(bookDF, bookDF)\n                    ^\n\u003cconsole\u003e:49: \u001b[31merror: \u001b[0mnot found: value books\n       val mergedGraph \u003d books.reduce(_ union _).union(G_book)\n                         ^\n\u003cconsole\u003e:55: \u001b[31merror: \u001b[0mnot found: value books\n       val finalVertices \u003d books.reduce(_ union _).vertices\n                           ^\n\u003cconsole\u003e:56: \u001b[31merror: \u001b[0mnot found: value books\n       val finalEdges \u003d books.reduce(_ union _).edges\n                        ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702576263145_1092345908",
+      "id": "paragraph_1702576263145_1092345908",
+      "dateCreated": "2023-12-14 17:51:03.145",
+      "dateStarted": "2023-12-14 18:18:02.360",
+      "dateFinished": "2023-12-14 18:18:02.848",
+      "status": "ERROR"
+    },
+    {
+      "text": "class VertexProperty()\r\ncase class UserProperty(val name: String) extends VertexProperty\r\ncase class ProductProperty(val name: String, val price: Double) extends VertexProperty\r\n// The graph might then have the type:\r\nvar graph: Graph[VertexProperty, String] \u003d null",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-14 18:32:39.984",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "defined class VertexProperty\ndefined class UserProperty\ndefined class ProductProperty\n\u001b[1m\u001b[34mgraph\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.graphx.Graph[VertexProperty,String]\u001b[0m \u003d null\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702577170010_2129974132",
+      "id": "paragraph_1702577170010_2129974132",
+      "dateCreated": "2023-12-14 18:06:10.010",
+      "dateStarted": "2023-12-14 18:32:40.040",
+      "dateFinished": "2023-12-14 18:32:43.595",
+      "status": "FINISHED"
+    },
+    {
+      "text": "import scala.reflect.ClassTag\r\n\r\nclass Graph[VD, ED] {\r\n  def aggregateMessages[Msg: ClassTag](\r\n      sendMsg: EdgeContext[VD, ED, Msg] \u003d\u003e Unit,\r\n      mergeMsg: (Msg, Msg) \u003d\u003e Msg,\r\n      tripletFields: TripletFields \u003d TripletFields.All)\r\n    : VertexRDD[Msg]\r\n}",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-14 18:39:53.268",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:16: \u001b[31merror: \u001b[0mclass Graph needs to be abstract, since method aggregateMessages is not defined\n       class Graph[VD, ED] {\n             ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702578732351_808326071",
+      "id": "paragraph_1702578732351_808326071",
+      "dateCreated": "2023-12-14 18:32:12.351",
+      "dateStarted": "2023-12-14 18:39:53.340",
+      "dateFinished": "2023-12-14 18:39:53.548",
+      "status": "ERROR"
+    },
+    {
+      "text": "%pyspark\nfrom graphframes import *\n# Create a Vertex DataFrame with unique ID column \"id\"\nv \u003d sqlContext.createDataFrame([\n  (\"a\", \"Alice\", 34),\n  (\"b\", \"Bob\", 36),\n  (\"c\", \"Charlie\", 30),\n], [\"id\", \"name\", \"age\"])\n# Create an Edge DataFrame with \"src\" and \"dst\" columns\ne \u003d sqlContext.createDataFrame([\n  (\"a\", \"b\", \"friend\"),\n  (\"b\", \"c\", \"follow\"),\n  (\"c\", \"b\", \"follow\"),\n], [\"src\", \"dst\", \"relationship\"])\n# Create a GraphFrame\ng \u003d GraphFrame(v, e)\n# Query: Get in-degree of each vertex.\ng.inDegrees.show()\n# Query: Count the number of \"follow\" connections in the graph.\ng.edges.filter(\"relationship \u003d \u0027follow\u0027\").count()\n# Run PageRank algorithm, and show results.\nresults \u003d g.pageRank(resetProbability\u003d0.01, maxIter\u003d20)\nresults.vertices.select(\"id\", \"pagerank\").show()\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-14 18:56:28.772",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n\u001b[0;31mModuleNotFoundError\u001b[0m                       Traceback (most recent call last)\n\u001b[0;32m/tmp/ipykernel_537/1157331632.py\u001b[0m in \u001b[0;36m\u003cmodule\u003e\u001b[0;34m\u001b[0m\n\u001b[0;32m----\u003e 1\u001b[0;31m \u001b[0;32mfrom\u001b[0m \u001b[0mgraphframes\u001b[0m \u001b[0;32mimport\u001b[0m \u001b[0;34m*\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      2\u001b[0m \u001b[0;31m# Create a Vertex DataFrame with unique ID column \"id\"\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      3\u001b[0m v \u003d sqlContext.createDataFrame([\n\u001b[1;32m      4\u001b[0m   \u001b[0;34m(\u001b[0m\u001b[0;34m\"a\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m\"Alice\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;36m34\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      5\u001b[0m   \u001b[0;34m(\u001b[0m\u001b[0;34m\"b\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m\"Bob\"\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;36m36\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;31mModuleNotFoundError\u001b[0m: No module named \u0027graphframes\u0027"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702578774396_1880230883",
+      "id": "paragraph_1702578774396_1880230883",
+      "dateCreated": "2023-12-14 18:32:54.396",
+      "dateStarted": "2023-12-14 18:56:28.932",
+      "dateFinished": "2023-12-14 18:56:40.028",
+      "status": "ERROR"
+    },
+    {
+      "text": "%pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-12-14 18:56:28.854",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1702580188854_807204789",
+      "id": "paragraph_1702580188854_807204789",
+      "dateCreated": "2023-12-14 18:56:28.854",
+      "status": "READY"
+    }
+  ],
+  "name": "graphX",
+  "id": "2JM23F53H",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.10.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

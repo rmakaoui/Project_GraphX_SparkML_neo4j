@@ -1,0 +1,15 @@
+Source,Target,weight,prediction
+alla-tyrell,elinor-tyrell,5.0,0
+alla-tyrell,elinor-tyrell,8.0,0
+alla-tyrell,margaery-tyrell,7.0,0
+alla-tyrell,megga-tyrell,6.0,0
+alla-tyrell,megga-tyrell,10.0,0
+alla-tyrell,osney-kettleblack,3.0,0
+alla-tyrell,sansa-stark,4.0,0
+marillion,petyr-baelish,5.0,0
+marillion,robert-arryn,3.0,0
+marillion,rodrik-cassel,5.0,0
+marillion,sansa-stark,12.0,0
+marillion,tyrion-lannister,10.0,0
+marillion,willis-wode,4.0,0
+woth,yoren,4.0,0

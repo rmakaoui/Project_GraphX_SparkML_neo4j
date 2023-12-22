@@ -1,0 +1,10 @@
+Source,Target,weight,prediction
+captain-myraham,theon-greyjoy,4.0,0
+conn,coratt,5.0,0
+conn,shagga,9.0,0
+conn,tyrion-lannister,6.0,0
+morrec,tyrion-lannister,5.0,0
+oswell-kettleblack,petyr-baelish,4.0,0
+oswell-kettleblack,sansa-stark,5.0,0
+ryman-frey,stevron-frey,4.0,0
+ryman-frey,walder-rivers,5.0,0
